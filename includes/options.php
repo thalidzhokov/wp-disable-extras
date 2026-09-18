@@ -48,6 +48,7 @@ function disable_extras_default_options(): array {
       'admin_bar' => false,
       'admin_bar_non_admins' => false,
       'admin_bar_wp_logo' => false,
+      'login_logo' => false,
       'feed_redirect' => false,
       'feed_global' => false,
       'feed_global_comments' => false,
@@ -202,6 +203,7 @@ function disable_extras_option_labels(): array {
       'admin_bar' => __('Admin bar on the front end (all users)', 'disable-extras'),
       'admin_bar_non_admins' => __('Admin bar on the front end (non-admins)', 'disable-extras'),
       'admin_bar_wp_logo' => __('Admin bar: WordPress logo menu', 'disable-extras'),
+      'login_logo' => __('Login: WordPress logo → blog name', 'disable-extras'),
       'feed_redirect' => __('Redirect disabled feeds to the homepage', 'disable-extras'),
       'feed_global' => __('Global posts feed', 'disable-extras'),
       'feed_global_comments' => __('Global comments feed', 'disable-extras'),
@@ -317,6 +319,12 @@ function disable_extras_option_sections(): array {
           'dashboard_primary',
           'dashboard_site_health',
           'welcome_panel',
+        ],
+      ],
+      [
+        'title' => __('Login', 'disable-extras'),
+        'keys' => [
+          'login_logo',
         ],
       ],
       [
@@ -635,6 +643,12 @@ TXT,
       'admin_bar_wp_logo' => <<<'TXT'
 #wp-admin-bar-wp-logo .ab-item
 About WordPress dropdown (Documentation, Learn, Support, Feedback)
+TXT,
+      'login_logo' => <<<'TXT'
+wp-login.php
+<h1 class="wp-login-logo"><a href="https://wordpress.org/">…</a></h1>
+→
+<h1 class="wp-login-logo">Blog Name</h1>
 TXT,
       'feed_redirect' => <<<'TXT'
 GET /feed/ → 301 Location: https://example.com/

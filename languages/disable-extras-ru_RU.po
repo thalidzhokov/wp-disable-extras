@@ -45,6 +45,12 @@ msgstr "Admin bar на фронте (не админы)"
 msgid "Admin bar: WordPress logo menu"
 msgstr "Admin bar: меню логотипа WordPress"
 
+msgid "Login"
+msgstr "Вход"
+
+msgid "Login: WordPress logo → blog name"
+msgstr "Вход: логотип WordPress → название блога"
+
 msgid "Menu: Integrations"
 msgstr "Меню: Integrations"
 

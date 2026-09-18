@@ -22,6 +22,8 @@ return [
     'Admin bar on the front end (all users)' => 'Admin bar на фронте (все пользователи)',
     'Admin bar on the front end (non-admins)' => 'Admin bar на фронте (не админы)',
     'Admin bar: WordPress logo menu' => 'Admin bar: меню логотипа WordPress',
+    'Login' => 'Вход',
+    'Login: WordPress logo → blog name' => 'Вход: логотип WordPress → название блога',
     'Menu: Integrations' => 'Меню: Integrations',
     'Menu: Workouts' => 'Меню: Workouts',
     'Menu: Courses' => 'Меню: Courses',

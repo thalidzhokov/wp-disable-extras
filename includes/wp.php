@@ -150,6 +150,12 @@ function disable_extras_wp_apply(): void {
     add_action('admin_bar_menu', 'disable_extras_wp_remove_admin_bar_wp_logo', 999);
   }
 
+  if (disable_extras_is_enabled('wp', 'login_logo')) {
+    add_action('login_enqueue_scripts', 'disable_extras_wp_login_logo_styles');
+    add_action('login_header', 'disable_extras_wp_login_logo_ob_start');
+    add_action('login_footer', 'disable_extras_wp_login_logo_ob_end', 0);
+  }
+
   $disableHeartbeatFront = disable_extras_is_enabled('wp', 'heartbeat_front');
   $disableHeartbeatAdmin = disable_extras_is_enabled('wp', 'heartbeat_admin');
 
@@ -360,6 +366,62 @@ function disable_extras_wp_filter_admin_bar(bool $show): bool {
  */
 function disable_extras_wp_remove_admin_bar_wp_logo(WP_Admin_Bar $wpAdminBar): void {
   $wpAdminBar->remove_node('wp-logo');
+}
+
+/**
+ * @return void
+ */
+function disable_extras_wp_login_logo_styles(): void {
+  $css = 'body.login h1.wp-login-logo.disable-extras-login-title{'
+    . 'background:none;'
+    . 'height:auto;'
+    . 'width:auto;'
+    . 'text-indent:0;'
+    . 'overflow:visible;'
+    . 'display:block;'
+    . 'margin:0 0 24px;'
+    . 'padding:0;'
+    . 'font-size:20px;'
+    . 'font-weight:600;'
+    . 'line-height:1.3;'
+    . 'text-align:center;'
+    . 'color:#1d2327'
+    . '}';
+
+  wp_add_inline_style('login', $css);
+}
+
+/**
+ * @return void
+ */
+function disable_extras_wp_login_logo_ob_start(): void {
+  ob_start('disable_extras_wp_replace_login_logo');
+}
+
+/**
+ * @return void
+ */
+function disable_extras_wp_login_logo_ob_end(): void {
+  if (ob_get_level() > 0) {
+    ob_end_flush();
+  }
+}
+
+/**
+ * @param string $html
+ *
+ * @return string
+ */
+function disable_extras_wp_replace_login_logo(string $html): string {
+  $name = esc_html(get_bloginfo('name', 'display'));
+  $replaced = preg_replace(
+    '#<h1\b[^>]*\bwp-login-logo\b[^>]*>\s*<a\b[^>]*>.*?</a>\s*</h1>#is',
+    '<h1 class="wp-login-logo disable-extras-login-title">' . $name . '</h1>',
+    $html,
+    1
+  );
+
+  return is_string($replaced) ? $replaced : $html;
 }
 
 /**
