@@ -70,7 +70,6 @@ function disable_extras_yoast_apply(): void {
     || disable_extras_is_enabled('yoast', 'menu_upgrade')
     || disable_extras_is_enabled('yoast', 'menu_brand_insights')
   ) {
-    // After Yoast integrations register their PHP_INT_MAX submenu filters on init.
     add_action('init', 'disable_extras_yoast_register_submenu_filters', 20);
     add_action('admin_menu', 'disable_extras_yoast_remove_admin_submenu_pages', 999);
     add_action('network_admin_menu', 'disable_extras_yoast_remove_admin_submenu_pages', 999);
@@ -176,8 +175,6 @@ function disable_extras_yoast_filter_submenu_pages(array $pages): array {
 }
 
 /**
- * Strip promo items from the already-built WP admin menu.
- *
  * @return void
  */
 function disable_extras_yoast_remove_admin_submenu_pages(): void {
@@ -208,15 +205,6 @@ function disable_extras_yoast_remove_admin_submenu_pages(): void {
 
     $submenu[$parent] = array_values($submenu[$parent]);
   }
-}
-
-/**
- * @param array<int, mixed> $pages
- *
- * @return array<int, mixed>
- */
-function disable_extras_yoast_filter_submenu_pages_legacy_unused(array $pages): array {
-  return $pages;
 }
 
 /**
