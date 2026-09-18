@@ -30,13 +30,36 @@ function disable_extras_default_options(): array {
       'pingbacks_incoming' => false,
       'oembed_discovery' => false,
       'oembed_endpoint' => false,
+      'embeds' => false,
       'rest_users' => false,
+      'rest_guests' => false,
+      'rest_links' => false,
       'heartbeat_front' => false,
+      'heartbeat_admin' => false,
+      'heartbeat_slow' => false,
+      'texturization' => false,
+      'autosave' => false,
+      'dashboard_widgets' => false,
+      'admin_bar' => false,
+      'admin_bar_non_admins' => false,
+      'feed_redirect' => false,
+      'feed_global' => false,
+      'feed_global_comments' => false,
+      'feed_post_comments' => false,
+      'feed_authors' => false,
+      'feed_post_types' => false,
+      'feed_categories' => false,
+      'feed_tags' => false,
+      'feed_custom_taxonomies' => false,
+      'feed_search' => false,
+      'feed_atom_rdf' => false,
       'auto_updates_core' => false,
       'auto_updates_plugins' => false,
       'auto_updates_themes' => false,
       'auto_updates_translations' => false,
       'auto_updates_all' => false,
+      'update_nags_admins_only' => false,
+      'update_phone_home' => false,
       'application_passwords' => false,
       'core_sitemaps' => false,
       'disallow_file_edit' => false,
@@ -148,13 +171,36 @@ function disable_extras_option_labels(): array {
       'pingbacks_incoming' => __('Incoming pingbacks', 'disable-extras'),
       'oembed_discovery' => __('oEmbed discovery links', 'disable-extras'),
       'oembed_endpoint' => __('oEmbed REST endpoint', 'disable-extras'),
+      'embeds' => __('WordPress embeds (oEmbed host JS, embed endpoints)', 'disable-extras'),
       'rest_users' => __('REST users endpoint for guests', 'disable-extras'),
+      'rest_guests' => __('REST API for guests', 'disable-extras'),
+      'rest_links' => __('REST API discovery links (head, headers, RSD)', 'disable-extras'),
       'heartbeat_front' => __('Heartbeat on the front end', 'disable-extras'),
+      'heartbeat_admin' => __('Heartbeat in admin', 'disable-extras'),
+      'heartbeat_slow' => __('Heartbeat interval: slow (60s)', 'disable-extras'),
+      'texturization' => __('Texturization (smart quotes, dashes, ellipsis)', 'disable-extras'),
+      'autosave' => __('Editor autosave', 'disable-extras'),
+      'dashboard_widgets' => __('Default dashboard widgets', 'disable-extras'),
+      'admin_bar' => __('Admin bar on the front end (all users)', 'disable-extras'),
+      'admin_bar_non_admins' => __('Admin bar on the front end (non-admins)', 'disable-extras'),
+      'feed_redirect' => __('Redirect disabled feeds to the homepage', 'disable-extras'),
+      'feed_global' => __('Global posts feed', 'disable-extras'),
+      'feed_global_comments' => __('Global comments feed', 'disable-extras'),
+      'feed_post_comments' => __('Per-post comments feed', 'disable-extras'),
+      'feed_authors' => __('Author feeds', 'disable-extras'),
+      'feed_post_types' => __('Post type archive feeds', 'disable-extras'),
+      'feed_categories' => __('Category feeds', 'disable-extras'),
+      'feed_tags' => __('Tag feeds', 'disable-extras'),
+      'feed_custom_taxonomies' => __('Custom taxonomy feeds', 'disable-extras'),
+      'feed_search' => __('Search results feeds', 'disable-extras'),
+      'feed_atom_rdf' => __('Atom / RDF feed formats', 'disable-extras'),
       'auto_updates_core' => __('Automatic updates: WordPress core', 'disable-extras'),
       'auto_updates_plugins' => __('Automatic updates: plugins', 'disable-extras'),
       'auto_updates_themes' => __('Automatic updates: themes', 'disable-extras'),
       'auto_updates_translations' => __('Automatic updates: translations', 'disable-extras'),
       'auto_updates_all' => __('Automatic updates: everything', 'disable-extras'),
+      'update_nags_admins_only' => __('Update nags only for users who can update', 'disable-extras'),
+      'update_phone_home' => __('Site URL in WordPress.org update requests', 'disable-extras'),
       'application_passwords' => __('Application Passwords', 'disable-extras'),
       'core_sitemaps' => __('Core sitemaps', 'disable-extras'),
       'disallow_file_edit' => __('Theme and plugin file editor', 'disable-extras'),
@@ -211,6 +257,14 @@ function disable_extras_option_sections(): array {
           'shortlink',
           'oembed_discovery',
           'oembed_endpoint',
+          'rest_links',
+        ],
+      ],
+      [
+        'title' => __('Editor', 'disable-extras'),
+        'keys' => [
+          'texturization',
+          'autosave',
         ],
       ],
       [
@@ -219,7 +273,18 @@ function disable_extras_option_sections(): array {
           'dashicons_guests',
           'jquery_front',
           'thickbox_front',
+          'embeds',
           'heartbeat_front',
+          'heartbeat_admin',
+          'heartbeat_slow',
+        ],
+      ],
+      [
+        'title' => __('Admin bar & dashboard', 'disable-extras'),
+        'keys' => [
+          'admin_bar',
+          'admin_bar_non_admins',
+          'dashboard_widgets',
         ],
       ],
       [
@@ -230,8 +295,25 @@ function disable_extras_option_sections(): array {
           'pingbacks_incoming',
           'xmlrpc',
           'rest_users',
+          'rest_guests',
           'application_passwords',
           'core_sitemaps',
+        ],
+      ],
+      [
+        'title' => __('Feeds', 'disable-extras'),
+        'keys' => [
+          'feed_redirect',
+          'feed_global',
+          'feed_global_comments',
+          'feed_post_comments',
+          'feed_authors',
+          'feed_post_types',
+          'feed_categories',
+          'feed_tags',
+          'feed_custom_taxonomies',
+          'feed_search',
+          'feed_atom_rdf',
         ],
       ],
       [
@@ -242,6 +324,8 @@ function disable_extras_option_sections(): array {
           'auto_updates_themes',
           'auto_updates_translations',
           'auto_updates_all',
+          'update_nags_admins_only',
+          'update_phone_home',
         ],
       ],
       [
@@ -445,14 +529,93 @@ TXT,
 GET /wp-json/oembed/1.0/embed?url=https://example.com/post/
 GET /wp-json/oembed/1.0/proxy?url=...
 TXT,
+      'embeds' => <<<'TXT'
+/embed/ rewrite + is_embed() templates
+<script src="/wp-includes/js/wp-embed.min.js"></script>
+oEmbed discovery links and REST oEmbed routes
+TXT,
       'rest_users' => <<<'TXT'
 GET /wp-json/wp/v2/users
 GET /wp-json/wp/v2/users/1
 <!-- user enumeration for guests -->
 TXT,
+      'rest_guests' => <<<'TXT'
+GET /wp-json/… (any REST route) for logged-out visitors → 401
+TXT,
+      'rest_links' => <<<'TXT'
+<link rel="https://api.w.org/" href="https://example.com/wp-json/">
+Link: <https://example.com/wp-json/>; rel="https://api.w.org/"
+<!-- also REST API entry in RSD -->
+TXT,
       'heartbeat_front' => <<<'TXT'
 <script src="/wp-includes/js/heartbeat.min.js"></script>
 <!-- admin-ajax.php?action=heartbeat on the front end -->
+TXT,
+      'heartbeat_admin' => <<<'TXT'
+<script src="/wp-includes/js/heartbeat.min.js"></script>
+<!-- admin-ajax.php?action=heartbeat in wp-admin -->
+TXT,
+      'heartbeat_slow' => <<<'TXT'
+heartbeat_settings.interval = 60
+<!-- instead of the default ~15s -->
+TXT,
+      'texturization' => <<<'TXT'
+"smart quotes" → “smart quotes”
+-- → —, ... → …
+<!-- wptexturize on content, titles, excerpts, comments, feeds -->
+TXT,
+      'autosave' => <<<'TXT'
+<script src="/wp-includes/js/autosave.min.js"></script>
+<!-- periodic draft autosave in the editor -->
+TXT,
+      'dashboard_widgets' => <<<'TXT'
+Dashboard: At a Glance, Activity, Quick Draft
+Dashboard: Site Health, WordPress Events and News
+Welcome panel
+TXT,
+      'admin_bar' => <<<'TXT'
+#wpadminbar on the front end for every logged-in user
+TXT,
+      'admin_bar_non_admins' => <<<'TXT'
+#wpadminbar on the front end for users without manage_options
+TXT,
+      'feed_redirect' => <<<'TXT'
+GET /feed/ → 301 Location: https://example.com/
+<!-- when a disabled feed URL is requested -->
+TXT,
+      'feed_global' => <<<'TXT'
+/feed/, /rss/, /rss2/, /atom/, /rdf/
+<link rel="alternate" type="application/rss+xml" …>
+TXT,
+      'feed_global_comments' => <<<'TXT'
+/comments/feed/
+<link rel="alternate" … comments feed>
+TXT,
+      'feed_post_comments' => <<<'TXT'
+/post-slug/feed/
+/post-slug/comments/feed/
+TXT,
+      'feed_authors' => <<<'TXT'
+/author/name/feed/
+TXT,
+      'feed_post_types' => <<<'TXT'
+/cpt-slug/feed/
+TXT,
+      'feed_categories' => <<<'TXT'
+/category/news/feed/
+TXT,
+      'feed_tags' => <<<'TXT'
+/tag/esports/feed/
+TXT,
+      'feed_custom_taxonomies' => <<<'TXT'
+/taxonomy-slug/term/feed/
+TXT,
+      'feed_search' => <<<'TXT'
+/?s=query&feed=rss2
+TXT,
+      'feed_atom_rdf' => <<<'TXT'
+/feed/atom/, /feed/rdf/, /feed/rss/
+<!-- RSS2 (/feed/, /feed/rss2/) stays unless other feed options apply -->
 TXT,
       'auto_updates_core' => <<<'TXT'
 Dashboard → Updates → automatic WordPress core updates
@@ -473,6 +636,15 @@ All background automatic updates:
 - plugins
 - themes
 - translations
+TXT,
+      'update_nags_admins_only' => <<<'TXT'
+Admin notice: “WordPress X.Y is available! Please update…”
+<!-- hidden for users without update_core -->
+TXT,
+      'update_phone_home' => <<<'TXT'
+User-Agent: WordPress/6.7; https://example.com/
+Headers: wp_blog / wp_install = site URL
+→ stripped from api.wordpress.org update checks
 TXT,
       'application_passwords' => <<<'TXT'
 Users → Profile → Application Passwords

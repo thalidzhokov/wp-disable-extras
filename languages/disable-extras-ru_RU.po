@@ -1,8 +1,7 @@
 # Copyright (C) 2026 Albert Thalidzhokov
 msgid ""
 msgstr ""
-"Project-Id-Version: Disable Extras 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/thalidzhokov/disable-extras\n"
+"Project-Id-Version: Disable Extras 1.1.0\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10,98 +9,53 @@ msgstr ""
 "X-Domain: disable-extras\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "Disable Extras"
-msgstr "Disable Extras"
-
-msgid "Settings"
-msgstr "Настройки"
-
-msgid "WP"
-msgstr "WP"
-
-msgid "Yoast"
-msgstr "Yoast"
-
-msgid "Redis Object Cache"
-msgstr "Redis Object Cache"
-
-msgid "EmbedPress"
-msgstr "EmbedPress"
-
 msgid "A checked option disables that feature. Defaults match what the theme used to turn off."
 msgstr "Галочка отключает функцию. Значения по умолчанию совпадают с тем, что раньше выключала тема."
 
-msgid "Plugin is not installed or active"
-msgstr "Плагин не установлен или не активен"
+msgid "AI / assessment markers / schema blocks"
+msgstr "AI / assessment markers / schema-блоки"
 
-msgid "Disable"
-msgstr "Отключить"
+msgid "API & remote access"
+msgstr "API и удалённый доступ"
 
-msgid "Save Changes"
-msgstr "Сохранить изменения"
+msgid "Adjacent rel links"
+msgstr "Adjacent rel links"
 
-msgid "REST users endpoint is disabled."
-msgstr "REST endpoint пользователей отключён."
+msgid "Admin UI"
+msgstr "Админ UI"
 
-msgid "Emoji (scripts, styles, mail, RSS)"
-msgstr "Emoji (скрипты, стили, mail, RSS)"
+msgid "Admin bar"
+msgstr "Admin bar"
 
-msgid "Generator meta tag and RSS version"
-msgstr "Мета generator и версия в RSS"
+msgid "Admin bar & dashboard"
+msgstr "Admin bar и Dashboard"
 
-msgid "Core ver= query arg on CSS/JS"
-msgstr "Параметр ver= ядра у CSS/JS"
+msgid "Admin bar on the front end (all users)"
+msgstr "Admin bar на фронте (все пользователи)"
 
-msgid "DNS prefetch"
-msgstr "DNS prefetch"
+msgid "Admin bar on the front end (non-admins)"
+msgstr "Admin bar на фронте (не админы)"
 
-msgid "Resource hints (preconnect, prefetch, prerender)"
-msgstr "Resource hints (preconnect, prefetch, prerender)"
+msgid "Admin upsells / promotions"
+msgstr "Upsell / promotions в админке"
 
-msgid "Dashicons for logged-out users"
-msgstr "Dashicons для неавторизованных"
+msgid "Application Passwords"
+msgstr "Application Passwords"
 
-msgid "jQuery on the front end"
-msgstr "jQuery на фронте"
+msgid "Assets"
+msgstr "Assets"
 
-msgid "Thickbox on the front end"
-msgstr "Thickbox на фронте"
+msgid "Atom / RDF feed formats"
+msgstr "Форматы Atom / RDF"
 
-msgid "RSD link"
-msgstr "Ссылка RSD"
-
-msgid "WLW Manifest link"
-msgstr "Ссылка WLW Manifest"
-
-msgid "Shortlink"
-msgstr "Shortlink"
-
-msgid "XML-RPC"
-msgstr "XML-RPC"
-
-msgid "oEmbed discovery links"
-msgstr "oEmbed discovery-ссылки"
-
-msgid "oEmbed REST endpoint"
-msgstr "oEmbed REST endpoint"
-
-msgid "REST users endpoint for guests"
-msgstr "REST users для гостей"
-
-msgid "Heartbeat on the front end"
-msgstr "Heartbeat на фронте"
-
-msgid "Self-pingbacks"
-msgstr "Self-pingbacks"
-
-msgid "Outgoing pingbacks"
-msgstr "Исходящие pingbacks"
-
-msgid "Incoming pingbacks"
-msgstr "Входящие pingbacks"
+msgid "Author feeds"
+msgstr "Ленты авторов"
 
 msgid "Automatic updates: WordPress core"
 msgstr "Автообновления: ядро WordPress"
+
+msgid "Automatic updates: everything"
+msgstr "Автообновления: всё"
 
 msgid "Automatic updates: plugins"
 msgstr "Автообновления: плагины"
@@ -112,65 +66,125 @@ msgstr "Автообновления: темы"
 msgid "Automatic updates: translations"
 msgstr "Автообновления: переводы"
 
-msgid "Automatic updates: everything"
-msgstr "Автообновления: всё"
-
-msgid "Application Passwords"
-msgstr "Application Passwords"
-
-msgid "Core sitemaps"
-msgstr "Встроенные sitemaps ядра"
-
-msgid "Theme and plugin file editor"
-msgstr "Редактор файлов тем и плагинов"
-
-msgid "Install / update / edit plugins and themes"
-msgstr "Установка / обновление / правка плагинов и тем"
-
 msgid "Built-in WP-Cron"
 msgstr "Встроенный WP-Cron"
 
-msgid "Unfiltered HTML for admins/editors"
-msgstr "Unfiltered HTML для админов/редакторов"
-
-msgid "Post revisions"
-msgstr "Ревизии записей"
-
-msgid "Trash (immediate permanent delete)"
-msgstr "Корзина (сразу полное удаление)"
-
-msgid "Head & discovery"
-msgstr "Head и discovery"
-
-msgid "Front-end scripts"
-msgstr "Скрипты на фронте"
-
-msgid "API & remote access"
-msgstr "API и удалённый доступ"
-
-msgid "Updates"
-msgstr "Обновления"
-
-msgid "Security & administration"
-msgstr "Безопасность и админка"
+msgid "Category feeds"
+msgstr "Ленты рубрик"
 
 msgid "Content storage"
 msgstr "Хранение контента"
 
+msgid "Core sitemaps"
+msgstr "Встроенные sitemaps ядра"
+
+msgid "Core ver= query arg on CSS/JS"
+msgstr "Параметр ver= ядра у CSS/JS"
+
+msgid "Custom taxonomy feeds"
+msgstr "Ленты произвольных таксономий"
+
+msgid "DNS prefetch"
+msgstr "DNS prefetch"
+
+msgid "Dashboard widget"
+msgstr "Dashboard widget"
+
+msgid "Dashicons for logged-out users"
+msgstr "Dashicons для неавторизованных"
+
+msgid "Default dashboard widgets"
+msgstr "Стандартные виджеты Dashboard"
+
+msgid "Disable"
+msgstr "Отключить"
+
+msgid "Disable Extras"
+msgstr "Disable Extras"
+
+msgid "Drop-in banners"
+msgstr "Баннеры drop-in"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "Editor autosave"
+msgstr "Автосохранение в редакторе"
+
+msgid "EmbedPress"
+msgstr "EmbedPress"
+
+msgid "EmbedPress and Plyr CSS/JS outside single"
+msgstr "CSS/JS EmbedPress и Plyr вне single"
+
+msgid "Embeds are disabled."
+msgstr "Встраивания отключены."
+
+msgid "Emoji (scripts, styles, mail, RSS)"
+msgstr "Emoji (скрипты, стили, mail, RSS)"
+
+msgid "Feeds"
+msgstr "Ленты"
+
+msgid "Feeds are disabled."
+msgstr "Ленты отключены."
+
+msgid "Front-end scripts"
+msgstr "Скрипты на фронте"
+
+msgid "Generator meta tag and RSS version"
+msgstr "Мета generator и версия в RSS"
+
+msgid "Global comments feed"
+msgstr "Общая лента комментариев"
+
+msgid "Global posts feed"
+msgstr "Общая лента записей"
+
+msgid "HTML comment in footer"
+msgstr "HTML-комментарий в footer"
+
+msgid "Head & discovery"
+msgstr "Head и discovery"
+
+msgid "Heartbeat in admin"
+msgstr "Heartbeat в админке"
+
+msgid "Heartbeat interval: slow (60s)"
+msgstr "Heartbeat: медленный интервал (60с)"
+
+msgid "Heartbeat on the front end"
+msgstr "Heartbeat на фронте"
+
+msgid "Incoming pingbacks"
+msgstr "Входящие pingbacks"
+
+msgid "Install / update / edit plugins and themes"
+msgstr "Установка / обновление / правка плагинов и тем"
+
+msgid "Integrations / Workouts / Courses menu items"
+msgstr "Пункты Integrations / Workouts / Courses"
+
+msgid "Metrics collection"
+msgstr "Сбор metrics"
+
+msgid "Outgoing pingbacks"
+msgstr "Исходящие pingbacks"
+
+msgid "Per-post comments feed"
+msgstr "Лента комментариев записи"
+
+msgid "Plugin is not installed or active"
+msgstr "Плагин не установлен или не активен"
+
+msgid "Post revisions"
+msgstr "Ревизии записей"
+
+msgid "Post type archive feeds"
+msgstr "Ленты архивов типов записей"
+
 msgid "Premium redirects & notices"
 msgstr "Premium: редиректы и уведомления"
-
-msgid "SEO output"
-msgstr "SEO-вывод"
-
-msgid "Admin UI"
-msgstr "Админ UI"
-
-msgid "UI & metrics"
-msgstr "UI и metrics"
-
-msgid "Assets"
-msgstr "Assets"
 
 msgid "Premium: auto-redirects on slug change"
 msgstr "Premium: авто-редиректы при смене slug"
@@ -178,56 +192,123 @@ msgstr "Premium: авто-редиректы при смене slug"
 msgid "Premium: trash / slug / term notifications"
 msgstr "Premium: уведомления trash / slug / term"
 
-msgid "Tracking"
-msgstr "Tracking"
+msgid "Pro / upsell banners"
+msgstr "Pro / upsell баннеры"
 
-msgid "AI / assessment markers / schema blocks"
-msgstr "AI / assessment markers / schema-блоки"
+msgid "REST API discovery links (head, headers, RSD)"
+msgstr "REST discovery-ссылки (head, headers, RSD)"
+
+msgid "REST API for guests"
+msgstr "REST API для гостей"
+
+msgid "REST API is disabled for guests."
+msgstr "REST API отключён для гостей."
+
+msgid "REST users endpoint for guests"
+msgstr "REST users для гостей"
+
+msgid "REST users endpoint is disabled."
+msgstr "REST endpoint пользователей отключён."
+
+msgid "RSD link"
+msgstr "Ссылка RSD"
 
 msgid "RSS footer"
 msgstr "RSS footer"
 
-msgid "Adjacent rel links"
-msgstr "Adjacent rel links"
+msgid "Redirect disabled feeds to the homepage"
+msgstr "Редирект отключённых лент на главную"
 
-msgid "Admin upsells / promotions"
-msgstr "Upsell / promotions в админке"
+msgid "Redis Object Cache"
+msgstr "Redis Object Cache"
 
-msgid "Integrations / Workouts / Courses menu items"
-msgstr "Пункты Integrations / Workouts / Courses"
+msgid "Resource hints (preconnect, prefetch, prerender)"
+msgstr "Resource hints (preconnect, prefetch, prerender)"
+
+msgid "SEO output"
+msgstr "SEO-вывод"
+
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+msgid "Search results feeds"
+msgstr "Ленты результатов поиска"
+
+msgid "Security & administration"
+msgstr "Безопасность и админка"
+
+msgid "Self-pingbacks"
+msgstr "Self-pingbacks"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Shortlink"
+msgstr "Shortlink"
+
+msgid "Site URL in WordPress.org update requests"
+msgstr "URL сайта в запросах обновлений к WordPress.org"
+
+msgid "Tag feeds"
+msgstr "Ленты меток"
+
+msgid "Texturization (smart quotes, dashes, ellipsis)"
+msgstr "Текстуризация (кавычки, тире, многоточие)"
+
+msgid "Theme and plugin file editor"
+msgstr "Редактор файлов тем и плагинов"
+
+msgid "Thickbox on the front end"
+msgstr "Thickbox на фронте"
+
+msgid "Tracking"
+msgstr "Tracking"
+
+msgid "Trash (immediate permanent delete)"
+msgstr "Корзина (сразу полное удаление)"
+
+msgid "UI & metrics"
+msgstr "UI и metrics"
+
+msgid "Unfiltered HTML for admins/editors"
+msgstr "Unfiltered HTML для админов/редакторов"
+
+msgid "Update nags only for users who can update"
+msgstr "Уведомления об обновлениях только тем, кто может обновлять"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "WLW Manifest link"
+msgstr "Ссылка WLW Manifest"
+
+msgid "WP"
+msgstr "WP"
+
+msgid "What gets removed:"
+msgstr "Что убирается:"
+
+msgid "WordPress embeds (oEmbed host JS, embed endpoints)"
+msgstr "WordPress embeds (oEmbed host JS, embed endpoints)"
+
+msgid "XML-RPC"
+msgstr "XML-RPC"
+
+msgid "Yoast"
+msgstr "Yoast"
 
 msgid "Yoast / Wincher dashboard widgets"
 msgstr "Виджеты Yoast / Wincher на Dashboard"
 
-msgid "Admin bar"
-msgstr "Admin bar"
-
-msgid "Pro / upsell banners"
-msgstr "Pro / upsell баннеры"
-
-msgid "Drop-in banners"
-msgstr "Баннеры drop-in"
-
-msgid "HTML comment in footer"
-msgstr "HTML-комментарий в footer"
-
-msgid "Metrics collection"
-msgstr "Сбор metrics"
-
-msgid "Dashboard widget"
-msgstr "Dashboard widget"
-
-msgid "EmbedPress and Plyr CSS/JS outside single"
-msgstr "CSS/JS EmbedPress и Plyr вне single"
-
 msgid "embedpress-gallery-justify script"
 msgstr "Скрипт embedpress-gallery-justify"
 
-msgid "Disable extras in WordPress core, Yoast SEO, Redis Object Cache, and EmbedPress."
-msgstr "Отключение лишнего в ядре WordPress, Yoast SEO, Redis Object Cache и EmbedPress."
+msgid "jQuery on the front end"
+msgstr "jQuery на фронте"
 
-msgid "Example of disabled code:"
-msgstr "Пример отключаемого кода:"
+msgid "oEmbed REST endpoint"
+msgstr "oEmbed REST endpoint"
 
-msgid "What gets removed:"
-msgstr "Что убирается:"
+msgid "oEmbed discovery links"
+msgstr "oEmbed discovery-ссылки"
+
