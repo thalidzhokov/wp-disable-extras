@@ -58,11 +58,20 @@ msgstr "DNS prefetch / resource hints"
 msgid "Dashicons for logged-out users"
 msgstr "Dashicons для неавторизованных"
 
-msgid "jQuery and Thickbox on the front end"
-msgstr "jQuery и Thickbox на фронте"
+msgid "jQuery on the front end"
+msgstr "jQuery на фронте"
 
-msgid "RSD, WLW Manifest, shortlink"
-msgstr "RSD, WLW Manifest, shortlink"
+msgid "Thickbox on the front end"
+msgstr "Thickbox на фронте"
+
+msgid "RSD link"
+msgstr "Ссылка RSD"
+
+msgid "WLW Manifest link"
+msgstr "Ссылка WLW Manifest"
+
+msgid "Shortlink"
+msgstr "Shortlink"
 
 msgid "XML-RPC"
 msgstr "XML-RPC"
@@ -141,3 +150,9 @@ msgstr "Скрипт embedpress-gallery-justify"
 
 msgid "Disable extras in WordPress core, Yoast SEO, Redis Object Cache, and EmbedPress."
 msgstr "Отключение лишнего в ядре WordPress, Yoast SEO, Redis Object Cache и EmbedPress."
+
+msgid "Example of disabled code:"
+msgstr "Пример отключаемого кода:"
+
+msgid "What gets removed:"
+msgstr "Что убирается:"

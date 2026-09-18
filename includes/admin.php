@@ -8,7 +8,43 @@ defined('ABSPATH') || exit;
 function disable_extras_admin_boot(): void {
   add_action('admin_menu', 'disable_extras_admin_menu');
   add_action('admin_init', 'disable_extras_admin_register');
+  add_action('admin_enqueue_scripts', 'disable_extras_admin_assets');
   add_filter('plugin_action_links_' . plugin_basename(DISABLE_EXTRAS_FILE), 'disable_extras_admin_action_links');
+}
+
+/**
+ * @param string $hook
+ *
+ * @return void
+ */
+function disable_extras_admin_assets(string $hook): void {
+  if ($hook !== 'settings_page_disable-extras') {
+    return;
+  }
+
+  $css = '
+    .disable-extras-code {
+      margin: 8px 0 0;
+      padding: 10px 12px;
+      max-width: 640px;
+      overflow: auto;
+      background: #1d2327;
+      color: #f0f0f1;
+      border-radius: 4px;
+      font: 12px/1.5 Consolas, Monaco, monospace;
+      white-space: pre;
+    }
+    .disable-extras-example-label {
+      display: block;
+      margin-top: 8px;
+      color: #646970;
+      font-size: 12px;
+    }
+  ';
+
+  wp_register_style('disable-extras-admin', false, [], DISABLE_EXTRAS_VERSION);
+  wp_enqueue_style('disable-extras-admin');
+  wp_add_inline_style('disable-extras-admin', $css);
 }
 
 /**
@@ -88,6 +124,7 @@ function disable_extras_admin_render_page(): void {
 
   $options = disable_extras_get_options();
   $labels = disable_extras_option_labels();
+  $examples = disable_extras_option_code_examples();
   $tabs = disable_extras_admin_tabs();
   $tab = isset($_GET['tab']) ? sanitize_key((string) $_GET['tab']) : 'wp';
 
@@ -123,6 +160,11 @@ function disable_extras_admin_render_page(): void {
 
       <table class="form-table" role="presentation">
         <?php foreach ($labels[$tab] as $key => $label) : ?>
+          <?php
+          $code = isset($examples[$tab][$key])
+            ? trim($examples[$tab][$key])
+            : '';
+          ?>
           <tr>
             <th scope="row"><?php echo esc_html($label); ?></th>
             <td>
@@ -135,6 +177,10 @@ function disable_extras_admin_render_page(): void {
                 >
                 <?php echo esc_html__('Disable', 'disable-extras'); ?>
               </label>
+              <?php if ($code !== '') : ?>
+                <span class="disable-extras-example-label"><?php echo esc_html__('What gets removed:', 'disable-extras'); ?></span>
+                <pre class="disable-extras-code"><code><?php echo esc_html($code); ?></code></pre>
+              <?php endif; ?>
             </td>
           </tr>
         <?php endforeach; ?>
