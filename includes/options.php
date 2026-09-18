@@ -39,9 +39,15 @@ function disable_extras_default_options(): array {
       'heartbeat_slow' => false,
       'texturization' => false,
       'autosave' => false,
-      'dashboard_widgets' => false,
+      'dashboard_right_now' => false,
+      'dashboard_activity' => false,
+      'dashboard_quick_press' => false,
+      'dashboard_primary' => false,
+      'dashboard_site_health' => false,
+      'welcome_panel' => false,
       'admin_bar' => false,
       'admin_bar_non_admins' => false,
+      'admin_bar_wp_logo' => false,
       'feed_redirect' => false,
       'feed_global' => false,
       'feed_global_comments' => false,
@@ -75,18 +81,15 @@ function disable_extras_default_options(): array {
       'tracking' => false,
       'schema_blocks' => false,
       'assessment_markers' => false,
-      'ai_banner' => false,
       'rss_footer' => false,
       'adjacent_rel' => false,
-      'admin_notices' => false,
-      'admin_footer' => false,
+      'admin_upsells' => false,
       'menu_integrations' => false,
       'menu_workouts' => false,
       'menu_courses' => false,
+      'menu_academy' => false,
       'menu_licenses' => false,
       'menu_redirects' => false,
-      'menu_upgrade' => false,
-      'menu_brand_insights' => false,
       'dashboard_yoast' => false,
       'dashboard_wincher' => false,
     ],
@@ -190,9 +193,15 @@ function disable_extras_option_labels(): array {
       'heartbeat_slow' => __('Heartbeat interval: slow (60s)', 'disable-extras'),
       'texturization' => __('Texturization (smart quotes, dashes, ellipsis)', 'disable-extras'),
       'autosave' => __('Editor autosave', 'disable-extras'),
-      'dashboard_widgets' => __('Default dashboard widgets', 'disable-extras'),
+      'dashboard_right_now' => __('Dashboard: At a Glance', 'disable-extras'),
+      'dashboard_activity' => __('Dashboard: Activity', 'disable-extras'),
+      'dashboard_quick_press' => __('Dashboard: Quick Draft', 'disable-extras'),
+      'dashboard_primary' => __('Dashboard: WordPress Events and News', 'disable-extras'),
+      'dashboard_site_health' => __('Dashboard: Site Health Status', 'disable-extras'),
+      'welcome_panel' => __('Dashboard: Welcome panel', 'disable-extras'),
       'admin_bar' => __('Admin bar on the front end (all users)', 'disable-extras'),
       'admin_bar_non_admins' => __('Admin bar on the front end (non-admins)', 'disable-extras'),
+      'admin_bar_wp_logo' => __('Admin bar: WordPress logo menu', 'disable-extras'),
       'feed_redirect' => __('Redirect disabled feeds to the homepage', 'disable-extras'),
       'feed_global' => __('Global posts feed', 'disable-extras'),
       'feed_global_comments' => __('Global comments feed', 'disable-extras'),
@@ -226,18 +235,15 @@ function disable_extras_option_labels(): array {
       'tracking' => __('Tracking', 'disable-extras'),
       'schema_blocks' => __('Schema blocks in the editor', 'disable-extras'),
       'assessment_markers' => __('Assessment markers in content', 'disable-extras'),
-      'ai_banner' => __('AI Content Planner banner', 'disable-extras'),
       'rss_footer' => __('RSS footer', 'disable-extras'),
       'adjacent_rel' => __('Adjacent rel links', 'disable-extras'),
-      'admin_notices' => __('Admin notices (upsells)', 'disable-extras'),
-      'admin_footer' => __('Promotional footer on SEO screens', 'disable-extras'),
+      'admin_upsells' => __('Upsells / promotions', 'disable-extras'),
       'menu_integrations' => __('Menu: Integrations', 'disable-extras'),
       'menu_workouts' => __('Menu: Workouts', 'disable-extras'),
-      'menu_courses' => __('Menu: Courses / Academy', 'disable-extras'),
+      'menu_courses' => __('Menu: Courses', 'disable-extras'),
+      'menu_academy' => __('Menu: Academy', 'disable-extras'),
       'menu_licenses' => __('Menu: Licenses', 'disable-extras'),
       'menu_redirects' => __('Menu: Redirects', 'disable-extras'),
-      'menu_upgrade' => __('Menu: Upgrade', 'disable-extras'),
-      'menu_brand_insights' => __('Menu: AI Brand Insights', 'disable-extras'),
       'dashboard_yoast' => __('Dashboard widget: Yoast SEO', 'disable-extras'),
       'dashboard_wincher' => __('Dashboard widget: Wincher', 'disable-extras'),
     ],
@@ -304,7 +310,13 @@ function disable_extras_option_sections(): array {
         'keys' => [
           'admin_bar',
           'admin_bar_non_admins',
-          'dashboard_widgets',
+          'admin_bar_wp_logo',
+          'dashboard_right_now',
+          'dashboard_activity',
+          'dashboard_quick_press',
+          'dashboard_primary',
+          'dashboard_site_health',
+          'welcome_panel',
         ],
       ],
       [
@@ -379,7 +391,6 @@ function disable_extras_option_sections(): array {
           'tracking',
           'schema_blocks',
           'assessment_markers',
-          'ai_banner',
           'rss_footer',
           'adjacent_rel',
         ],
@@ -387,15 +398,13 @@ function disable_extras_option_sections(): array {
       [
         'title' => __('Admin UI', 'disable-extras'),
         'keys' => [
-          'admin_notices',
-          'admin_footer',
+          'admin_upsells',
           'menu_integrations',
           'menu_workouts',
           'menu_courses',
+          'menu_academy',
           'menu_licenses',
           'menu_redirects',
-          'menu_upgrade',
-          'menu_brand_insights',
           'dashboard_yoast',
           'dashboard_wincher',
         ],
@@ -598,16 +607,34 @@ TXT,
 <script src="/wp-includes/js/autosave.min.js"></script>
 <!-- periodic draft autosave in the editor -->
 TXT,
-      'dashboard_widgets' => <<<'TXT'
-Dashboard: At a Glance, Activity, Quick Draft
-Dashboard: Site Health, WordPress Events and News
-Welcome panel
+      'dashboard_right_now' => <<<'TXT'
+Dashboard widget: “At a Glance”
+Network: “Right Now”
+TXT,
+      'dashboard_activity' => <<<'TXT'
+Dashboard widget: “Activity”
+TXT,
+      'dashboard_quick_press' => <<<'TXT'
+Dashboard widget: “Quick Draft”
+TXT,
+      'dashboard_primary' => <<<'TXT'
+Dashboard widget: “WordPress Events and News”
+TXT,
+      'dashboard_site_health' => <<<'TXT'
+Dashboard widget: “Site Health Status”
+TXT,
+      'welcome_panel' => <<<'TXT'
+Welcome panel on the Dashboard
 TXT,
       'admin_bar' => <<<'TXT'
 #wpadminbar on the front end for every logged-in user
 TXT,
       'admin_bar_non_admins' => <<<'TXT'
 #wpadminbar on the front end for users without manage_options
+TXT,
+      'admin_bar_wp_logo' => <<<'TXT'
+#wp-admin-bar-wp-logo .ab-item
+About WordPress dropdown (Documentation, Learn, Support, Feedback)
 TXT,
       'feed_redirect' => <<<'TXT'
 GET /feed/ → 301 Location: https://example.com/
@@ -732,9 +759,6 @@ TXT,
       'assessment_markers' => <<<'TXT'
 Highlighted SEO / readability markers inside post content
 TXT,
-      'ai_banner' => <<<'TXT'
-AI Content Planner inline banner in the Yoast metabox
-TXT,
       'rss_footer' => <<<'TXT'
 The feed for this site by Yoast SEO
 <!-- credit line appended to RSS items -->
@@ -743,39 +767,34 @@ TXT,
 <link rel="prev" href="https://example.com/post-1/">
 <link rel="next" href="https://example.com/post-3/">
 TXT,
-      'admin_notices' => <<<'TXT'
-Yoast Premium / upsell admin notices
-(wpseo_admin_notices)
-TXT,
-      'admin_footer' => <<<'TXT'
-Promotional footer on Yoast SEO admin screens
-(wpseo_admin_footer)
+      'admin_upsells' => <<<'TXT'
+Admin notices (wpseo_admin_notices)
+Promotional footer (wpseo_admin_footer)
+AI Content Planner banner
+#premium-seo-analysis-upsell-ad-sidebar
+#premium-seo-analysis-upsell-ad-metabox
+#premium-seo-analysis-upsell-ad-elementor
+Yoast > Upgrade
+Yoast > AI Brand Insights
 TXT,
       'menu_integrations' => <<<'TXT'
-SEO → Integrations
+Yoast > Integrations
 TXT,
       'menu_workouts' => <<<'TXT'
-SEO → Workouts
+Yoast > Workouts
 TXT,
       'menu_courses' => <<<'TXT'
-SEO → Courses
-SEO → Academy
+Yoast > Courses
+TXT,
+      'menu_academy' => <<<'TXT'
+Yoast > Academy
 TXT,
       'menu_licenses' => <<<'TXT'
-SEO → Premium licenses screens
+Yoast > Premium licenses screens
 TXT,
       'menu_redirects' => <<<'TXT'
-SEO → Redirects
+Yoast > Redirects
 admin.php?page=wpseo_redirects
-TXT,
-      'menu_upgrade' => <<<'TXT'
-SEO → Upgrade
-admin.php?page=wpseo_upgrade_sidebar
-TXT,
-      'menu_brand_insights' => <<<'TXT'
-SEO → AI Brand Insights
-admin.php?page=wpseo_brand_insights
-admin.php?page=wpseo_brand_insights_premium
 TXT,
       'dashboard_yoast' => <<<'TXT'
 Dashboard widget: “Yoast SEO”

@@ -41,10 +41,6 @@ function disable_extras_yoast_apply(): void {
     add_filter('wpseo_enable_assessment_markers', '__return_false');
   }
 
-  if (disable_extras_is_enabled('yoast', 'ai_banner')) {
-    add_filter('wpseo_enable_ai_content_planner_inline_banner', '__return_false');
-  }
-
   if (disable_extras_is_enabled('yoast', 'rss_footer')) {
     add_filter('wpseo_include_rss_footer', '__return_false');
   }
@@ -53,22 +49,23 @@ function disable_extras_yoast_apply(): void {
     add_filter('wpseo_disable_adjacent_rel_links', '__return_true');
   }
 
-  if (disable_extras_is_enabled('yoast', 'admin_notices')) {
+  if (disable_extras_is_enabled('yoast', 'admin_upsells')) {
+    add_filter('wpseo_enable_ai_content_planner_inline_banner', '__return_false');
     add_action('admin_init', 'disable_extras_yoast_hide_admin_notices', 20);
-  }
-
-  if (disable_extras_is_enabled('yoast', 'admin_footer')) {
     add_action('admin_init', 'disable_extras_yoast_hide_admin_footer', 20);
+    add_action('admin_enqueue_scripts', 'disable_extras_yoast_hide_premium_seo_analysis_upsell');
+    add_action('enqueue_block_editor_assets', 'disable_extras_yoast_hide_premium_seo_analysis_upsell');
+    add_action('elementor/editor/after_enqueue_styles', 'disable_extras_yoast_hide_premium_seo_analysis_upsell');
   }
 
   if (
-    disable_extras_is_enabled('yoast', 'menu_integrations')
+    disable_extras_is_enabled('yoast', 'admin_upsells')
+    || disable_extras_is_enabled('yoast', 'menu_integrations')
     || disable_extras_is_enabled('yoast', 'menu_workouts')
     || disable_extras_is_enabled('yoast', 'menu_courses')
+    || disable_extras_is_enabled('yoast', 'menu_academy')
     || disable_extras_is_enabled('yoast', 'menu_licenses')
     || disable_extras_is_enabled('yoast', 'menu_redirects')
-    || disable_extras_is_enabled('yoast', 'menu_upgrade')
-    || disable_extras_is_enabled('yoast', 'menu_brand_insights')
   ) {
     add_action('init', 'disable_extras_yoast_register_submenu_filters', 20);
     add_action('admin_menu', 'disable_extras_yoast_remove_admin_submenu_pages', 999);
@@ -82,6 +79,19 @@ function disable_extras_yoast_apply(): void {
     add_action('wp_dashboard_setup', 'disable_extras_yoast_remove_dashboard_widgets', 99);
     add_action('wp_network_dashboard_setup', 'disable_extras_yoast_remove_dashboard_widgets', 99);
   }
+}
+
+/**
+ * @return void
+ */
+function disable_extras_yoast_hide_premium_seo_analysis_upsell(): void {
+  $css = '#premium-seo-analysis-upsell-ad-sidebar,'
+    . '#premium-seo-analysis-upsell-ad-metabox,'
+    . '#premium-seo-analysis-upsell-ad-elementor{display:none!important}';
+
+  wp_register_style('disable-extras-yoast-editor', false, [], DISABLE_EXTRAS_VERSION);
+  wp_enqueue_style('disable-extras-yoast-editor');
+  wp_add_inline_style('disable-extras-yoast-editor', $css);
 }
 
 /**
@@ -114,6 +124,12 @@ function disable_extras_yoast_register_submenu_filters(): void {
 function disable_extras_yoast_blocked_menu_slugs(): array {
   $blocked = [];
 
+  if (disable_extras_is_enabled('yoast', 'admin_upsells')) {
+    $blocked[] = 'wpseo_upgrade_sidebar';
+    $blocked[] = 'wpseo_brand_insights';
+    $blocked[] = 'wpseo_brand_insights_premium';
+  }
+
   if (disable_extras_is_enabled('yoast', 'menu_integrations')) {
     $blocked[] = 'wpseo_integrations';
   }
@@ -124,6 +140,9 @@ function disable_extras_yoast_blocked_menu_slugs(): array {
 
   if (disable_extras_is_enabled('yoast', 'menu_courses')) {
     $blocked[] = 'wpseo_courses';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_academy')) {
     $blocked[] = 'wpseo_page_academy';
   }
 
@@ -134,15 +153,6 @@ function disable_extras_yoast_blocked_menu_slugs(): array {
 
   if (disable_extras_is_enabled('yoast', 'menu_redirects')) {
     $blocked[] = 'wpseo_redirects';
-  }
-
-  if (disable_extras_is_enabled('yoast', 'menu_upgrade')) {
-    $blocked[] = 'wpseo_upgrade_sidebar';
-  }
-
-  if (disable_extras_is_enabled('yoast', 'menu_brand_insights')) {
-    $blocked[] = 'wpseo_brand_insights';
-    $blocked[] = 'wpseo_brand_insights_premium';
   }
 
   return $blocked;

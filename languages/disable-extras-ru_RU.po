@@ -18,8 +18,8 @@ msgstr "Schema-блоки в редакторе"
 msgid "Assessment markers in content"
 msgstr "Assessment markers в контенте"
 
-msgid "AI Content Planner banner"
-msgstr "Баннер AI Content Planner"
+msgid "Upsells / promotions"
+msgstr "Upsell / promotions"
 
 msgid "API & remote access"
 msgstr "API и удалённый доступ"
@@ -42,11 +42,8 @@ msgstr "Admin bar на фронте (все пользователи)"
 msgid "Admin bar on the front end (non-admins)"
 msgstr "Admin bar на фронте (не админы)"
 
-msgid "Admin notices (upsells)"
-msgstr "Уведомления в админке (upsell / promo)"
-
-msgid "Promotional footer on SEO screens"
-msgstr "Промо-футер на экранах SEO"
+msgid "Admin bar: WordPress logo menu"
+msgstr "Admin bar: меню логотипа WordPress"
 
 msgid "Menu: Integrations"
 msgstr "Меню: Integrations"
@@ -54,20 +51,17 @@ msgstr "Меню: Integrations"
 msgid "Menu: Workouts"
 msgstr "Меню: Workouts"
 
-msgid "Menu: Courses / Academy"
-msgstr "Меню: Courses / Academy"
+msgid "Menu: Courses"
+msgstr "Меню: Courses"
+
+msgid "Menu: Academy"
+msgstr "Меню: Academy"
 
 msgid "Menu: Licenses"
 msgstr "Меню: Licenses"
 
 msgid "Menu: Redirects"
 msgstr "Меню: Redirects"
-
-msgid "Menu: Upgrade"
-msgstr "Меню: Upgrade"
-
-msgid "Menu: AI Brand Insights"
-msgstr "Меню: AI Brand Insights"
 
 msgid "Dashboard widget: Yoast SEO"
 msgstr "Виджет Dashboard: Yoast SEO"
@@ -129,8 +123,23 @@ msgstr "Dashboard widget"
 msgid "Dashicons for logged-out users"
 msgstr "Dashicons для неавторизованных"
 
-msgid "Default dashboard widgets"
-msgstr "Стандартные виджеты Dashboard"
+msgid "Dashboard: At a Glance"
+msgstr "Dashboard: At a Glance"
+
+msgid "Dashboard: Activity"
+msgstr "Dashboard: Activity"
+
+msgid "Dashboard: Quick Draft"
+msgstr "Dashboard: Quick Draft"
+
+msgid "Dashboard: WordPress Events and News"
+msgstr "Dashboard: WordPress Events and News"
+
+msgid "Dashboard: Site Health Status"
+msgstr "Dashboard: Site Health Status"
+
+msgid "Dashboard: Welcome panel"
+msgstr "Dashboard: Welcome panel"
 
 msgid "Disable"
 msgstr "Отключить"
