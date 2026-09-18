@@ -23,6 +23,12 @@ function disable_extras_admin_assets(string $hook): void {
   }
 
   $css = '
+    .disable-extras-section {
+      margin: 1.5em 0 0.5em;
+      padding-bottom: 0.35em;
+      border-bottom: 1px solid #c3c4c7;
+      font-size: 1.1em;
+    }
     .disable-extras-code {
       margin: 8px 0 0;
       padding: 10px 12px;
@@ -39,6 +45,13 @@ function disable_extras_admin_assets(string $hook): void {
       margin-top: 8px;
       color: #646970;
       font-size: 12px;
+    }
+    .disable-extras-constant {
+      display: block;
+      margin-top: 6px;
+      color: #646970;
+      font: 12px/1.45 Consolas, Monaco, monospace;
+      word-break: break-all;
     }
   ';
 
@@ -115,6 +128,53 @@ function disable_extras_admin_tabs(): array {
 }
 
 /**
+ * @param string $tab
+ * @param string $key
+ * @param string $label
+ * @param array<string, bool> $options
+ * @param array<string, array<string, string>> $examples
+ * @param array<string, array<string, list<string>>> $constants
+ *
+ * @return void
+ */
+function disable_extras_admin_render_option_row(
+  string $tab,
+  string $key,
+  string $label,
+  array $options,
+  array $examples,
+  array $constants
+): void {
+  $code = isset($examples[$tab][$key]) ? trim($examples[$tab][$key]) : '';
+  $optionConstants = $constants[$tab][$key] ?? [];
+  ?>
+  <tr>
+    <th scope="row">
+      <?php echo esc_html($label); ?>
+      <?php foreach ($optionConstants as $constantLine) : ?>
+        <code class="disable-extras-constant"><?php echo esc_html($constantLine); ?></code>
+      <?php endforeach; ?>
+    </th>
+    <td>
+      <label>
+        <input
+          type="checkbox"
+          name="<?php echo esc_attr(DISABLE_EXTRAS_OPTION . '[' . $tab . '][' . $key . ']'); ?>"
+          value="1"
+          <?php checked(!empty($options[$tab][$key])); ?>
+        >
+        <?php echo esc_html__('Disable', 'disable-extras'); ?>
+      </label>
+      <?php if ($code !== '') : ?>
+        <span class="disable-extras-example-label"><?php echo esc_html__('What gets removed:', 'disable-extras'); ?></span>
+        <pre class="disable-extras-code"><code><?php echo esc_html($code); ?></code></pre>
+      <?php endif; ?>
+    </td>
+  </tr>
+  <?php
+}
+
+/**
  * @return void
  */
 function disable_extras_admin_render_page(): void {
@@ -125,6 +185,8 @@ function disable_extras_admin_render_page(): void {
   $options = disable_extras_get_options();
   $labels = disable_extras_option_labels();
   $examples = disable_extras_option_code_examples();
+  $constants = disable_extras_option_constants();
+  $sections = disable_extras_option_sections();
   $tabs = disable_extras_admin_tabs();
   $tab = isset($_GET['tab']) ? sanitize_key((string) $_GET['tab']) : 'wp';
 
@@ -133,6 +195,7 @@ function disable_extras_admin_render_page(): void {
   }
 
   $baseUrl = admin_url('options-general.php?page=disable-extras');
+  $tabSections = $sections[$tab] ?? [];
   ?>
   <div class="wrap">
     <h1><?php echo esc_html__('Disable Extras', 'disable-extras'); ?></h1>
@@ -158,33 +221,27 @@ function disable_extras_admin_render_page(): void {
     <form method="post" action="options.php">
       <?php settings_fields('disable_extras'); ?>
 
-      <table class="form-table" role="presentation">
-        <?php foreach ($labels[$tab] as $key => $label) : ?>
-          <?php
-          $code = isset($examples[$tab][$key])
-            ? trim($examples[$tab][$key])
-            : '';
-          ?>
-          <tr>
-            <th scope="row"><?php echo esc_html($label); ?></th>
-            <td>
-              <label>
-                <input
-                  type="checkbox"
-                  name="<?php echo esc_attr(DISABLE_EXTRAS_OPTION . '[' . $tab . '][' . $key . ']'); ?>"
-                  value="1"
-                  <?php checked(!empty($options[$tab][$key])); ?>
-                >
-                <?php echo esc_html__('Disable', 'disable-extras'); ?>
-              </label>
-              <?php if ($code !== '') : ?>
-                <span class="disable-extras-example-label"><?php echo esc_html__('What gets removed:', 'disable-extras'); ?></span>
-                <pre class="disable-extras-code"><code><?php echo esc_html($code); ?></code></pre>
-              <?php endif; ?>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-      </table>
+      <?php foreach ($tabSections as $section) : ?>
+        <h2 class="disable-extras-section"><?php echo esc_html($section['title']); ?></h2>
+        <table class="form-table" role="presentation">
+          <?php foreach ($section['keys'] as $key) : ?>
+            <?php
+            if (!isset($labels[$tab][$key])) {
+              continue;
+            }
+
+            disable_extras_admin_render_option_row(
+              $tab,
+              $key,
+              $labels[$tab][$key],
+              $options,
+              $examples,
+              $constants
+            );
+            ?>
+          <?php endforeach; ?>
+        </table>
+      <?php endforeach; ?>
 
       <?php submit_button(__('Save Changes', 'disable-extras')); ?>
     </form>

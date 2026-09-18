@@ -52,8 +52,11 @@ msgstr "Мета generator и версия в RSS"
 msgid "Core ver= query arg on CSS/JS"
 msgstr "Параметр ver= ядра у CSS/JS"
 
-msgid "DNS prefetch / resource hints"
-msgstr "DNS prefetch / resource hints"
+msgid "DNS prefetch"
+msgstr "DNS prefetch"
+
+msgid "Resource hints (preconnect, prefetch, prerender)"
+msgstr "Resource hints (preconnect, prefetch, prerender)"
 
 msgid "Dashicons for logged-out users"
 msgstr "Dashicons для неавторизованных"
@@ -76,8 +79,11 @@ msgstr "Shortlink"
 msgid "XML-RPC"
 msgstr "XML-RPC"
 
-msgid "oEmbed (discovery and embed endpoint)"
-msgstr "oEmbed (discovery и embed endpoint)"
+msgid "oEmbed discovery links"
+msgstr "oEmbed discovery-ссылки"
+
+msgid "oEmbed REST endpoint"
+msgstr "oEmbed REST endpoint"
 
 msgid "REST users endpoint for guests"
 msgstr "REST users для гостей"
@@ -88,14 +94,83 @@ msgstr "Heartbeat на фронте"
 msgid "Self-pingbacks"
 msgstr "Self-pingbacks"
 
-msgid "Automatic updates for core, plugins, and themes"
-msgstr "Автообновления ядра, плагинов и тем"
+msgid "Outgoing pingbacks"
+msgstr "Исходящие pingbacks"
+
+msgid "Incoming pingbacks"
+msgstr "Входящие pingbacks"
+
+msgid "Automatic updates: WordPress core"
+msgstr "Автообновления: ядро WordPress"
+
+msgid "Automatic updates: plugins"
+msgstr "Автообновления: плагины"
+
+msgid "Automatic updates: themes"
+msgstr "Автообновления: темы"
+
+msgid "Automatic updates: translations"
+msgstr "Автообновления: переводы"
+
+msgid "Automatic updates: everything"
+msgstr "Автообновления: всё"
 
 msgid "Application Passwords"
 msgstr "Application Passwords"
 
 msgid "Core sitemaps"
 msgstr "Встроенные sitemaps ядра"
+
+msgid "Theme and plugin file editor"
+msgstr "Редактор файлов тем и плагинов"
+
+msgid "Install / update / edit plugins and themes"
+msgstr "Установка / обновление / правка плагинов и тем"
+
+msgid "Built-in WP-Cron"
+msgstr "Встроенный WP-Cron"
+
+msgid "Unfiltered HTML for admins/editors"
+msgstr "Unfiltered HTML для админов/редакторов"
+
+msgid "Post revisions"
+msgstr "Ревизии записей"
+
+msgid "Trash (immediate permanent delete)"
+msgstr "Корзина (сразу полное удаление)"
+
+msgid "Head & discovery"
+msgstr "Head и discovery"
+
+msgid "Front-end scripts"
+msgstr "Скрипты на фронте"
+
+msgid "API & remote access"
+msgstr "API и удалённый доступ"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "Security & administration"
+msgstr "Безопасность и админка"
+
+msgid "Content storage"
+msgstr "Хранение контента"
+
+msgid "Premium redirects & notices"
+msgstr "Premium: редиректы и уведомления"
+
+msgid "SEO output"
+msgstr "SEO-вывод"
+
+msgid "Admin UI"
+msgstr "Админ UI"
+
+msgid "UI & metrics"
+msgstr "UI и metrics"
+
+msgid "Assets"
+msgstr "Assets"
 
 msgid "Premium: auto-redirects on slug change"
 msgstr "Premium: авто-редиректы при смене slug"
