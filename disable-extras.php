@@ -25,40 +25,12 @@ require_once DISABLE_EXTRAS_DIR . 'includes/redis.php';
 require_once DISABLE_EXTRAS_DIR . 'includes/embedpress.php';
 require_once DISABLE_EXTRAS_DIR . 'includes/admin.php';
 
-register_activation_hook(__FILE__, 'disable_extras_activate');
-
-/**
- * @return void
- */
-function disable_extras_activate(): void {
-  disable_extras_maybe_migrate_options();
-
+register_activation_hook(__FILE__, static function (): void {
   if (get_option(DISABLE_EXTRAS_OPTION) === false) {
     add_option(DISABLE_EXTRAS_OPTION, disable_extras_default_options());
   }
-}
+});
 
-/**
- * Перенос настроек со старого slug disabler.
- *
- * @return void
- */
-function disable_extras_maybe_migrate_options(): void {
-  if (get_option(DISABLE_EXTRAS_OPTION) !== false) {
-    return;
-  }
-
-  $legacy = get_option('disabler_options', false);
-
-  if (!is_array($legacy)) {
-    return;
-  }
-
-  add_option(DISABLE_EXTRAS_OPTION, $legacy);
-  delete_option('disabler_options');
-}
-
-disable_extras_maybe_migrate_options();
 disable_extras_redis_define_constants();
 disable_extras_wp_boot();
 disable_extras_yoast_boot();
