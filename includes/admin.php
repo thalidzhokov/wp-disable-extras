@@ -16,8 +16,8 @@ function disable_extras_admin_boot(): void {
  */
 function disable_extras_admin_menu(): void {
   add_options_page(
-    'Disable Extras',
-    'Disable Extras',
+    __('Disable Extras', 'disable-extras'),
+    __('Disable Extras', 'disable-extras'),
     'manage_options',
     'disable-extras',
     'disable_extras_admin_render_page'
@@ -44,7 +44,7 @@ function disable_extras_admin_action_links(array $links): array {
   $url = admin_url('options-general.php?page=disable-extras');
   array_unshift(
     $links,
-    '<a href="' . esc_url($url) . '">Настройки</a>'
+    '<a href="' . esc_url($url) . '">' . esc_html__('Settings', 'disable-extras') . '</a>'
   );
 
   return $links;
@@ -60,19 +60,19 @@ function disable_extras_admin_tabs(): array {
 
   return [
     'wp' => [
-      'label' => 'WP',
+      'label' => __('WP', 'disable-extras'),
       'active' => true,
     ],
     'yoast' => [
-      'label' => 'Yoast',
+      'label' => __('Yoast', 'disable-extras'),
       'active' => disable_extras_is_yoast_active(),
     ],
     'redis' => [
-      'label' => 'Redis Object Cache',
+      'label' => __('Redis Object Cache', 'disable-extras'),
       'active' => disable_extras_is_redis_active(),
     ],
     'embedpress' => [
-      'label' => 'EmbedPress',
+      'label' => __('EmbedPress', 'disable-extras'),
       'active' => disable_extras_is_embedpress_active(),
     ],
   ];
@@ -98,8 +98,8 @@ function disable_extras_admin_render_page(): void {
   $baseUrl = admin_url('options-general.php?page=disable-extras');
   ?>
   <div class="wrap">
-    <h1>Disable Extras</h1>
-    <p>Галочка включает отключение. Дефолты совпадают с тем, что раньше выключала тема.</p>
+    <h1><?php echo esc_html__('Disable Extras', 'disable-extras'); ?></h1>
+    <p><?php echo esc_html__('A checked option disables that feature. Defaults match what the theme used to turn off.', 'disable-extras'); ?></p>
 
     <nav class="nav-tab-wrapper" style="margin-bottom: 1em;">
       <?php foreach ($tabs as $slug => $meta) : ?>
@@ -112,7 +112,7 @@ function disable_extras_admin_render_page(): void {
           <span
             class="nav-tab"
             style="opacity: .45; cursor: not-allowed;"
-            title="Плагин не установлен или не активен"
+            title="<?php echo esc_attr__('Plugin is not installed or active', 'disable-extras'); ?>"
           ><?php echo esc_html($meta['label']); ?></span>
         <?php endif; ?>
       <?php endforeach; ?>
@@ -133,14 +133,14 @@ function disable_extras_admin_render_page(): void {
                   value="1"
                   <?php checked(!empty($options[$tab][$key])); ?>
                 >
-                Отключить
+                <?php echo esc_html__('Disable', 'disable-extras'); ?>
               </label>
             </td>
           </tr>
         <?php endforeach; ?>
       </table>
 
-      <?php submit_button('Сохранить'); ?>
+      <?php submit_button(__('Save Changes', 'disable-extras')); ?>
     </form>
   </div>
   <?php

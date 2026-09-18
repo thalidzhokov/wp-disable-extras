@@ -1,0 +1,143 @@
+# Copyright (C) 2026 Albert Thalidzhokov
+msgid ""
+msgstr ""
+"Project-Id-Version: Disable Extras 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/thalidzhokov/disable-extras\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: disable-extras\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Disable Extras"
+msgstr "Disable Extras"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "WP"
+msgstr "WP"
+
+msgid "Yoast"
+msgstr "Yoast"
+
+msgid "Redis Object Cache"
+msgstr "Redis Object Cache"
+
+msgid "EmbedPress"
+msgstr "EmbedPress"
+
+msgid "A checked option disables that feature. Defaults match what the theme used to turn off."
+msgstr "Галочка отключает функцию. Значения по умолчанию совпадают с тем, что раньше выключала тема."
+
+msgid "Plugin is not installed or active"
+msgstr "Плагин не установлен или не активен"
+
+msgid "Disable"
+msgstr "Отключить"
+
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+msgid "REST users endpoint is disabled."
+msgstr "REST endpoint пользователей отключён."
+
+msgid "Emoji (scripts, styles, mail, RSS)"
+msgstr "Emoji (скрипты, стили, mail, RSS)"
+
+msgid "Generator meta tag and RSS version"
+msgstr "Мета generator и версия в RSS"
+
+msgid "Core ver= query arg on CSS/JS"
+msgstr "Параметр ver= ядра у CSS/JS"
+
+msgid "DNS prefetch / resource hints"
+msgstr "DNS prefetch / resource hints"
+
+msgid "Dashicons for logged-out users"
+msgstr "Dashicons для неавторизованных"
+
+msgid "jQuery and Thickbox on the front end"
+msgstr "jQuery и Thickbox на фронте"
+
+msgid "RSD, WLW Manifest, shortlink"
+msgstr "RSD, WLW Manifest, shortlink"
+
+msgid "XML-RPC"
+msgstr "XML-RPC"
+
+msgid "oEmbed (discovery and embed endpoint)"
+msgstr "oEmbed (discovery и embed endpoint)"
+
+msgid "REST users endpoint for guests"
+msgstr "REST users для гостей"
+
+msgid "Heartbeat on the front end"
+msgstr "Heartbeat на фронте"
+
+msgid "Self-pingbacks"
+msgstr "Self-pingbacks"
+
+msgid "Automatic updates for core, plugins, and themes"
+msgstr "Автообновления ядра, плагинов и тем"
+
+msgid "Application Passwords"
+msgstr "Application Passwords"
+
+msgid "Core sitemaps"
+msgstr "Встроенные sitemaps ядра"
+
+msgid "Premium: auto-redirects on slug change"
+msgstr "Premium: авто-редиректы при смене slug"
+
+msgid "Premium: trash / slug / term notifications"
+msgstr "Premium: уведомления trash / slug / term"
+
+msgid "Tracking"
+msgstr "Tracking"
+
+msgid "AI / assessment markers / schema blocks"
+msgstr "AI / assessment markers / schema-блоки"
+
+msgid "RSS footer"
+msgstr "RSS footer"
+
+msgid "Adjacent rel links"
+msgstr "Adjacent rel links"
+
+msgid "Admin upsells / promotions"
+msgstr "Upsell / promotions в админке"
+
+msgid "Integrations / Workouts / Courses menu items"
+msgstr "Пункты Integrations / Workouts / Courses"
+
+msgid "Yoast / Wincher dashboard widgets"
+msgstr "Виджеты Yoast / Wincher на Dashboard"
+
+msgid "Admin bar"
+msgstr "Admin bar"
+
+msgid "Pro / upsell banners"
+msgstr "Pro / upsell баннеры"
+
+msgid "Drop-in banners"
+msgstr "Баннеры drop-in"
+
+msgid "HTML comment in footer"
+msgstr "HTML-комментарий в footer"
+
+msgid "Metrics collection"
+msgstr "Сбор metrics"
+
+msgid "Dashboard widget"
+msgstr "Dashboard widget"
+
+msgid "EmbedPress and Plyr CSS/JS outside single"
+msgstr "CSS/JS EmbedPress и Plyr вне single"
+
+msgid "embedpress-gallery-justify script"
+msgstr "Скрипт embedpress-gallery-justify"
+
+msgid "Disable extras in WordPress core, Yoast SEO, Redis Object Cache, and EmbedPress."
+msgstr "Отключение лишнего в ядре WordPress, Yoast SEO, Redis Object Cache и EmbedPress."

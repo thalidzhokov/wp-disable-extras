@@ -2,13 +2,14 @@
 /**
  * Plugin Name: Disable Extras
  * Plugin URI: https://github.com/thalidzhokov/disable-extras
- * Description: Отключение лишнего в ядре WordPress, Yoast SEO, Redis Object Cache и EmbedPress.
+ * Description: Disable extras in WordPress core, Yoast SEO, Redis Object Cache, and EmbedPress.
  * Version: 1.0.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Albert Thalidzhokov
  * Author URI: https://thalidzhokov.ru
  * Text Domain: disable-extras
+ * Domain Path: /languages
  */
 
 defined('ABSPATH') || exit;
@@ -24,6 +25,19 @@ require_once DISABLE_EXTRAS_DIR . 'includes/yoast.php';
 require_once DISABLE_EXTRAS_DIR . 'includes/redis.php';
 require_once DISABLE_EXTRAS_DIR . 'includes/embedpress.php';
 require_once DISABLE_EXTRAS_DIR . 'includes/admin.php';
+
+add_action('init', 'disable_extras_load_textdomain');
+
+/**
+ * @return void
+ */
+function disable_extras_load_textdomain(): void {
+  load_plugin_textdomain(
+    'disable-extras',
+    false,
+    dirname(plugin_basename(DISABLE_EXTRAS_FILE)) . '/languages'
+  );
+}
 
 register_activation_hook(__FILE__, static function (): void {
   if (get_option(DISABLE_EXTRAS_OPTION) === false) {

@@ -142,7 +142,7 @@ function disable_extras_wp_block_rest_users($result) {
   if (str_contains($uri, '/wp/v2/users')) {
     return new WP_Error(
       'rest_forbidden',
-      'REST users endpoint is disabled.',
+      __('REST users endpoint is disabled.', 'disable-extras'),
       ['status' => 401]
     );
   }
