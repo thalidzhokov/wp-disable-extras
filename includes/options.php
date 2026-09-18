@@ -73,12 +73,22 @@ function disable_extras_default_options(): array {
       'premium_redirects' => true,
       'premium_notifications' => true,
       'tracking' => false,
-      'ai_noise' => false,
+      'schema_blocks' => false,
+      'assessment_markers' => false,
+      'ai_banner' => false,
       'rss_footer' => false,
       'adjacent_rel' => false,
-      'admin_upsells' => false,
-      'integrations_ui' => false,
-      'dashboard_widget' => false,
+      'admin_notices' => false,
+      'admin_footer' => false,
+      'menu_integrations' => false,
+      'menu_workouts' => false,
+      'menu_courses' => false,
+      'menu_licenses' => false,
+      'menu_redirects' => false,
+      'menu_upgrade' => false,
+      'menu_brand_insights' => false,
+      'dashboard_yoast' => false,
+      'dashboard_wincher' => false,
     ],
     'redis' => [
       'adminbar' => false,
@@ -214,12 +224,22 @@ function disable_extras_option_labels(): array {
       'premium_redirects' => __('Premium: auto-redirects on slug change', 'disable-extras'),
       'premium_notifications' => __('Premium: trash / slug / term notifications', 'disable-extras'),
       'tracking' => __('Tracking', 'disable-extras'),
-      'ai_noise' => __('AI / assessment markers / schema blocks', 'disable-extras'),
+      'schema_blocks' => __('Schema blocks in the editor', 'disable-extras'),
+      'assessment_markers' => __('Assessment markers in content', 'disable-extras'),
+      'ai_banner' => __('AI Content Planner banner', 'disable-extras'),
       'rss_footer' => __('RSS footer', 'disable-extras'),
       'adjacent_rel' => __('Adjacent rel links', 'disable-extras'),
-      'admin_upsells' => __('Admin upsells / promotions', 'disable-extras'),
-      'integrations_ui' => __('Integrations / Workouts / Courses menu items', 'disable-extras'),
-      'dashboard_widget' => __('Yoast / Wincher dashboard widgets', 'disable-extras'),
+      'admin_notices' => __('Admin notices (upsells)', 'disable-extras'),
+      'admin_footer' => __('Promotional footer on SEO screens', 'disable-extras'),
+      'menu_integrations' => __('Menu: Integrations', 'disable-extras'),
+      'menu_workouts' => __('Menu: Workouts', 'disable-extras'),
+      'menu_courses' => __('Menu: Courses / Academy', 'disable-extras'),
+      'menu_licenses' => __('Menu: Licenses', 'disable-extras'),
+      'menu_redirects' => __('Menu: Redirects', 'disable-extras'),
+      'menu_upgrade' => __('Menu: Upgrade', 'disable-extras'),
+      'menu_brand_insights' => __('Menu: AI Brand Insights', 'disable-extras'),
+      'dashboard_yoast' => __('Dashboard widget: Yoast SEO', 'disable-extras'),
+      'dashboard_wincher' => __('Dashboard widget: Wincher', 'disable-extras'),
     ],
     'redis' => [
       'adminbar' => __('Admin bar', 'disable-extras'),
@@ -357,7 +377,9 @@ function disable_extras_option_sections(): array {
         'title' => __('SEO output', 'disable-extras'),
         'keys' => [
           'tracking',
-          'ai_noise',
+          'schema_blocks',
+          'assessment_markers',
+          'ai_banner',
           'rss_footer',
           'adjacent_rel',
         ],
@@ -365,9 +387,17 @@ function disable_extras_option_sections(): array {
       [
         'title' => __('Admin UI', 'disable-extras'),
         'keys' => [
-          'admin_upsells',
-          'integrations_ui',
-          'dashboard_widget',
+          'admin_notices',
+          'admin_footer',
+          'menu_integrations',
+          'menu_workouts',
+          'menu_courses',
+          'menu_licenses',
+          'menu_redirects',
+          'menu_upgrade',
+          'menu_brand_insights',
+          'dashboard_yoast',
+          'dashboard_wincher',
         ],
       ],
     ],
@@ -695,10 +725,15 @@ TXT,
       'tracking' => <<<'TXT'
 Yoast anonymous usage / telemetry data collection
 TXT,
-      'ai_noise' => <<<'TXT'
-Yoast schema blocks in the editor
-assessment markers in content
-AI Content Planner inline banner
+      'schema_blocks' => <<<'TXT'
+Yoast schema blocks in the block editor
+(FAQ, How-to, and other structured-data blocks)
+TXT,
+      'assessment_markers' => <<<'TXT'
+Highlighted SEO / readability markers inside post content
+TXT,
+      'ai_banner' => <<<'TXT'
+AI Content Planner inline banner in the Yoast metabox
 TXT,
       'rss_footer' => <<<'TXT'
 The feed for this site by Yoast SEO
@@ -708,18 +743,44 @@ TXT,
 <link rel="prev" href="https://example.com/post-1/">
 <link rel="next" href="https://example.com/post-3/">
 TXT,
-      'admin_upsells' => <<<'TXT'
+      'admin_notices' => <<<'TXT'
 Yoast Premium / upsell admin notices
-promotional footer and marketing UI in SEO screens
+(wpseo_admin_notices)
 TXT,
-      'integrations_ui' => <<<'TXT'
+      'admin_footer' => <<<'TXT'
+Promotional footer on Yoast SEO admin screens
+(wpseo_admin_footer)
+TXT,
+      'menu_integrations' => <<<'TXT'
 SEO → Integrations
+TXT,
+      'menu_workouts' => <<<'TXT'
 SEO → Workouts
-SEO → Courses / Academy
+TXT,
+      'menu_courses' => <<<'TXT'
+SEO → Courses
+SEO → Academy
+TXT,
+      'menu_licenses' => <<<'TXT'
 SEO → Premium licenses screens
 TXT,
-      'dashboard_widget' => <<<'TXT'
+      'menu_redirects' => <<<'TXT'
+SEO → Redirects
+admin.php?page=wpseo_redirects
+TXT,
+      'menu_upgrade' => <<<'TXT'
+SEO → Upgrade
+admin.php?page=wpseo_upgrade_sidebar
+TXT,
+      'menu_brand_insights' => <<<'TXT'
+SEO → AI Brand Insights
+admin.php?page=wpseo_brand_insights
+admin.php?page=wpseo_brand_insights_premium
+TXT,
+      'dashboard_yoast' => <<<'TXT'
 Dashboard widget: “Yoast SEO”
+TXT,
+      'dashboard_wincher' => <<<'TXT'
 Dashboard widget: “Wincher”
 TXT,
     ],

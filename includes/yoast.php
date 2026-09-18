@@ -33,9 +33,15 @@ function disable_extras_yoast_apply(): void {
     add_filter('wpseo_enable_tracking', '__return_false');
   }
 
-  if (disable_extras_is_enabled('yoast', 'ai_noise')) {
+  if (disable_extras_is_enabled('yoast', 'schema_blocks')) {
     add_filter('wpseo_enable_structured_data_blocks', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('yoast', 'assessment_markers')) {
     add_filter('wpseo_enable_assessment_markers', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('yoast', 'ai_banner')) {
     add_filter('wpseo_enable_ai_content_planner_inline_banner', '__return_false');
   }
 
@@ -47,16 +53,33 @@ function disable_extras_yoast_apply(): void {
     add_filter('wpseo_disable_adjacent_rel_links', '__return_true');
   }
 
-  if (disable_extras_is_enabled('yoast', 'admin_upsells')) {
-    add_filter('wpseo_enable_tracking', '__return_false');
-    add_action('admin_init', 'disable_extras_yoast_hide_upsells', 20);
+  if (disable_extras_is_enabled('yoast', 'admin_notices')) {
+    add_action('admin_init', 'disable_extras_yoast_hide_admin_notices', 20);
   }
 
-  if (disable_extras_is_enabled('yoast', 'integrations_ui')) {
-    add_filter('wpseo_submenu_pages', 'disable_extras_yoast_filter_submenu_pages', 99);
+  if (disable_extras_is_enabled('yoast', 'admin_footer')) {
+    add_action('admin_init', 'disable_extras_yoast_hide_admin_footer', 20);
   }
 
-  if (disable_extras_is_enabled('yoast', 'dashboard_widget')) {
+  if (
+    disable_extras_is_enabled('yoast', 'menu_integrations')
+    || disable_extras_is_enabled('yoast', 'menu_workouts')
+    || disable_extras_is_enabled('yoast', 'menu_courses')
+    || disable_extras_is_enabled('yoast', 'menu_licenses')
+    || disable_extras_is_enabled('yoast', 'menu_redirects')
+    || disable_extras_is_enabled('yoast', 'menu_upgrade')
+    || disable_extras_is_enabled('yoast', 'menu_brand_insights')
+  ) {
+    // After Yoast integrations register their PHP_INT_MAX submenu filters on init.
+    add_action('init', 'disable_extras_yoast_register_submenu_filters', 20);
+    add_action('admin_menu', 'disable_extras_yoast_remove_admin_submenu_pages', 999);
+    add_action('network_admin_menu', 'disable_extras_yoast_remove_admin_submenu_pages', 999);
+  }
+
+  if (
+    disable_extras_is_enabled('yoast', 'dashboard_yoast')
+    || disable_extras_is_enabled('yoast', 'dashboard_wincher')
+  ) {
     add_action('wp_dashboard_setup', 'disable_extras_yoast_remove_dashboard_widgets', 99);
     add_action('wp_network_dashboard_setup', 'disable_extras_yoast_remove_dashboard_widgets', 99);
   }
@@ -65,12 +88,65 @@ function disable_extras_yoast_apply(): void {
 /**
  * @return void
  */
-function disable_extras_yoast_hide_upsells(): void {
+function disable_extras_yoast_hide_admin_notices(): void {
   remove_action('admin_notices', 'wpseo_admin_notices');
+}
 
+/**
+ * @return void
+ */
+function disable_extras_yoast_hide_admin_footer(): void {
   if (class_exists('WPSEO_Admin', false)) {
     remove_all_actions('wpseo_admin_footer');
   }
+}
+
+/**
+ * @return void
+ */
+function disable_extras_yoast_register_submenu_filters(): void {
+  add_filter('wpseo_submenu_pages', 'disable_extras_yoast_filter_submenu_pages', PHP_INT_MAX);
+  add_filter('wpseo_network_submenu_pages', 'disable_extras_yoast_filter_submenu_pages', PHP_INT_MAX);
+}
+
+/**
+ * @return list<string>
+ */
+function disable_extras_yoast_blocked_menu_slugs(): array {
+  $blocked = [];
+
+  if (disable_extras_is_enabled('yoast', 'menu_integrations')) {
+    $blocked[] = 'wpseo_integrations';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_workouts')) {
+    $blocked[] = 'wpseo_workouts';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_courses')) {
+    $blocked[] = 'wpseo_courses';
+    $blocked[] = 'wpseo_page_academy';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_licenses')) {
+    $blocked[] = 'wpseo_licenses';
+    $blocked[] = 'wpseo_installation_successful';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_redirects')) {
+    $blocked[] = 'wpseo_redirects';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_upgrade')) {
+    $blocked[] = 'wpseo_upgrade_sidebar';
+  }
+
+  if (disable_extras_is_enabled('yoast', 'menu_brand_insights')) {
+    $blocked[] = 'wpseo_brand_insights';
+    $blocked[] = 'wpseo_brand_insights_premium';
+  }
+
+  return $blocked;
 }
 
 /**
@@ -79,14 +155,11 @@ function disable_extras_yoast_hide_upsells(): void {
  * @return array<int, mixed>
  */
 function disable_extras_yoast_filter_submenu_pages(array $pages): array {
-  $blocked = [
-    'wpseo_integrations',
-    'wpseo_workouts',
-    'wpseo_courses',
-    'wpseo_page_academy',
-    'wpseo_licenses',
-    'wpseo_installation_successful',
-  ];
+  $blocked = disable_extras_yoast_blocked_menu_slugs();
+
+  if ($blocked === []) {
+    return $pages;
+  }
 
   return array_values(array_filter(
     $pages,
@@ -103,9 +176,58 @@ function disable_extras_yoast_filter_submenu_pages(array $pages): array {
 }
 
 /**
+ * Strip promo items from the already-built WP admin menu.
+ *
+ * @return void
+ */
+function disable_extras_yoast_remove_admin_submenu_pages(): void {
+  global $submenu;
+
+  if (!is_array($submenu)) {
+    return;
+  }
+
+  $blocked = disable_extras_yoast_blocked_menu_slugs();
+
+  if ($blocked === []) {
+    return;
+  }
+
+  foreach ($submenu as $parent => $items) {
+    if (!is_array($items)) {
+      continue;
+    }
+
+    foreach ($items as $index => $item) {
+      $slug = $item[2] ?? '';
+
+      if (in_array($slug, $blocked, true)) {
+        unset($submenu[$parent][$index]);
+      }
+    }
+
+    $submenu[$parent] = array_values($submenu[$parent]);
+  }
+}
+
+/**
+ * @param array<int, mixed> $pages
+ *
+ * @return array<int, mixed>
+ */
+function disable_extras_yoast_filter_submenu_pages_legacy_unused(array $pages): array {
+  return $pages;
+}
+
+/**
  * @return void
  */
 function disable_extras_yoast_remove_dashboard_widgets(): void {
-  remove_meta_box('wpseo-dashboard-overview', 'dashboard', 'normal');
-  remove_meta_box('wpseo-wincher-dashboard-overview', 'dashboard', 'normal');
+  if (disable_extras_is_enabled('yoast', 'dashboard_yoast')) {
+    remove_meta_box('wpseo-dashboard-overview', 'dashboard', 'normal');
+  }
+
+  if (disable_extras_is_enabled('yoast', 'dashboard_wincher')) {
+    remove_meta_box('wpseo-wincher-dashboard-overview', 'dashboard', 'normal');
+  }
 }

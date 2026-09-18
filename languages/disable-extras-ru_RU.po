@@ -12,8 +12,14 @@ msgstr ""
 msgid "A checked option disables that feature. Defaults match what the theme used to turn off."
 msgstr "Галочка отключает функцию. Значения по умолчанию совпадают с тем, что раньше выключала тема."
 
-msgid "AI / assessment markers / schema blocks"
-msgstr "AI / assessment markers / schema-блоки"
+msgid "Schema blocks in the editor"
+msgstr "Schema-блоки в редакторе"
+
+msgid "Assessment markers in content"
+msgstr "Assessment markers в контенте"
+
+msgid "AI Content Planner banner"
+msgstr "Баннер AI Content Planner"
 
 msgid "API & remote access"
 msgstr "API и удалённый доступ"
@@ -36,8 +42,38 @@ msgstr "Admin bar на фронте (все пользователи)"
 msgid "Admin bar on the front end (non-admins)"
 msgstr "Admin bar на фронте (не админы)"
 
-msgid "Admin upsells / promotions"
-msgstr "Upsell / promotions в админке"
+msgid "Admin notices (upsells)"
+msgstr "Уведомления в админке (upsell / promo)"
+
+msgid "Promotional footer on SEO screens"
+msgstr "Промо-футер на экранах SEO"
+
+msgid "Menu: Integrations"
+msgstr "Меню: Integrations"
+
+msgid "Menu: Workouts"
+msgstr "Меню: Workouts"
+
+msgid "Menu: Courses / Academy"
+msgstr "Меню: Courses / Academy"
+
+msgid "Menu: Licenses"
+msgstr "Меню: Licenses"
+
+msgid "Menu: Redirects"
+msgstr "Меню: Redirects"
+
+msgid "Menu: Upgrade"
+msgstr "Меню: Upgrade"
+
+msgid "Menu: AI Brand Insights"
+msgstr "Меню: AI Brand Insights"
+
+msgid "Dashboard widget: Yoast SEO"
+msgstr "Виджет Dashboard: Yoast SEO"
+
+msgid "Dashboard widget: Wincher"
+msgstr "Виджет Dashboard: Wincher"
 
 msgid "Application Passwords"
 msgstr "Application Passwords"
@@ -161,9 +197,6 @@ msgstr "Входящие pingbacks"
 
 msgid "Install / update / edit plugins and themes"
 msgstr "Установка / обновление / правка плагинов и тем"
-
-msgid "Integrations / Workouts / Courses menu items"
-msgstr "Пункты Integrations / Workouts / Courses"
 
 msgid "Metrics collection"
 msgstr "Сбор metrics"
@@ -296,9 +329,6 @@ msgstr "XML-RPC"
 
 msgid "Yoast"
 msgstr "Yoast"
-
-msgid "Yoast / Wincher dashboard widgets"
-msgstr "Виджеты Yoast / Wincher на Dashboard"
 
 msgid "embedpress-gallery-justify script"
 msgstr "Скрипт embedpress-gallery-justify"
