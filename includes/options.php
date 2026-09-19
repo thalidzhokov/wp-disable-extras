@@ -449,36 +449,21 @@ function disable_extras_option_sections(): array {
 /**
  * Hints for settings UI.
  *
- * Keys per option (all optional — omit key and heading is skipped):
- * - what: string|list — removed markup/behavior; list items "or" / "and_also" are separators
- * - where: string|list — page / screen / taxonomy / editor; same separators
- * - constant: string — wp-config-style define() example
+ * Keys per option (all optional):
+ * - summary: string|list — prose under the checkbox; HTML tags inside <code> use &lt; &gt;
+ * - label_note / label_note_tone: short note under the label (ok|warn|muted)
+ * - what / where: legacy blocks (skipped when summary is set)
+ * - constant: wp-config-style define() example
  *
- * @return array<string, array<string, array{
- *   what?: string|list<string>,
- *   where?: string|list<string>,
- *   constant?: string
- * }>>
+ * @return array<string, array<string, array<string, mixed>>>
  */
 function disable_extras_option_hints(): array {
   return [
     'wp' => [
       'emoji' => [
-        'what' => [
-          <<<'TXT'
-<script src="…/wp-emoji-release.min.js"></script>
-<link rel="stylesheet" href="…/emoji.css">
-TXT,
-          'and_also',
-          'emoji images instead of native characters in feeds/mail',
-        ],
-        'where' => [
-          'Front end <head>',
-          'and_also',
-          'RSS/Atom feeds',
-          'and_also',
-          'Outgoing mail (wp_mail)',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;script src="…/wp-emoji-release.min.js"&gt;&lt;/script&gt;</code> and <code>&lt;link rel="stylesheet" href="…/emoji.css"&gt;</code> from the front <code>&lt;head&gt;</code>, and emoji images instead of native characters in RSS/Atom feeds and outgoing mail (<code>wp_mail</code>)',
       ],
       'generator' => [
         'label_note' => 'Recommended',
@@ -486,363 +471,292 @@ TXT,
         'summary' => 'Removes the <code>&lt;meta name="generator" content="WordPress 6.7.1"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds',
       ],
       'script_versions' => [
-        'what' => <<<'TXT'
-/wp-includes/css/dashicons.min.css?ver=6.7.1
-/wp-includes/js/jquery/jquery.min.js?ver=3.7.1
-TXT,
-        'where' => 'Front end and wp-admin (core CSS/JS URLs)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the <code>?ver=</code> query arg from core CSS/JS URLs on the front end and in wp-admin, e.g. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>',
       ],
       'dns_prefetch' => [
-        'what' => <<<'TXT'
-<link rel="dns-prefetch" href="//s.w.org">
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-TXT,
-        'where' => 'Front end <head>',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="dns-prefetch" href="//s.w.org"&gt;</code> and similar dns-prefetch links from the front <code>&lt;head&gt;</code>',
       ],
       'resource_hints' => [
-        'what' => <<<'TXT'
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="prefetch" href="https://example.com/next-page/">
-<link rel="prerender" href="https://example.com/next-page/">
-TXT,
-        'where' => 'Front end <head>',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes <code>&lt;link rel="preconnect|prefetch|prerender" …&gt;</code> from the front <code>&lt;head&gt;</code>',
       ],
       'dashicons_guests' => [
-        'what' => '<link rel="stylesheet" href="/wp-includes/css/dashicons.min.css">',
-        'where' => 'Front end for logged-out visitors',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="stylesheet" href="/wp-includes/css/dashicons.min.css"&gt;</code> on the front end for logged-out visitors',
       ],
       'jquery_front' => [
-        'what' => <<<'TXT'
-<script src="/wp-includes/js/jquery/jquery.min.js"></script>
-<script src="/wp-includes/js/jquery/jquery-migrate.min.js"></script>
-TXT,
-        'where' => 'Front end',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Removes <code>&lt;script src="/wp-includes/js/jquery/jquery.min.js"&gt;&lt;/script&gt;</code> and jQuery Migrate from the front end',
       ],
       'thickbox_front' => [
-        'what' => <<<'TXT'
-<script src="/wp-includes/js/thickbox/thickbox.js"></script>
-<link rel="stylesheet" href="/wp-includes/js/thickbox/thickbox.css">
-TXT,
-        'where' => 'Front end',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes Thickbox <code>&lt;script&gt;</code> / <code>&lt;link&gt;</code> from the front end',
       ],
       'rsd' => [
-        'what' => '<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://example.com/xmlrpc.php?rsd">',
-        'where' => 'Front end <head>',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="EditURI" type="application/rsd+xml" title="RSD" href="…/xmlrpc.php?rsd"&gt;</code> from the front <code>&lt;head&gt;</code>',
       ],
       'wlwmanifest' => [
-        'what' => '<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://example.com/wp-includes/wlwmanifest.xml">',
-        'where' => 'Front end <head>',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="wlwmanifest" type="application/wlwmanifest+xml" href="…/wlwmanifest.xml"&gt;</code> from the front <code>&lt;head&gt;</code>',
       ],
       'shortlink' => [
-        'what' => [
-          '<link rel="shortlink" href="https://example.com/?p=123">',
-          'and_also',
-          'Link: <https://example.com/?p=123>; rel=shortlink',
-        ],
-        'where' => [
-          'Front end <head>',
-          'and_also',
-          'HTTP response headers',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="shortlink" href="https://example.com/?p=123"&gt;</code> from the front <code>&lt;head&gt;</code> and the <code>Link: &lt;…&gt;; rel=shortlink</code> HTTP header',
       ],
       'xmlrpc' => [
-        'what' => [
-          'POST /xmlrpc.php',
-          'and_also',
-          '<link rel="EditURI" … href="…/xmlrpc.php?rsd">',
-        ],
-        'where' => [
-          '/xmlrpc.php',
-          'and_also',
-          'Front end <head> (RSD)',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables <code>POST /xmlrpc.php</code> and removes the RSD <code>&lt;link rel="EditURI" …&gt;</code> from the front <code>&lt;head&gt;</code>',
       ],
       'self_pingbacks' => [
-        'what' => 'pingback.ping → own site URL when a post links to another own post',
-        'where' => 'On publish / update (outbound pingbacks)',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables <code>pingback.ping</code> to the own site when a post links to another own post on publish/update',
       ],
       'pingbacks_outgoing' => [
-        'what' => 'pingback.ping / trackback → other sites',
-        'where' => 'On publish / update',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables outgoing <code>pingback.ping</code> / trackback to other sites on publish/update',
       ],
       'pingbacks_incoming' => [
-        'what' => [
-          'pingback.ping via XML-RPC',
-          'and_also',
-          'X-Pingback: https://example.com/xmlrpc.php',
-        ],
-        'where' => [
-          '/xmlrpc.php',
-          'and_also',
-          'HTTP headers',
-          'and_also',
-          'Discussion settings on posts',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and clears discussion pingback settings on posts',
       ],
       'oembed_discovery' => [
-        'what' => <<<'TXT'
-<link rel="alternate" type="application/json+oembed" href="…">
-<link rel="alternate" type="text/xml+oembed" href="…">
-<script src="/wp-includes/js/wp-embed.min.js"></script>
-TXT,
-        'where' => 'Front end <head> (singular content)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes oEmbed <code>&lt;link rel="alternate" type="application/json+oembed" …&gt;</code> / xml+oembed and <code>&lt;script src="…/wp-embed.min.js"&gt;&lt;/script&gt;</code> from the front <code>&lt;head&gt;</code> on singular content',
       ],
       'oembed_endpoint' => [
-        'what' => <<<'TXT'
-GET /wp-json/oembed/1.0/embed?url=…
-GET /wp-json/oembed/1.0/proxy?url=…
-TXT,
-        'where' => 'REST API',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables REST oEmbed routes <code>GET /wp-json/oembed/1.0/embed</code> and <code>GET /wp-json/oembed/1.0/proxy</code>',
       ],
       'embeds' => [
-        'what' => [
-          '/embed/ rewrite + is_embed() templates',
-          'and_also',
-          '<script src="/wp-includes/js/wp-embed.min.js"></script>',
-          'and_also',
-          'oEmbed discovery links and REST oEmbed routes',
-        ],
-        'where' => [
-          'Front end',
-          'and_also',
-          'REST API',
-          'and_also',
-          'Embed templates',
-        ],
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables WordPress embeds: <code>/embed/</code> templates, <code>wp-embed.min.js</code>, oEmbed discovery links and REST oEmbed routes',
       ],
       'rest_users' => [
-        'what' => <<<'TXT'
-GET /wp-json/wp/v2/users
-GET /wp-json/wp/v2/users/1
-TXT,
-        'where' => 'REST API for logged-out visitors',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Blocks <code>GET /wp-json/wp/v2/users</code> for logged-out visitors',
       ],
       'rest_guests' => [
-        'what' => 'GET /wp-json/… → 401 for logged-out visitors',
-        'where' => 'REST API',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Returns 401 for logged-out visitors on the REST API (<code>GET /wp-json/…</code>)',
       ],
       'rest_links' => [
-        'what' => [
-          '<link rel="https://api.w.org/" href="https://example.com/wp-json/">',
-          'and_also',
-          'Link: <https://example.com/wp-json/>; rel="https://api.w.org/"',
-          'and_also',
-          'REST API entry in RSD',
-        ],
-        'where' => [
-          'Front end <head>',
-          'and_also',
-          'HTTP response headers',
-          'and_also',
-          'RSD',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;link rel="https://api.w.org/" href="…/wp-json/"&gt;</code> from the front <code>&lt;head&gt;</code>, the matching HTTP <code>Link</code> header, and the REST entry in RSD',
       ],
       'heartbeat_front' => [
-        'what' => <<<'TXT'
-<script src="/wp-includes/js/heartbeat.min.js"></script>
-admin-ajax.php?action=heartbeat
-TXT,
-        'where' => 'Front end',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes <code>&lt;script src="…/heartbeat.min.js"&gt;&lt;/script&gt;</code> and <code>admin-ajax.php?action=heartbeat</code> on the front end',
       ],
       'heartbeat_admin' => [
-        'what' => <<<'TXT'
-<script src="/wp-includes/js/heartbeat.min.js"></script>
-admin-ajax.php?action=heartbeat
-TXT,
-        'where' => 'wp-admin',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Removes <code>&lt;script src="…/heartbeat.min.js"&gt;&lt;/script&gt;</code> and <code>admin-ajax.php?action=heartbeat</code> in wp-admin',
       ],
       'heartbeat_slow' => [
-        'what' => 'heartbeat_settings.interval = 60 (instead of ~15s)',
-        'where' => 'Front end and wp-admin (where Heartbeat runs)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Sets <code>heartbeat_settings.interval = 60</code> instead of ~15s on the front end and in wp-admin',
       ],
       'texturization' => [
-        'what' => [
-          'Conversion of "quotes" into “quotes”',
-          'and_also',
-          '-- → —',
-          'and_also',
-          '... → …',
-        ],
-        'where' => 'Content, titles, excerpts, comments, feeds',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables conversion of "quotes" into “quotes”, <code>--</code> > <code>—</code>, and <code>...</code> > <code>…</code> in content, titles, excerpts, comments, and feeds',
       ],
       'autosave' => [
-        'what' => '<script src="/wp-includes/js/autosave.min.js"></script>',
-        'where' => 'Block / classic editor (post screens in wp-admin)',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Removes <code>&lt;script src="…/autosave.min.js"&gt;&lt;/script&gt;</code> from the block/classic editor in wp-admin',
       ],
       'dashboard_right_now' => [
-        'what' => 'Dashboard widget: “At a Glance”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the Dashboard widget “At a Glance” from <code>wp-admin > Dashboard</code>',
       ],
       'dashboard_network_right_now' => [
-        'what' => 'Network Dashboard widget: “Right Now”',
-        'where' => 'Network Admin > Dashboard',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the Network Dashboard widget “Right Now” from <code>Network Admin > Dashboard</code>',
       ],
       'dashboard_activity' => [
-        'what' => 'Dashboard widget: “Activity”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the Dashboard widget “Activity” from <code>wp-admin > Dashboard</code>',
       ],
       'dashboard_quick_press' => [
-        'what' => 'Dashboard widget: “Quick Draft”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the Dashboard widget “Quick Draft” from <code>wp-admin > Dashboard</code>',
       ],
       'dashboard_primary' => [
-        'what' => 'Dashboard widget: “WordPress Events and News”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “WordPress Events and News” from <code>wp-admin > Dashboard</code>',
       ],
       'dashboard_site_health' => [
-        'what' => 'Dashboard widget: “Site Health Status”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes the Dashboard widget “Site Health Status” from <code>wp-admin > Dashboard</code>',
       ],
       'welcome_panel' => [
-        'what' => 'Welcome panel',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Welcome panel from <code>wp-admin > Dashboard</code>',
       ],
       'admin_bar' => [
-        'what' => '#wpadminbar',
-        'where' => 'Front end for every logged-in user',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Hides <code>#wpadminbar</code> on the front end for every logged-in user',
       ],
       'admin_bar_non_admins' => [
-        'what' => '#wpadminbar',
-        'where' => 'Front end for users without manage_options',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Hides <code>#wpadminbar</code> on the front end for users without <code>manage_options</code>',
       ],
       'admin_bar_wp_logo' => [
-        'label_note' => 'Recommended — less clutter',
+        'label_note' => 'Recommended',
         'label_note_tone' => 'ok',
         'summary' => 'Disables the Admin bar item <code>#wp-admin-bar-wp-logo</code> About WordPress (Documentation, Learn, Support, Feedback)',
       ],
       'login_logo' => [
-        'what' => <<<'TXT'
-<h1 class="wp-login-logo"><a href="https://wordpress.org/">…</a></h1>
-TXT,
-        'where' => 'wp-login.php (replaced with blog name text, no link)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Replaces <code>&lt;h1 class="wp-login-logo"&gt;&lt;a href="https://wordpress.org/"&gt;…&lt;/a&gt;&lt;/h1&gt;</code> on <code>wp-login.php</code> with the blog name text (no link)',
       ],
       'feed_redirect' => [
-        'what' => 'GET /feed/ → 301 Location: https://example.com/',
-        'where' => 'Disabled feed URLs (when other feed options are on)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Redirects disabled feed URLs with <code>301</code> to the homepage (when other feed options are on)',
       ],
       'feed_global' => [
-        'what' => [
-          '/feed/, /rss/, /rss2/, /atom/, /rdf/',
-          'and_also',
-          '<link rel="alternate" type="application/rss+xml" …>',
-        ],
-        'where' => [
-          'Global post feeds',
-          'and_also',
-          'Front end <head>',
-        ],
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Disables global post feeds (<code>/feed/</code>, <code>/rss/</code>, <code>/rss2/</code>, <code>/atom/</code>, <code>/rdf/</code>) and removes <code>&lt;link rel="alternate" type="application/rss+xml" …&gt;</code> from the front <code>&lt;head&gt;</code>',
       ],
       'feed_global_comments' => [
-        'what' => [
-          '/comments/feed/',
-          'and_also',
-          '<link rel="alternate" … comments feed>',
-        ],
-        'where' => [
-          'Global comments feed',
-          'and_also',
-          'Front end <head>',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables <code>/comments/feed/</code> and removes comments feed alternate links from the front <code>&lt;head&gt;</code>',
       ],
       'feed_post_comments' => [
-        'what' => <<<'TXT'
-/post-slug/feed/
-/post-slug/comments/feed/
-TXT,
-        'where' => 'Single post comment feeds',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)',
       ],
       'feed_authors' => [
-        'what' => '/author/name/feed/',
-        'where' => 'Author archives',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables author feeds (<code>/author/name/feed/</code>)',
       ],
       'feed_post_types' => [
-        'what' => '/cpt-slug/feed/',
-        'where' => 'Custom post type archives',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables custom post type archive feeds (<code>/cpt-slug/feed/</code>)',
       ],
       'feed_categories' => [
-        'what' => '/category/news/feed/',
-        'where' => 'Category taxonomy archives',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables category feeds (<code>/category/news/feed/</code>)',
       ],
       'feed_tags' => [
-        'what' => '/tag/esports/feed/',
-        'where' => 'Post tag taxonomy archives',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables tag feeds (<code>/tag/esports/feed/</code>)',
       ],
       'feed_custom_taxonomies' => [
-        'what' => '/taxonomy-slug/term/feed/',
-        'where' => 'Custom taxonomy archives',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables custom taxonomy feeds (<code>/taxonomy-slug/term/feed/</code>)',
       ],
       'feed_search' => [
-        'what' => '/?s=query&feed=rss2',
-        'where' => 'Search results',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables search result feeds (<code>/?s=query&amp;feed=rss2</code>)',
       ],
       'feed_atom_rdf' => [
-        'what' => '/feed/atom/, /feed/rdf/, /feed/rss/',
-        'where' => 'Feed format endpoints (RSS2 stays unless other feed options apply)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables Atom/RDF/RSS format endpoints (<code>/feed/atom/</code>, <code>/feed/rdf/</code>, <code>/feed/rss/</code>); RSS2 stays unless other feed options apply',
       ],
       'auto_updates_core' => [
-        'what' => 'Automatic WordPress core updates (minor/major)',
-        'where' => 'Background updater / Dashboard > Updates',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Disables automatic WordPress core updates (minor/major) in the background updater / <code>Dashboard > Updates</code>',
         'constant' => "define('WP_AUTO_UPDATE_CORE', false);",
       ],
       'auto_updates_plugins' => [
-        'what' => 'Automatic plugin updates',
-        'where' => 'Plugins list / background updater',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables automatic plugin updates in the plugins list / background updater',
       ],
       'auto_updates_themes' => [
-        'what' => 'Automatic theme updates',
-        'where' => 'Appearance > Themes / background updater',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables automatic theme updates in <code>Appearance > Themes</code> / background updater',
       ],
       'auto_updates_translations' => [
-        'what' => 'Automatic language pack / translation updates',
-        'where' => 'Background updater',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables automatic language pack / translation updates in the background updater',
       ],
       'auto_updates_all' => [
-        'label_note' => 'Useful with manual/controlled deploys; not if you rely on auto security patches',
-        'label_note_tone' => 'muted',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
         'summary' => [
           'Disables all background automatic updates: WordPress core, plugins, themes, translations',
         ],
         'constant' => "define('AUTOMATIC_UPDATER_DISABLED', true);",
       ],
       'update_nags_admins_only' => [
-        'what' => 'Admin notice: “WordPress X.Y is available! Please update…”',
-        'where' => 'wp-admin (users without update_core)',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Hides update nags (“WordPress X.Y is available! Please update…”) in wp-admin for users without <code>update_core</code>',
       ],
       'update_phone_home' => [
-        'what' => <<<'TXT'
-User-Agent: WordPress/6.7; https://example.com/
-Headers: wp_blog / wp_install = site URL
-TXT,
-        'where' => 'Outbound checks to api.wordpress.org',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Stops sending the site URL in <code>User-Agent</code> / <code>wp_blog</code> / <code>wp_install</code> headers on outbound checks to <code>api.wordpress.org</code>',
       ],
       'application_passwords' => [
-        'what' => [
-          'Users > Profile > Application Passwords',
-          'and_also',
-          'Authorization: Basic … (REST / XML-RPC app auth)',
-        ],
-        'where' => [
-          'wp-admin > Users > Profile',
-          'and_also',
-          'REST API / XML-RPC',
-        ],
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables Application Passwords in <code>Users > Profile</code> and Basic auth for REST / XML-RPC apps',
       ],
       'core_sitemaps' => [
-        'what' => <<<'TXT'
-/wp-sitemap.xml
-/wp-sitemap-posts-post-1.xml
-/wp-sitemap-users-1.xml
-TXT,
-        'where' => 'Front end sitemap endpoints',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables core sitemap endpoints (<code>/wp-sitemap.xml</code>, <code>/wp-sitemap-posts-post-1.xml</code>, <code>/wp-sitemap-users-1.xml</code>)',
       ],
       'disallow_file_edit' => [
-        'label_note' => 'Recommended for better security',
+        'label_note' => 'Recommended',
         'label_note_tone' => 'ok',
         'summary' => 'Disables the theme and plugin file editors in wp-admin: <code>Appearance > Theme File Editor</code> and <code>Plugins > Plugin File Editor</code>',
         'constant' => "define('DISALLOW_FILE_EDIT', true);",
       ],
       'disallow_file_mods' => [
-        'label_note' => 'Useful on production with controlled deploys',
+        'label_note' => 'Optional',
         'label_note_tone' => 'muted',
         'summary' => [
           'Disables installing and updating plugins and themes in wp-admin: <code>Plugins > Add New / Update</code> and <code>Appearance > Themes > Add New / Update</code>',
@@ -851,7 +765,7 @@ TXT,
         'constant' => "define('DISALLOW_FILE_MODS', true);",
       ],
       'disable_wp_cron' => [
-        'label_note' => 'Useful if you set up a system cron',
+        'label_note' => 'Optional',
         'label_note_tone' => 'muted',
         'summary' => [
           'Disables built-in WP-Cron on page load',
@@ -861,18 +775,20 @@ TXT,
         'constant' => "define('DISABLE_WP_CRON', true);",
       ],
       'disallow_unfiltered_html' => [
-        'label_note' => 'Recommended for better security',
+        'label_note' => 'Recommended',
         'label_note_tone' => 'ok',
         'summary' => 'Disables the ability for Administrators and Editors to insert raw code such as <code>script</code>, <code>iframe</code> without kses in the post/page editor',
         'constant' => "define('DISALLOW_UNFILTERED_HTML', true);",
       ],
       'post_revisions' => [
         'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
         'summary' => 'Disables the revisions UI in the block/classic editor sidebar and deletes posts with <code>post_type = revision</code> from the <code>wp_posts</code> table',
         'constant' => "define('WP_POST_REVISIONS', false);",
       ],
       'empty_trash' => [
-        'label_note' => 'Permanent deletion without trash is not recommended',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
         'summary' => 'Disables the trash for posts/media/comments: items are permanently deleted immediately in wp-admin content lists',
         'constant' => "define('EMPTY_TRASH_DAYS', 0);",
       ],

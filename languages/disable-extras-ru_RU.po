@@ -213,6 +213,9 @@ msgstr "Мета generator и версия в RSS"
 msgid "Recommended"
 msgstr "Рекомендуется"
 
+msgid "Optional"
+msgstr "Опционально"
+
 msgid "Removes the <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds"
 msgstr "Убирает тег <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> из HTML кода и тег <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> из лент RSS/Atom"
 
@@ -774,3 +777,159 @@ msgstr "Фронт, где используется галерея EmbedPress"
 
 msgid "pingback.ping via XML-RPC"
 msgstr "pingback.ping через XML-RPC"
+
+msgid "Removes <code>&lt;script src=\"…/wp-emoji-release.min.js\"&gt;&lt;/script&gt;</code> and <code>&lt;link rel=\"stylesheet\" href=\"…/emoji.css\"&gt;</code> from the front <code>&lt;head&gt;</code>, and emoji images instead of native characters in RSS/Atom feeds and outgoing mail (<code>wp_mail</code>)"
+msgstr "Убирает <code>&lt;script src=\"…/wp-emoji-release.min.js\"&gt;&lt;/script&gt;</code> и <code>&lt;link rel=\"stylesheet\" href=\"…/emoji.css\"&gt;</code> из фронтового <code>&lt;head&gt;</code>, а также подмену emoji картинками вместо нативных символов в лентах RSS/Atom и исходящей почте (<code>wp_mail</code>)"
+
+msgid "Removes the <code>?ver=</code> query arg from core CSS/JS URLs on the front end and in wp-admin, e.g. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>"
+msgstr "Убирает query-аргумент <code>?ver=</code> из URL CSS/JS ядра на фронте и в wp-admin, напр. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>"
+
+msgid "Removes <code>&lt;link rel=\"dns-prefetch\" href=\"//s.w.org\"&gt;</code> and similar dns-prefetch links from the front <code>&lt;head&gt;</code>"
+msgstr "Убирает <code>&lt;link rel=\"dns-prefetch\" href=\"//s.w.org\"&gt;</code> и похожие dns-prefetch ссылки из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Removes <code>&lt;link rel=\"preconnect|prefetch|prerender\" …&gt;</code> from the front <code>&lt;head&gt;</code>"
+msgstr "Убирает <code>&lt;link rel=\"preconnect|prefetch|prerender\" …&gt;</code> из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Removes <code>&lt;link rel=\"stylesheet\" href=\"/wp-includes/css/dashicons.min.css\"&gt;</code> on the front end for logged-out visitors"
+msgstr "Убирает <code>&lt;link rel=\"stylesheet\" href=\"/wp-includes/css/dashicons.min.css\"&gt;</code> на фронте для неавторизованных"
+
+msgid "Removes <code>&lt;script src=\"/wp-includes/js/jquery/jquery.min.js\"&gt;&lt;/script&gt;</code> and jQuery Migrate from the front end"
+msgstr "Убирает <code>&lt;script src=\"/wp-includes/js/jquery/jquery.min.js\"&gt;&lt;/script&gt;</code> и jQuery Migrate с фронта"
+
+msgid "Removes Thickbox <code>&lt;script&gt;</code> / <code>&lt;link&gt;</code> from the front end"
+msgstr "Убирает Thickbox <code>&lt;script&gt;</code> / <code>&lt;link&gt;</code> с фронта"
+
+msgid "Removes <code>&lt;link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"…/xmlrpc.php?rsd\"&gt;</code> from the front <code>&lt;head&gt;</code>"
+msgstr "Убирает <code>&lt;link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"…/xmlrpc.php?rsd\"&gt;</code> из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Removes <code>&lt;link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"…/wlwmanifest.xml\"&gt;</code> from the front <code>&lt;head&gt;</code>"
+msgstr "Убирает <code>&lt;link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"…/wlwmanifest.xml\"&gt;</code> из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Removes <code>&lt;link rel=\"shortlink\" href=\"https://example.com/?p=123\"&gt;</code> from the front <code>&lt;head&gt;</code> and the <code>Link: &lt;…&gt;; rel=shortlink</code> HTTP header"
+msgstr "Убирает <code>&lt;link rel=\"shortlink\" href=\"https://example.com/?p=123\"&gt;</code> из фронтового <code>&lt;head&gt;</code> и HTTP-заголовок <code>Link: &lt;…&gt;; rel=shortlink</code>"
+
+msgid "Disables <code>POST /xmlrpc.php</code> and removes the RSD <code>&lt;link rel=\"EditURI\" …&gt;</code> from the front <code>&lt;head&gt;</code>"
+msgstr "Отключает <code>POST /xmlrpc.php</code> и убирает RSD <code>&lt;link rel=\"EditURI\" …&gt;</code> из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Disables <code>pingback.ping</code> to the own site when a post links to another own post on publish/update"
+msgstr "Отключает <code>pingback.ping</code> на свой сайт, когда запись ссылается на другую свою запись при публикации/обновлении"
+
+msgid "Disables outgoing <code>pingback.ping</code> / trackback to other sites on publish/update"
+msgstr "Отключает исходящие <code>pingback.ping</code> / trackback на другие сайты при публикации/обновлении"
+
+msgid "Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and clears discussion pingback settings on posts"
+msgstr "Отключает входящие <code>pingback.ping</code> через XML-RPC, убирает заголовок <code>X-Pingback</code> и сбрасывает настройки pingback в обсуждении записей"
+
+msgid "Removes oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed and <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> from the front <code>&lt;head&gt;</code> on singular content"
+msgstr "Убирает oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed и <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> из фронтового <code>&lt;head&gt;</code> на одиночных записях/страницах"
+
+msgid "Disables REST oEmbed routes <code>GET /wp-json/oembed/1.0/embed</code> and <code>GET /wp-json/oembed/1.0/proxy</code>"
+msgstr "Отключает REST-маршруты oEmbed <code>GET /wp-json/oembed/1.0/embed</code> и <code>GET /wp-json/oembed/1.0/proxy</code>"
+
+msgid "Disables WordPress embeds: <code>/embed/</code> templates, <code>wp-embed.min.js</code>, oEmbed discovery links and REST oEmbed routes"
+msgstr "Отключает WordPress embeds: шаблоны <code>/embed/</code>, <code>wp-embed.min.js</code>, oEmbed discovery-ссылки и REST-маршруты oEmbed"
+
+msgid "Blocks <code>GET /wp-json/wp/v2/users</code> for logged-out visitors"
+msgstr "Блокирует <code>GET /wp-json/wp/v2/users</code> для неавторизованных"
+
+msgid "Returns 401 for logged-out visitors on the REST API (<code>GET /wp-json/…</code>)"
+msgstr "Отдаёт 401 неавторизованным на REST API (<code>GET /wp-json/…</code>)"
+
+msgid "Removes <code>&lt;link rel=\"https://api.w.org/\" href=\"…/wp-json/\"&gt;</code> from the front <code>&lt;head&gt;</code>, the matching HTTP <code>Link</code> header, and the REST entry in RSD"
+msgstr "Убирает <code>&lt;link rel=\"https://api.w.org/\" href=\"…/wp-json/\"&gt;</code> из фронтового <code>&lt;head&gt;</code>, соответствующий HTTP-заголовок <code>Link</code> и запись REST в RSD"
+
+msgid "Removes <code>&lt;script src=\"…/heartbeat.min.js\"&gt;&lt;/script&gt;</code> and <code>admin-ajax.php?action=heartbeat</code> on the front end"
+msgstr "Убирает <code>&lt;script src=\"…/heartbeat.min.js\"&gt;&lt;/script&gt;</code> и <code>admin-ajax.php?action=heartbeat</code> на фронте"
+
+msgid "Sets <code>heartbeat_settings.interval = 60</code> instead of ~15s on the front end and in wp-admin"
+msgstr "Ставит <code>heartbeat_settings.interval = 60</code> вместо ~15с на фронте и в wp-admin"
+
+msgid "Disables conversion of \"quotes\" into “quotes”, <code>--</code> > <code>—</code>, and <code>...</code> > <code>…</code> in content, titles, excerpts, comments, and feeds"
+msgstr "Отключает преобразование \"кавычек\" в “кавычки”, <code>--</code> > <code>—</code> и <code>...</code> > <code>…</code> в контенте, заголовках, цитатах, комментариях и лентах"
+
+msgid "Removes <code>&lt;script src=\"…/autosave.min.js\"&gt;&lt;/script&gt;</code> from the block/classic editor in wp-admin"
+msgstr "Убирает <code>&lt;script src=\"…/autosave.min.js\"&gt;&lt;/script&gt;</code> из блочного/классического редактора в wp-admin"
+
+msgid "Removes the Dashboard widget “At a Glance” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «На виду» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Network Dashboard widget “Right Now” from <code>Network Admin > Dashboard</code>"
+msgstr "Убирает виджет Network Dashboard «Прямо сейчас» из <code>Network Admin > Консоль</code>"
+
+msgid "Removes the Dashboard widget “Activity” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Активность» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Dashboard widget “Quick Draft” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Быстрый черновик» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Dashboard widget “WordPress Events and News” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «События и новости WordPress» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Dashboard widget “Site Health Status” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Состояние здоровья сайта» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Welcome panel from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает панель приветствия из <code>wp-admin > Консоль</code>"
+
+msgid "Hides <code>#wpadminbar</code> on the front end for every logged-in user"
+msgstr "Скрывает <code>#wpadminbar</code> на фронте для всех авторизованных"
+
+msgid "Replaces <code>&lt;h1 class=\"wp-login-logo\"&gt;&lt;a href=\"https://wordpress.org/\"&gt;…&lt;/a&gt;&lt;/h1&gt;</code> on <code>wp-login.php</code> with the blog name text (no link)"
+msgstr "Заменяет <code>&lt;h1 class=\"wp-login-logo\"&gt;&lt;a href=\"https://wordpress.org/\"&gt;…&lt;/a&gt;&lt;/h1&gt;</code> на <code>wp-login.php</code> текстом названия блога (без ссылки)"
+
+msgid "Redirects disabled feed URLs with <code>301</code> to the homepage (when other feed options are on)"
+msgstr "Редиректит URL отключённых лент кодом <code>301</code> на главную (когда включены другие опции лент)"
+
+msgid "Disables global post feeds (<code>/feed/</code>, <code>/rss/</code>, <code>/rss2/</code>, <code>/atom/</code>, <code>/rdf/</code>) and removes <code>&lt;link rel=\"alternate\" type=\"application/rss+xml\" …&gt;</code> from the front <code>&lt;head&gt;</code>"
+msgstr "Отключает общие ленты записей (<code>/feed/</code>, <code>/rss/</code>, <code>/rss2/</code>, <code>/atom/</code>, <code>/rdf/</code>) и убирает <code>&lt;link rel=\"alternate\" type=\"application/rss+xml\" …&gt;</code> из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Disables <code>/comments/feed/</code> and removes comments feed alternate links from the front <code>&lt;head&gt;</code>"
+msgstr "Отключает <code>/comments/feed/</code> и убирает alternate-ссылки ленты комментариев из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)"
+msgstr "Отключает ленты комментариев записи (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)"
+
+msgid "Disables author feeds (<code>/author/name/feed/</code>)"
+msgstr "Отключает ленты авторов (<code>/author/name/feed/</code>)"
+
+msgid "Disables custom post type archive feeds (<code>/cpt-slug/feed/</code>)"
+msgstr "Отключает ленты архивов произвольных типов записей (<code>/cpt-slug/feed/</code>)"
+
+msgid "Disables category feeds (<code>/category/news/feed/</code>)"
+msgstr "Отключает ленты рубрик (<code>/category/news/feed/</code>)"
+
+msgid "Disables tag feeds (<code>/tag/esports/feed/</code>)"
+msgstr "Отключает ленты меток (<code>/tag/esports/feed/</code>)"
+
+msgid "Disables custom taxonomy feeds (<code>/taxonomy-slug/term/feed/</code>)"
+msgstr "Отключает ленты произвольных таксономий (<code>/taxonomy-slug/term/feed/</code>)"
+
+msgid "Disables search result feeds (<code>/?s=query&amp;feed=rss2</code>)"
+msgstr "Отключает ленты результатов поиска (<code>/?s=query&amp;feed=rss2</code>)"
+
+msgid "Disables Atom/RDF/RSS format endpoints (<code>/feed/atom/</code>, <code>/feed/rdf/</code>, <code>/feed/rss/</code>); RSS2 stays unless other feed options apply"
+msgstr "Отключает эндпоинты форматов Atom/RDF/RSS (<code>/feed/atom/</code>, <code>/feed/rdf/</code>, <code>/feed/rss/</code>); RSS2 остаётся, если не включены другие опции лент"
+
+msgid "Disables automatic WordPress core updates (minor/major) in the background updater / <code>Dashboard > Updates</code>"
+msgstr "Отключает автообновления ядра WordPress (minor/major) в фоновом обновлении / <code>Консоль > Обновления</code>"
+
+msgid "Disables automatic plugin updates in the plugins list / background updater"
+msgstr "Отключает автообновления плагинов в списке плагинов / фоновом обновлении"
+
+msgid "Disables automatic theme updates in <code>Appearance > Themes</code> / background updater"
+msgstr "Отключает автообновления тем в <code>Внешний вид > Темы</code> / фоновом обновлении"
+
+msgid "Disables automatic language pack / translation updates in the background updater"
+msgstr "Отключает автообновления языковых пакетов / переводов в фоновом обновлении"
+
+msgid "Hides update nags (“WordPress X.Y is available! Please update…”) in wp-admin for users without <code>update_core</code>"
+msgstr "Скрывает уведомления об обновлениях («Доступен WordPress X.Y! Пожалуйста, обновите…») в wp-admin для пользователей без <code>update_core</code>"
+
+msgid "Stops sending the site URL in <code>User-Agent</code> / <code>wp_blog</code> / <code>wp_install</code> headers on outbound checks to <code>api.wordpress.org</code>"
+msgstr "Перестаёт отправлять URL сайта в <code>User-Agent</code> / заголовках <code>wp_blog</code> / <code>wp_install</code> при исходящих проверках к <code>api.wordpress.org</code>"
+
+msgid "Disables Application Passwords in <code>Users > Profile</code> and Basic auth for REST / XML-RPC apps"
+msgstr "Отключает пароли приложений в <code>Пользователи > Профиль</code> и Basic-авторизацию для приложений REST / XML-RPC"
+
+msgid "Disables core sitemap endpoints (<code>/wp-sitemap.xml</code>, <code>/wp-sitemap-posts-post-1.xml</code>, <code>/wp-sitemap-users-1.xml</code>)"
+msgstr "Отключает эндпоинты core sitemap (<code>/wp-sitemap.xml</code>, <code>/wp-sitemap-posts-post-1.xml</code>, <code>/wp-sitemap-users-1.xml</code>)"
