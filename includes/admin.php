@@ -40,6 +40,9 @@ function disable_extras_admin_assets(string $hook): void {
       font: 12px/1.5 Consolas, Monaco, monospace;
       white-space: pre;
     }
+    .disable-extras-code code {
+      padding: 0;
+    }
     .disable-extras-example-label {
       display: block;
       margin-top: 8px;
@@ -49,6 +52,7 @@ function disable_extras_admin_assets(string $hook): void {
     .disable-extras-constant {
       display: block;
       margin-top: 6px;
+      padding: 0;
       color: #646970;
       font: 12px/1.45 Consolas, Monaco, monospace;
       word-break: break-all;
