@@ -129,23 +129,35 @@ msgstr "Dashboard widget"
 msgid "Dashicons for logged-out users"
 msgstr "Dashicons для неавторизованных"
 
-msgid "Dashboard: At a Glance"
-msgstr "Dashboard: At a Glance"
+msgid "Dashboard widget: “At a Glance”"
+msgstr "Виджет Dashboard: «На виду»"
 
-msgid "Dashboard: Activity"
-msgstr "Dashboard: Activity"
+msgid "Dashboard widget: “Activity”"
+msgstr "Виджет Dashboard: «Активность»"
 
-msgid "Dashboard: Quick Draft"
-msgstr "Dashboard: Quick Draft"
+msgid "Dashboard widget: “Quick Draft”"
+msgstr "Виджет Dashboard: «Быстрый черновик»"
 
-msgid "Dashboard: WordPress Events and News"
-msgstr "Dashboard: WordPress Events and News"
+msgid "Dashboard widget: “WordPress Events and News”"
+msgstr "Виджет Dashboard: «События и новости WordPress»"
 
-msgid "Dashboard: Site Health Status"
-msgstr "Dashboard: Site Health Status"
+msgid "Dashboard widget: “Site Health Status”"
+msgstr "Виджет Dashboard: «Состояние здоровья сайта»"
 
 msgid "Dashboard: Welcome panel"
-msgstr "Dashboard: Welcome panel"
+msgstr "Dashboard: панель приветствия"
+
+msgid "Network Dashboard widget: “Right Now”"
+msgstr "Виджет Network Dashboard: «Прямо сейчас»"
+
+msgid "Welcome panel"
+msgstr "Панель приветствия"
+
+msgid "wp-admin > Dashboard"
+msgstr "wp-admin > Консоль"
+
+msgid "Network Admin > Dashboard"
+msgstr "Network Admin > Консоль"
 
 msgid "Disable"
 msgstr "Отключить"
@@ -333,8 +345,17 @@ msgstr "Ссылка WLW Manifest"
 msgid "WP"
 msgstr "WP"
 
-msgid "What gets removed:"
-msgstr "Что убирается:"
+msgid "What is removed"
+msgstr "Что убирается"
+
+msgid "Where it is removed"
+msgstr "Где убирается"
+
+msgid "Can be removed with a constant, e.g. in wp-config"
+msgstr "Можно убрать константой, напр. в wp-config"
+
+msgid "OR"
+msgstr "ИЛИ"
 
 msgid "WordPress embeds (oEmbed host JS, embed endpoints)"
 msgstr "WordPress embeds (oEmbed host JS, embed endpoints)"
@@ -357,3 +378,339 @@ msgstr "oEmbed REST endpoint"
 msgid "oEmbed discovery links"
 msgstr "oEmbed discovery-ссылки"
 
+
+
+msgid "emoji images instead of native characters in feeds/mail"
+msgstr "Изображения emoji вместо нативных символов в лентах/почте"
+
+msgid "Front end <head>"
+msgstr "Фронт <head>"
+
+msgid "RSS/Atom feeds"
+msgstr "Ленты RSS/Atom"
+
+msgid "Outgoing mail (wp_mail)"
+msgstr "Исходящая почта (wp_mail)"
+
+msgid "Front end and wp-admin (core CSS/JS URLs)"
+msgstr "Фронт и wp-admin (URL CSS/JS ядра)"
+
+msgid "Front end for logged-out visitors"
+msgstr "Фронт для неавторизованных"
+
+msgid "Front end"
+msgstr "Фронт"
+
+msgid "HTTP response headers"
+msgstr "HTTP-заголовки ответа"
+
+msgid "Front end <head> (RSD)"
+msgstr "Фронт <head> (RSD)"
+
+msgid "pingback.ping → own site URL when a post links to another own post"
+msgstr "pingback.ping → URL своего сайта, когда запись ссылается на другую свою запись"
+
+msgid "On publish / update (outbound pingbacks)"
+msgstr "При публикации / обновлении (исходящие pingbacks)"
+
+msgid "pingback.ping / trackback → other sites"
+msgstr "pingback.ping / trackback → другие сайты"
+
+msgid "On publish / update"
+msgstr "При публикации / обновлении"
+
+msgid "HTTP headers"
+msgstr "HTTP-заголовки"
+
+msgid "Discussion settings on posts"
+msgstr "Настройки обсуждения у записей"
+
+msgid "Front end <head> (singular content)"
+msgstr "Фронт <head> (одиночная запись/страница)"
+
+msgid "REST API"
+msgstr "REST API"
+
+msgid "/embed/ rewrite + is_embed() templates"
+msgstr "/embed/ rewrite + шаблоны is_embed()"
+
+msgid "oEmbed discovery links and REST oEmbed routes"
+msgstr "oEmbed discovery-ссылки и REST-маршруты oEmbed"
+
+msgid "Embed templates"
+msgstr "Шаблоны embed"
+
+msgid "REST API for logged-out visitors"
+msgstr "REST API для неавторизованных"
+
+msgid "GET /wp-json/… → 401 for logged-out visitors"
+msgstr "GET /wp-json/… → 401 для неавторизованных"
+
+msgid "REST API entry in RSD"
+msgstr "Запись REST API в RSD"
+
+msgid "wp-admin"
+msgstr "wp-admin"
+
+msgid "heartbeat_settings.interval = 60 (instead of ~15s)"
+msgstr "heartbeat_settings.interval = 60 (вместо ~15с)"
+
+msgid "Front end and wp-admin (where Heartbeat runs)"
+msgstr "Фронт и wp-admin (где работает Heartbeat)"
+
+msgid "Conversion of \"quotes\" into “quotes”"
+msgstr "Преобразование \"кавычек\" в “кавычки”"
+
+msgid "Content, titles, excerpts, comments, feeds"
+msgstr "Контент, заголовки, цитаты, комментарии, ленты"
+
+msgid "Block / classic editor (post screens in wp-admin)"
+msgstr "Блочный / классический редактор (экраны записей в wp-admin)"
+
+msgid "Front end for every logged-in user"
+msgstr "Фронт для всех авторизованных"
+
+msgid "Front end for users without manage_options"
+msgstr "Фронт для пользователей без manage_options"
+
+msgid ""
+"#wp-admin-bar-wp-logo\n"
+"About WordPress (Documentation, Learn, Support, Feedback)"
+msgstr ""
+"#wp-admin-bar-wp-logo\n"
+"О WordPress (Документация, Обучение, Поддержка, Обратная связь)"
+
+msgid "Admin bar (front end and wp-admin)"
+msgstr "Admin bar (фронт и wp-admin)"
+
+msgid "wp-login.php (replaced with blog name text, no link)"
+msgstr "wp-login.php (заменяется текстом названия блога, без ссылки)"
+
+msgid "Disabled feed URLs (when other feed options are on)"
+msgstr "URL отключённых лент (когда включены другие опции лент)"
+
+msgid "Global post feeds"
+msgstr "Общие ленты записей"
+
+msgid "Single post comment feeds"
+msgstr "Ленты комментариев записи"
+
+msgid "Author archives"
+msgstr "Архивы авторов"
+
+msgid "Custom post type archives"
+msgstr "Архивы произвольных типов записей"
+
+msgid "Category taxonomy archives"
+msgstr "Архивы рубрик"
+
+msgid "Post tag taxonomy archives"
+msgstr "Архивы меток"
+
+msgid "Custom taxonomy archives"
+msgstr "Архивы произвольных таксономий"
+
+msgid "Search results"
+msgstr "Результаты поиска"
+
+msgid "Feed format endpoints (RSS2 stays unless other feed options apply)"
+msgstr "Эндпоинты форматов лент (RSS2 остаётся, если не включены другие опции лент)"
+
+msgid "Automatic WordPress core updates (minor/major)"
+msgstr "Автообновления ядра WordPress (minor/major)"
+
+msgid "Background updater / Dashboard > Updates"
+msgstr "Фоновое обновление / Консоль > Обновления"
+
+msgid "Automatic plugin updates"
+msgstr "Автообновления плагинов"
+
+msgid "Plugins list / background updater"
+msgstr "Список плагинов / фоновое обновление"
+
+msgid "Automatic theme updates"
+msgstr "Автообновления тем"
+
+msgid "Appearance > Themes / background updater"
+msgstr "Внешний вид > Темы / фоновое обновление"
+
+msgid "Automatic language pack / translation updates"
+msgstr "Автообновления языковых пакетов / переводов"
+
+msgid "Background updater"
+msgstr "Фоновое обновление"
+
+msgid ""
+"All automatic updates:\n"
+"- WordPress core\n"
+"- plugins\n"
+"- themes\n"
+"- translations"
+msgstr ""
+"Все автоматические обновления:\n"
+"- ядро WordPress\n"
+"- плагины\n"
+"- темы\n"
+"- переводы"
+
+msgid "Admin notice: “WordPress X.Y is available! Please update…”"
+msgstr "Уведомление: «Доступен WordPress X.Y! Пожалуйста, обновите…»"
+
+msgid "wp-admin (users without update_core)"
+msgstr "wp-admin (пользователи без update_core)"
+
+msgid "Outbound checks to api.wordpress.org"
+msgstr "Исходящие проверки к api.wordpress.org"
+
+msgid "Users > Profile > Application Passwords"
+msgstr "Пользователи > Профиль > Пароли приложений"
+
+msgid "Authorization: Basic … (REST / XML-RPC app auth)"
+msgstr "Authorization: Basic … (авторизация приложений REST / XML-RPC)"
+
+msgid "wp-admin > Users > Profile"
+msgstr "wp-admin > Пользователи > Профиль"
+
+msgid "REST API / XML-RPC"
+msgstr "REST API / XML-RPC"
+
+msgid "Front end sitemap endpoints"
+msgstr "Эндпоинты sitemap на фронте"
+
+msgid "Appearance > Theme File Editor"
+msgstr "Внешний вид > Редактор тем"
+
+msgid "Plugins > Plugin File Editor"
+msgstr "Плагины > Редактор плагинов"
+
+msgid "Plugins > Add New / Update"
+msgstr "Плагины > Добавить новый / Обновить"
+
+msgid "Appearance > Themes > Add New / Update"
+msgstr "Внешний вид > Темы > Добавить новую / Обновить"
+
+msgid "Built-in WP-Cron spawned on front/admin page load (wp-cron.php)"
+msgstr "Встроенный WP-Cron при загрузке фронта/админки (wp-cron.php)"
+
+msgid "Front end and wp-admin requests"
+msgstr "Запросы фронта и wp-admin"
+
+msgid "Capability unfiltered_html (raw script/iframe without kses)"
+msgstr "Возможность unfiltered_html (сырой script/iframe без kses)"
+
+msgid "Post / page editor for Administrators and Editors"
+msgstr "Редактор записей/страниц для Администраторов и Редакторов"
+
+msgid "Revisions UI in the editor sidebar"
+msgstr "UI ревизий в сайдбаре редактора"
+
+msgid "wp_posts rows with post_type = revision"
+msgstr "Строки wp_posts с post_type = revision"
+
+msgid "Block / classic editor; database"
+msgstr "Блочный / классический редактор; база данных"
+
+msgid "Trash for posts / media / comments (immediate permanent delete)"
+msgstr "Корзина записей / медиа / комментариев (сразу полное удаление)"
+
+msgid "wp-admin content lists"
+msgstr "Списки контента в wp-admin"
+
+msgid "Automatic redirect /old-slug/ → /new-slug/"
+msgstr "Автоматический редирект /old-slug/ → /new-slug/"
+
+msgid "When a post or term slug changes (Yoast Premium)"
+msgstr "При смене slug записи или термина (Yoast Premium)"
+
+msgid "Notice when a post is trashed"
+msgstr "Уведомление при перемещении записи в корзину"
+
+msgid "Notice when a post/term slug changes"
+msgstr "Уведомление при смене slug записи/термина"
+
+msgid "Notice when a term is deleted"
+msgstr "Уведомление при удалении термина"
+
+msgid "Anonymous usage / telemetry data"
+msgstr "Анонимная статистика / телеметрия"
+
+msgid "Outbound to Yoast"
+msgstr "Исходящие запросы к Yoast"
+
+msgid "FAQ, How-to, and other Yoast schema blocks"
+msgstr "FAQ, How-to и другие schema-блоки Yoast"
+
+msgid "Block editor"
+msgstr "Блочный редактор"
+
+msgid "SEO / readability highlight markers in content"
+msgstr "Подсветка SEO / readability в контенте"
+
+msgid "Block / classic editor (post content)"
+msgstr "Блочный / классический редактор (контент записи)"
+
+msgid "RSS/Atom feed items (rssbefore / rssafter)"
+msgstr "Элементы лент RSS/Atom (rssbefore / rssafter)"
+
+msgid "Front end <head> on singular posts"
+msgstr "Фронт <head> на одиночных записях"
+
+msgid "Admin notices (wpseo_admin_notices)"
+msgstr "Уведомления в админке (wpseo_admin_notices)"
+
+msgid "Promotional footer (wpseo_admin_footer)"
+msgstr "Промо-футер (wpseo_admin_footer)"
+
+msgid "AI Content Planner banner"
+msgstr "Баннер AI Content Planner"
+
+msgid "wp-admin notices / Yoast screens"
+msgstr "Уведомления wp-admin / экраны Yoast"
+
+msgid "Post editor (block / classic / Elementor)"
+msgstr "Редактор записи (блок / классика / Elementor)"
+
+msgid "Yoast admin menu"
+msgstr "Меню Yoast в админке"
+
+msgid "wp-admin menu"
+msgstr "Меню wp-admin"
+
+msgid "Dashboard widget: “Yoast SEO”"
+msgstr "Виджет Dashboard: «Yoast SEO»"
+
+msgid "Dashboard widget: “Wincher”"
+msgstr "Виджет Dashboard: «Wincher»"
+
+msgid "Admin bar: Redis / cache flush & metrics"
+msgstr "Admin bar: Redis / сброс кеша и metrics"
+
+msgid "Object Cache Pro / Redis Cache upsell banners"
+msgstr "Upsell-баннеры Object Cache Pro / Redis Cache"
+
+msgid "wp-admin > Settings (Redis screens)"
+msgstr "wp-admin > Настройки (экраны Redis)"
+
+msgid "Admin notices about object-cache.php drop-in updates"
+msgstr "Уведомления об обновлениях drop-in object-cache.php"
+
+msgid "Front end HTML source"
+msgstr "HTML-исходник на фронте"
+
+msgid "Hit/miss metrics charts and recorded timings"
+msgstr "Графики hit/miss и записанные timings"
+
+msgid "Redis Object Cache admin screens"
+msgstr "Экраны Redis Object Cache в админке"
+
+msgid "Dashboard widget: “Redis Object Cache”"
+msgstr "Виджет Dashboard: «Redis Object Cache»"
+
+msgid "Archives, home, pages (not single posts)"
+msgstr "Архивы, главная, страницы (не одиночные записи)"
+
+msgid "Front end where EmbedPress gallery is used"
+msgstr "Фронт, где используется галерея EmbedPress"
+
+msgid "pingback.ping via XML-RPC"
+msgstr "pingback.ping через XML-RPC"
