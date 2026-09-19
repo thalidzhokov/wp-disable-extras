@@ -3,7 +3,7 @@
  * Plugin Name: Disable Extras
  * Plugin URI: https://github.com/thalidzhokov/disable-extras
  * Description: Disable extras in WordPress core, Yoast SEO, Redis Object Cache, and EmbedPress.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Albert Thalidzhokov
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('DISABLE_EXTRAS_VERSION', '1.1.0');
+define('DISABLE_EXTRAS_VERSION', '1.2.0');
 define('DISABLE_EXTRAS_FILE', __FILE__);
 define('DISABLE_EXTRAS_DIR', plugin_dir_path(__FILE__));
 define('DISABLE_EXTRAS_OPTION', 'disable_extras_options');

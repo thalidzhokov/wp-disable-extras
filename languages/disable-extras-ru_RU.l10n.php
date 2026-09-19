@@ -1,6 +1,6 @@
 <?php
 return [
-  'project-id-version' => 'Disable Extras 1.1.0',
+  'project-id-version' => 'Disable Extras 1.2.0',
   'language' => 'ru_RU',
   'plural-forms' => 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);',
   'messages' => [
@@ -347,5 +347,25 @@ return [
     'Yoast > Academy' => 'Yoast > Academy',
     'Yoast > Premium licenses screens' => 'Yoast > Premium licenses screens',
     'Yoast > Redirects (admin.php?page=wpseo_redirects)' => 'Yoast > Redirects (admin.php?page=wpseo_redirects)',
+    'jQuery Migrate on the front end' => 'jQuery Migrate на фронте',
+    'Block library / global / classic-theme CSS on the front end' => 'CSS block library / global / classic-theme на фронте',
+    'capital_P_dangit (force “WordPress” spelling)' => 'capital_P_dangit (принудительное написание «WordPress»)',
+    'Remote block patterns (api.wordpress.org)' => 'Удалённые block patterns (api.wordpress.org)',
+    'Admin footer: “Thank you for creating with WordPress”' => 'Футер админки: «Спасибо за творчество с WordPress»',
+    'Login: language switcher' => 'Вход: переключатель языка',
+    'Comments (front end, admin, new comments)' => 'Комментарии (фронт, админка, новые)',
+    'Author archives and ?author= enumeration' => 'Архивы авторов и перечисление ?author=',
+    'Comments' => 'Комментарии',
+    'Removes only <code>jquery-migrate.min.js</code> from the front end; keeps jQuery itself. Redundant if “jQuery on the front end” is already on' => 'Убирает только <code>jquery-migrate.min.js</code> с фронта; сам jQuery остаётся. Лишнее, если уже включено «jQuery на фронте»',
+    'Optional — not if block content relies on core CSS' => 'Опционально — не стоит, если блочный контент зависит от CSS ядра',
+    'Removes front-end styles <code>wp-block-library</code>, <code>global-styles</code>, and <code>classic-theme-styles</code> (and stops enqueueing global styles)' => 'Убирает фронтовые стили <code>wp-block-library</code>, <code>global-styles</code> и <code>classic-theme-styles</code> (и отключает постановку global styles в очередь)',
+    'Stops forcing the spelling “WordPress” (capital P) in titles, content, comments, and widget text via <code>capital_P_dangit</code>' => 'Отключает принудительное написание «WordPress» (заглавная P) в заголовках, контенте, комментариях и тексте виджетов через <code>capital_P_dangit</code>',
+    'Stops loading remote block patterns from <code>api.wordpress.org</code> in the block editor' => 'Отключает загрузку удалённых block patterns с <code>api.wordpress.org</code> в блочном редакторе',
+    'Removes the “Thank you for creating with WordPress.” text from the wp-admin footer' => 'Убирает текст «Спасибо за творчество с WordPress.» из футера wp-admin',
+    'Hides the language dropdown on <code>wp-login.php</code>' => 'Скрывает выпадающий список языка на <code>wp-login.php</code>',
+    'Optional — only if the site does not use comments' => 'Опционально — только если на сайте нет комментариев',
+    'Closes comments and trackbacks on all post types, hides existing comments, removes Comments from the admin menu and admin bar, and deregisters <code>comment-reply</code>' => 'Закрывает комментарии и trackbacks у всех типов записей, скрывает существующие комментарии, убирает «Комментарии» из меню и admin bar и снимает регистрацию <code>comment-reply</code>',
+    'Does not delete old comments from the database' => 'Старые комментарии из базы не удаляет',
+    'Blocks <code>?author=1</code> style probes and author archive URLs (<code>/author/name/</code>), and removes the users provider from core sitemaps' => 'Блокирует зонды вида <code>?author=1</code> и URL архивов авторов (<code>/author/name/</code>), убирает users-провайдер из core sitemaps',
   ],
 ];

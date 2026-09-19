@@ -1,7 +1,7 @@
 # Copyright (C) 2026 Albert Thalidzhokov
 msgid ""
 msgstr ""
-"Project-Id-Version: Disable Extras 1.1.0\n"
+"Project-Id-Version: Disable Extras 1.2.0\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1038,3 +1038,63 @@ msgstr "Убирает CSS/JS EmbedPress / Plyr (<code>embedpress.css</code>, <c
 
 msgid "Removes <code>&lt;script src=\"…/embedpress-gallery-justify.js\"&gt;&lt;/script&gt;</code> on the front end where an EmbedPress gallery is used"
 msgstr "Убирает <code>&lt;script src=\"…/embedpress-gallery-justify.js\"&gt;&lt;/script&gt;</code> на фронте, где используется галерея EmbedPress"
+
+msgid "jQuery Migrate on the front end"
+msgstr "jQuery Migrate на фронте"
+
+msgid "Block library / global / classic-theme CSS on the front end"
+msgstr "CSS block library / global / classic-theme на фронте"
+
+msgid "capital_P_dangit (force “WordPress” spelling)"
+msgstr "capital_P_dangit (принудительное написание «WordPress»)"
+
+msgid "Remote block patterns (api.wordpress.org)"
+msgstr "Удалённые block patterns (api.wordpress.org)"
+
+msgid "Admin footer: “Thank you for creating with WordPress”"
+msgstr "Футер админки: «Спасибо за творчество с WordPress»"
+
+msgid "Login: language switcher"
+msgstr "Вход: переключатель языка"
+
+msgid "Comments (front end, admin, new comments)"
+msgstr "Комментарии (фронт, админка, новые)"
+
+msgid "Author archives and ?author= enumeration"
+msgstr "Архивы авторов и перечисление ?author="
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Removes only <code>jquery-migrate.min.js</code> from the front end; keeps jQuery itself. Redundant if “jQuery on the front end” is already on"
+msgstr "Убирает только <code>jquery-migrate.min.js</code> с фронта; сам jQuery остаётся. Лишнее, если уже включено «jQuery на фронте»"
+
+msgid "Optional — not if block content relies on core CSS"
+msgstr "Опционально — не стоит, если блочный контент зависит от CSS ядра"
+
+msgid "Removes front-end styles <code>wp-block-library</code>, <code>global-styles</code>, and <code>classic-theme-styles</code> (and stops enqueueing global styles)"
+msgstr "Убирает фронтовые стили <code>wp-block-library</code>, <code>global-styles</code> и <code>classic-theme-styles</code> (и отключает постановку global styles в очередь)"
+
+msgid "Stops forcing the spelling “WordPress” (capital P) in titles, content, comments, and widget text via <code>capital_P_dangit</code>"
+msgstr "Отключает принудительное написание «WordPress» (заглавная P) в заголовках, контенте, комментариях и тексте виджетов через <code>capital_P_dangit</code>"
+
+msgid "Stops loading remote block patterns from <code>api.wordpress.org</code> in the block editor"
+msgstr "Отключает загрузку удалённых block patterns с <code>api.wordpress.org</code> в блочном редакторе"
+
+msgid "Removes the “Thank you for creating with WordPress.” text from the wp-admin footer"
+msgstr "Убирает текст «Спасибо за творчество с WordPress.» из футера wp-admin"
+
+msgid "Hides the language dropdown on <code>wp-login.php</code>"
+msgstr "Скрывает выпадающий список языка на <code>wp-login.php</code>"
+
+msgid "Optional — only if the site does not use comments"
+msgstr "Опционально — только если на сайте нет комментариев"
+
+msgid "Closes comments and trackbacks on all post types, hides existing comments, removes Comments from the admin menu and admin bar, and deregisters <code>comment-reply</code>"
+msgstr "Закрывает комментарии и trackbacks у всех типов записей, скрывает существующие комментарии, убирает «Комментарии» из меню и admin bar и снимает регистрацию <code>comment-reply</code>"
+
+msgid "Does not delete old comments from the database"
+msgstr "Старые комментарии из базы не удаляет"
+
+msgid "Blocks <code>?author=1</code> style probes and author archive URLs (<code>/author/name/</code>), and removes the users provider from core sitemaps"
+msgstr "Блокирует зонды вида <code>?author=1</code> и URL архивов авторов (<code>/author/name/</code>), убирает users-провайдер из core sitemaps"
