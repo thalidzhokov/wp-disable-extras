@@ -45,6 +45,12 @@ msgstr "Admin bar на фронте (не админы)"
 msgid "Admin bar: WordPress logo menu"
 msgstr "Admin bar: меню логотипа WordPress"
 
+msgid "Recommended — less clutter"
+msgstr "Рекомендуется, меньше мусора"
+
+msgid "Disables the Admin bar item <code>#wp-admin-bar-wp-logo</code> About WordPress (Documentation, Learn, Support, Feedback)"
+msgstr "Отключает пункт <code>#wp-admin-bar-wp-logo</code> О WordPress (Документация, Обучение, Поддержка, Обратная связь) в Admin bar"
+
 msgid "Login"
 msgstr "Вход"
 
@@ -92,6 +98,12 @@ msgstr "Автообновления: ядро WordPress"
 
 msgid "Automatic updates: everything"
 msgstr "Автообновления: всё"
+
+msgid "Useful with manual/controlled deploys; not if you rely on auto security patches"
+msgstr "Полезно при ручных/контролируемых деплоях; не стоит, если нужны автопатчи безопасности"
+
+msgid "Disables all background automatic updates: WordPress core, plugins, themes, translations"
+msgstr "Отключает все фоновые автообновления: ядро WordPress, плагины, темы, переводы"
 
 msgid "Automatic updates: plugins"
 msgstr "Автообновления: плагины"
@@ -222,8 +234,17 @@ msgstr "Heartbeat на фронте"
 msgid "Incoming pingbacks"
 msgstr "Входящие pingbacks"
 
-msgid "Install / update / edit plugins and themes"
-msgstr "Установка / обновление / правка плагинов и тем"
+msgid "Install/update/edit plugins and themes"
+msgstr "Установка/обновление/правка плагинов и тем"
+
+msgid "Useful on production with controlled deploys"
+msgstr "Полезно на проде при контролируемых деплоях"
+
+msgid "Disables installing and updating plugins and themes in wp-admin: <code>Plugins > Add New / Update</code> and <code>Appearance > Themes > Add New / Update</code>"
+msgstr "Отключает добавление и обновление плагинов и тем в админке: <code>Плагины > Добавить новый / Обновить</code> и <code>Внешний вид > Темы > Добавить новую / Обновить</code>"
+
+msgid "Updates are still possible via WP-CLI or by replacing files on the server, not from wp-admin"
+msgstr "Обновить можно через WP-CLI или заменой файлов на сервере, не из админки"
 
 msgid "Metrics collection"
 msgstr "Сбор metrics"
@@ -318,20 +339,29 @@ msgstr "Текстуризация (кавычки, тире, многоточи
 msgid "Theme and plugin file editor"
 msgstr "Редактор файлов тем и плагинов"
 
+msgid "Disables the theme and plugin file editors in wp-admin: <code>Appearance > Theme File Editor</code> and <code>Plugins > Plugin File Editor</code>"
+msgstr "Отключает редакторы файлов тем и плагинов в админке: <code>Внешний вид > Редактор тем</code> и <code>Плагины > Редактор плагинов</code>"
+
 msgid "Thickbox on the front end"
 msgstr "Thickbox на фронте"
 
 msgid "Tracking"
 msgstr "Tracking"
 
-msgid "Trash (immediate permanent delete)"
-msgstr "Корзина (сразу полное удаление)"
+msgid "Trash"
+msgstr "Корзина"
+
+msgid "Permanent deletion without trash is not recommended"
+msgstr "Полное удаление без корзины не рекомендуется"
+
+msgid "Disables the trash for posts/media/comments: items are permanently deleted immediately in wp-admin content lists"
+msgstr "Отключает корзину записей/медиа/комментариев: элементы сразу удаляются безвозвратно в списках контента wp-admin"
 
 msgid "UI & metrics"
 msgstr "UI и metrics"
 
 msgid "Unfiltered HTML for admins/editors"
-msgstr "Unfiltered HTML для админов/редакторов"
+msgstr "Нефильтрованный HTML для админов/редакторов"
 
 msgid "Update nags only for users who can update"
 msgstr "Уведомления об обновлениях только тем, кто может обновлять"
@@ -351,8 +381,32 @@ msgstr "Что убирается"
 msgid "Where it is removed"
 msgstr "Где убирается"
 
-msgid "Can be removed with a constant, e.g. in wp-config"
-msgstr "Можно убрать константой, напр. в wp-config"
+msgid "Useful if you set up a system cron"
+msgstr "Полезно, если настроите запуск по крону"
+
+msgid "Disables built-in WP-Cron on page load"
+msgstr "Отключает встроенный WP-Cron при загрузке страниц"
+
+msgid "Tasks from <code>wp_schedule_event()</code> and <code>wp_schedule_single_event()</code> stay queued and wait; there is no auto-run on page load"
+msgstr "Задачи <code>wp_schedule_event()</code>, <code>wp_schedule_single_event()</code> остаются в очереди и ждут выполнения — автозапуск при загрузке страницы не идёт"
+
+msgid "To run manually, call <code>wp-cron.php</code>, e.g. <code>php /path/to/wordpress/wp-cron.php</code>"
+msgstr "Для ручного запуска вызовите <code>wp-cron.php</code>, напр. <code>php /path/to/wordpress/wp-cron.php</code>"
+
+msgid "Can be disabled with a constant in wp-config.php"
+msgstr "Можно отключить константой в wp-config.php"
+
+msgid "Not recommended"
+msgstr "Не рекомендуется"
+
+msgid "Disables the revisions UI in the block/classic editor sidebar and deletes posts with <code>post_type = revision</code> from the <code>wp_posts</code> table"
+msgstr "Отключает UI ревизий в сайдбаре блочного/классического редактора и удаляет в таблице <code>wp_posts</code> посты <code>post_type = revision</code>"
+
+msgid "Recommended for better security"
+msgstr "Рекомендуется для повышения безопасности"
+
+msgid "Disables the ability for Administrators and Editors to insert raw code such as <code>script</code>, <code>iframe</code> without kses in the post/page editor"
+msgstr "Отключает возможность администраторам и редакторам вставлять сырой код, напр., <code>script</code>, <code>iframe</code> без kses в редакторе записей/страниц"
 
 msgid "OR"
 msgstr "ИЛИ"

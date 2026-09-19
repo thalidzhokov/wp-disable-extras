@@ -33,6 +33,20 @@ function disable_extras_admin_assets(string $hook): void {
       margin-top: 10px;
       max-width: 640px;
     }
+    .disable-extras-hints p {
+      margin: 0.6em 0 0;
+      color: #50575e;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .disable-extras-hints p:first-child {
+      margin-top: 0;
+    }
+    .disable-extras-hints code {
+      padding: 0;
+      font: 12px/1.45 Consolas, Monaco, monospace;
+      background: transparent;
+    }
     .disable-extras-hint {
       margin-top: 10px;
     }
@@ -45,6 +59,19 @@ function disable_extras_admin_assets(string $hook): void {
       color: #646970;
       font-size: 12px;
       font-weight: 600;
+    }
+    .disable-extras-label-note {
+      display: block;
+      margin-top: 4px;
+      color: #b32d2e;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .disable-extras-label-note.is-ok {
+      color: #007017;
+    }
+    .disable-extras-label-note.is-muted {
+      color: #646970;
     }
     .disable-extras-code {
       margin: 0;
@@ -313,15 +340,53 @@ function disable_extras_admin_render_option_row(
   array $hints
 ): void {
   $hint = $hints[$tab][$key] ?? [];
+  $labelNote = isset($hint['label_note']) ? trim((string) $hint['label_note']) : '';
+  $labelNoteTone = isset($hint['label_note_tone']) ? (string) $hint['label_note_tone'] : 'warn';
+  $summary = $hint['summary'] ?? null;
   $what = $hint['what'] ?? null;
   $where = $hint['where'] ?? null;
   $constant = isset($hint['constant']) ? trim((string) $hint['constant']) : '';
-  $hasWhat = $what !== null && disable_extras_admin_hint_parts($what) !== [];
-  $hasWhere = $where !== null && disable_extras_admin_hint_parts($where) !== [];
+  $summaryParts = [];
+
+  if (is_string($summary)) {
+    $summary = trim($summary);
+
+    if ($summary !== '') {
+      $summaryParts = [$summary];
+    }
+  } elseif (is_array($summary)) {
+    foreach ($summary as $part) {
+      if (!is_string($part)) {
+        continue;
+      }
+
+      $part = trim($part);
+
+      if ($part !== '') {
+        $summaryParts[] = $part;
+      }
+    }
+  }
+
+  $hasSummary = $summaryParts !== [];
+  $hasWhat = !$hasSummary && $what !== null && disable_extras_admin_hint_parts($what) !== [];
+  $hasWhere = !$hasSummary && $where !== null && disable_extras_admin_hint_parts($where) !== [];
   $hasConstant = $constant !== '';
+  $labelNoteClass = 'disable-extras-label-note';
+
+  if ($labelNoteTone === 'ok') {
+    $labelNoteClass .= ' is-ok';
+  } elseif ($labelNoteTone === 'muted') {
+    $labelNoteClass .= ' is-muted';
+  }
   ?>
   <tr>
-    <th scope="row"><?php echo esc_html($label); ?></th>
+    <th scope="row">
+      <?php echo esc_html($label); ?>
+      <?php if ($labelNote !== '') : ?>
+        <span class="<?php echo esc_attr($labelNoteClass); ?>"><?php echo esc_html(__($labelNote, 'disable-extras')); ?></span>
+      <?php endif; ?>
+    </th>
     <td>
       <label>
         <input
@@ -332,8 +397,11 @@ function disable_extras_admin_render_option_row(
         >
         <?php echo esc_html__('Disable', 'disable-extras'); ?>
       </label>
-      <?php if ($hasWhat || $hasWhere || $hasConstant) : ?>
+      <?php if ($hasSummary || $hasWhat || $hasWhere || $hasConstant) : ?>
         <div class="disable-extras-hints">
+          <?php foreach ($summaryParts as $summaryPart) : ?>
+            <p><?php echo wp_kses(__($summaryPart, 'disable-extras'), ['code' => []]); ?></p>
+          <?php endforeach; ?>
           <?php if ($hasWhat) : ?>
             <div class="disable-extras-hint">
               <span class="disable-extras-hint-title"><?php echo esc_html__('What is removed', 'disable-extras'); ?></span>
@@ -347,10 +415,10 @@ function disable_extras_admin_render_option_row(
             </div>
           <?php endif; ?>
           <?php if ($hasConstant) : ?>
-            <div class="disable-extras-hint">
-              <span class="disable-extras-hint-title"><?php echo esc_html__('Can be removed with a constant, e.g. in wp-config', 'disable-extras'); ?></span>
-              <pre class="disable-extras-code"><?php echo esc_html($constant); ?></pre>
-            </div>
+            <p>
+              <?php echo esc_html__('Can be disabled with a constant in wp-config.php', 'disable-extras'); ?><br>
+              <code><?php echo esc_html($constant); ?></code>
+            </p>
           <?php endif; ?>
         </div>
       <?php endif; ?>

@@ -227,11 +227,11 @@ function disable_extras_option_labels(): array {
       'application_passwords' => __('Application Passwords', 'disable-extras'),
       'core_sitemaps' => __('Core sitemaps', 'disable-extras'),
       'disallow_file_edit' => __('Theme and plugin file editor', 'disable-extras'),
-      'disallow_file_mods' => __('Install / update / edit plugins and themes', 'disable-extras'),
+      'disallow_file_mods' => __('Install/update/edit plugins and themes', 'disable-extras'),
       'disable_wp_cron' => __('Built-in WP-Cron', 'disable-extras'),
       'disallow_unfiltered_html' => __('Unfiltered HTML for admins/editors', 'disable-extras'),
       'post_revisions' => __('Post revisions', 'disable-extras'),
-      'empty_trash' => __('Trash (immediate permanent delete)', 'disable-extras'),
+      'empty_trash' => __('Trash', 'disable-extras'),
     ],
     'yoast' => [
       'premium_redirects' => __('Premium: auto-redirects on slug change', 'disable-extras'),
@@ -713,11 +713,9 @@ TXT,
         'where' => 'Front end for users without manage_options',
       ],
       'admin_bar_wp_logo' => [
-        'what' => <<<'TXT'
-#wp-admin-bar-wp-logo
-About WordPress (Documentation, Learn, Support, Feedback)
-TXT,
-        'where' => 'Admin bar (front end and wp-admin)',
+        'label_note' => 'Recommended — less clutter',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables the Admin bar item <code>#wp-admin-bar-wp-logo</code> About WordPress (Documentation, Learn, Support, Feedback)',
       ],
       'login_logo' => [
         'what' => <<<'TXT'
@@ -806,8 +804,11 @@ TXT,
         'where' => 'Background updater',
       ],
       'auto_updates_all' => [
-        'what' => "All automatic updates:\n- WordPress core\n- plugins\n- themes\n- translations",
-        'where' => 'Background updater',
+        'label_note' => 'Useful with manual/controlled deploys; not if you rely on auto security patches',
+        'label_note_tone' => 'muted',
+        'summary' => [
+          'Disables all background automatic updates: WordPress core, plugins, themes, translations',
+        ],
         'constant' => "define('AUTOMATIC_UPDATER_DISABLED', true);",
       ],
       'update_nags_admins_only' => [
@@ -842,45 +843,44 @@ TXT,
         'where' => 'Front end sitemap endpoints',
       ],
       'disallow_file_edit' => [
-        'what' => [
-          'Appearance > Theme File Editor',
-          'and_also',
-          'Plugins > Plugin File Editor',
-        ],
-        'where' => 'wp-admin',
+        'label_note' => 'Recommended for better security',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables the theme and plugin file editors in wp-admin: <code>Appearance > Theme File Editor</code> and <code>Plugins > Plugin File Editor</code>',
         'constant' => "define('DISALLOW_FILE_EDIT', true);",
       ],
       'disallow_file_mods' => [
-        'what' => [
-          'Plugins > Add New / Update',
-          'and_also',
-          'Appearance > Themes > Add New / Update',
+        'label_note' => 'Useful on production with controlled deploys',
+        'label_note_tone' => 'muted',
+        'summary' => [
+          'Disables installing and updating plugins and themes in wp-admin: <code>Plugins > Add New / Update</code> and <code>Appearance > Themes > Add New / Update</code>',
+          'Updates are still possible via WP-CLI or by replacing files on the server, not from wp-admin',
         ],
-        'where' => 'wp-admin',
         'constant' => "define('DISALLOW_FILE_MODS', true);",
       ],
       'disable_wp_cron' => [
-        'what' => 'Built-in WP-Cron spawned on front/admin page load (wp-cron.php)',
-        'where' => 'Front end and wp-admin requests',
+        'label_note' => 'Useful if you set up a system cron',
+        'label_note_tone' => 'muted',
+        'summary' => [
+          'Disables built-in WP-Cron on page load',
+          'Tasks from <code>wp_schedule_event()</code> and <code>wp_schedule_single_event()</code> stay queued and wait; there is no auto-run on page load',
+          'To run manually, call <code>wp-cron.php</code>, e.g. <code>php /path/to/wordpress/wp-cron.php</code>',
+        ],
         'constant' => "define('DISABLE_WP_CRON', true);",
       ],
       'disallow_unfiltered_html' => [
-        'what' => 'Capability unfiltered_html (raw script/iframe without kses)',
-        'where' => 'Post / page editor for Administrators and Editors',
+        'label_note' => 'Recommended for better security',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables the ability for Administrators and Editors to insert raw code such as <code>script</code>, <code>iframe</code> without kses in the post/page editor',
         'constant' => "define('DISALLOW_UNFILTERED_HTML', true);",
       ],
       'post_revisions' => [
-        'what' => [
-          'Revisions UI in the editor sidebar',
-          'and_also',
-          'wp_posts rows with post_type = revision',
-        ],
-        'where' => 'Block / classic editor; database',
+        'label_note' => 'Not recommended',
+        'summary' => 'Disables the revisions UI in the block/classic editor sidebar and deletes posts with <code>post_type = revision</code> from the <code>wp_posts</code> table',
         'constant' => "define('WP_POST_REVISIONS', false);",
       ],
       'empty_trash' => [
-        'what' => 'Trash for posts / media / comments (immediate permanent delete)',
-        'where' => 'wp-admin content lists',
+        'label_note' => 'Permanent deletion without trash is not recommended',
+        'summary' => 'Disables the trash for posts/media/comments: items are permanently deleted immediately in wp-admin content lists',
         'constant' => "define('EMPTY_TRASH_DAYS', 0);",
       ],
     ],
