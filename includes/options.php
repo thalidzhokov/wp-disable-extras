@@ -701,8 +701,8 @@ function disable_extras_option_hints(): array {
         'summary' => 'Disables Atom/RDF/RSS format endpoints (<code>/feed/atom/</code>, <code>/feed/rdf/</code>, <code>/feed/rss/</code>); RSS2 stays unless other feed options apply',
       ],
       'auto_updates_core' => [
-        'label_note' => 'Not recommended',
-        'label_note_tone' => 'warn',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
         'summary' => 'Disables automatic WordPress core updates (minor/major) in the background updater / <code>Dashboard > Updates</code>',
         'constant' => "define('WP_AUTO_UPDATE_CORE', false);",
       ],
@@ -722,8 +722,8 @@ function disable_extras_option_hints(): array {
         'summary' => 'Disables automatic language pack / translation updates in the background updater',
       ],
       'auto_updates_all' => [
-        'label_note' => 'Not recommended',
-        'label_note_tone' => 'warn',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
         'summary' => [
           'Disables all background automatic updates: WordPress core, plugins, themes, translations',
         ],
