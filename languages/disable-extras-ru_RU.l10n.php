@@ -34,7 +34,7 @@ return [
     'Dashboard widget: Wincher' => 'Виджет Dashboard: Wincher',
     'Application Passwords' => 'Application Passwords',
     'Assets' => 'Assets',
-    'Atom / RDF feed formats' => 'Форматы Atom / RDF',
+    'Atom/RDF feed formats' => 'Форматы Atom/RDF',
     'Author feeds' => 'Ленты авторов',
     'Automatic updates: WordPress core' => 'Автообновления: ядро WordPress',
     'Automatic updates: everything' => 'Автообновления: всё',

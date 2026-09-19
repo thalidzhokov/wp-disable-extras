@@ -81,8 +81,8 @@ msgstr "Application Passwords"
 msgid "Assets"
 msgstr "Assets"
 
-msgid "Atom / RDF feed formats"
-msgstr "Форматы Atom / RDF"
+msgid "Atom/RDF feed formats"
+msgstr "Форматы Atom/RDF"
 
 msgid "Author feeds"
 msgstr "Ленты авторов"

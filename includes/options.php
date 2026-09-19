@@ -214,7 +214,7 @@ function disable_extras_option_labels(): array {
       'feed_tags' => __('Tag feeds', 'disable-extras'),
       'feed_custom_taxonomies' => __('Custom taxonomy feeds', 'disable-extras'),
       'feed_search' => __('Search results feeds', 'disable-extras'),
-      'feed_atom_rdf' => __('Atom / RDF feed formats', 'disable-extras'),
+      'feed_atom_rdf' => __('Atom/RDF feed formats', 'disable-extras'),
       'auto_updates_core' => __('Automatic updates: WordPress core', 'disable-extras'),
       'auto_updates_plugins' => __('Automatic updates: plugins', 'disable-extras'),
       'auto_updates_themes' => __('Automatic updates: themes', 'disable-extras'),
