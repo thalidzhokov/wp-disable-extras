@@ -216,6 +216,18 @@ msgstr "Рекомендуется"
 msgid "Optional"
 msgstr "Опционально"
 
+msgid "Optional — useful with controlled deploys"
+msgstr "Опционально, полезно при контролируемом деплое"
+
+msgid "Optional — useful with controlled deploys; not if you rely on auto security patches"
+msgstr "Опционально, полезно при контролируемом деплое; не стоит, если нужны автопатчи безопасности"
+
+msgid "Optional — useful on production with controlled deploys"
+msgstr "Опционально, полезно на проде при контролируемых деплоях"
+
+msgid "Optional — useful if you set up a system cron"
+msgstr "Опционально, полезно если настроите системный cron"
+
 msgid "Removes the <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds"
 msgstr "Убирает тег <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> из HTML кода и тег <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> из лент RSS/Atom"
 

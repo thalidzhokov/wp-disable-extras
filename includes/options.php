@@ -701,28 +701,28 @@ function disable_extras_option_hints(): array {
         'summary' => 'Disables Atom/RDF/RSS format endpoints (<code>/feed/atom/</code>, <code>/feed/rdf/</code>, <code>/feed/rss/</code>); RSS2 stays unless other feed options apply',
       ],
       'auto_updates_core' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful with controlled deploys',
         'label_note_tone' => 'muted',
         'summary' => 'Disables automatic WordPress core updates (minor/major) in the background updater / <code>Dashboard > Updates</code>',
         'constant' => "define('WP_AUTO_UPDATE_CORE', false);",
       ],
       'auto_updates_plugins' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful with controlled deploys',
         'label_note_tone' => 'muted',
         'summary' => 'Disables automatic plugin updates in the plugins list / background updater',
       ],
       'auto_updates_themes' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful with controlled deploys',
         'label_note_tone' => 'muted',
         'summary' => 'Disables automatic theme updates in <code>Appearance > Themes</code> / background updater',
       ],
       'auto_updates_translations' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful with controlled deploys',
         'label_note_tone' => 'muted',
         'summary' => 'Disables automatic language pack / translation updates in the background updater',
       ],
       'auto_updates_all' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful with controlled deploys; not if you rely on auto security patches',
         'label_note_tone' => 'muted',
         'summary' => [
           'Disables all background automatic updates: WordPress core, plugins, themes, translations',
@@ -735,8 +735,8 @@ function disable_extras_option_hints(): array {
         'summary' => 'Hides update nags (“WordPress X.Y is available! Please update…”) in wp-admin for users without <code>update_core</code>',
       ],
       'update_phone_home' => [
-        'label_note' => 'Optional',
-        'label_note_tone' => 'muted',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
         'summary' => 'Stops sending the site URL in <code>User-Agent</code> / <code>wp_blog</code> / <code>wp_install</code> headers on outbound checks to <code>api.wordpress.org</code>',
       ],
       'application_passwords' => [
@@ -756,7 +756,7 @@ function disable_extras_option_hints(): array {
         'constant' => "define('DISALLOW_FILE_EDIT', true);",
       ],
       'disallow_file_mods' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful on production with controlled deploys',
         'label_note_tone' => 'muted',
         'summary' => [
           'Disables installing and updating plugins and themes in wp-admin: <code>Plugins > Add New / Update</code> and <code>Appearance > Themes > Add New / Update</code>',
@@ -765,7 +765,7 @@ function disable_extras_option_hints(): array {
         'constant' => "define('DISALLOW_FILE_MODS', true);",
       ],
       'disable_wp_cron' => [
-        'label_note' => 'Optional',
+        'label_note' => 'Optional — useful if you set up a system cron',
         'label_note_tone' => 'muted',
         'summary' => [
           'Disables built-in WP-Cron on page load',
