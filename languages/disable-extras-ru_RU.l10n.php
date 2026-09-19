@@ -88,7 +88,7 @@ return [
     'REST users endpoint for guests' => 'REST users для гостей',
     'REST users endpoint is disabled.' => 'REST endpoint пользователей отключён.',
     'RSD link' => 'Ссылка RSD',
-    'RSS footer' => 'RSS footer',
+    'RSS footer («appeared first on…»)' => 'RSS-футер («Сообщение … появились сначала на …»)',
     'Redirect disabled feeds to the homepage' => 'Редирект отключённых лент на главную',
     'Redis Object Cache' => 'Redis Object Cache',
     'Resource hints (preconnect, prefetch, prerender)' => 'Resource hints (preconnect, prefetch, prerender)',

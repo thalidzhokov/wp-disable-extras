@@ -261,8 +261,8 @@ msgstr "REST endpoint пользователей отключён."
 msgid "RSD link"
 msgstr "Ссылка RSD"
 
-msgid "RSS footer"
-msgstr "RSS footer"
+msgid "RSS footer («appeared first on…»)"
+msgstr "RSS-футер («Сообщение … появились сначала на …»)"
 
 msgid "Redirect disabled feeds to the homepage"
 msgstr "Редирект отключённых лент на главную"

@@ -237,7 +237,7 @@ function disable_extras_option_labels(): array {
       'tracking' => __('Tracking', 'disable-extras'),
       'schema_blocks' => __('Schema blocks in the editor', 'disable-extras'),
       'assessment_markers' => __('Assessment markers in content', 'disable-extras'),
-      'rss_footer' => __('RSS footer', 'disable-extras'),
+      'rss_footer' => __('RSS footer («appeared first on…»)', 'disable-extras'),
       'adjacent_rel' => __('Adjacent rel links', 'disable-extras'),
       'admin_upsells' => __('Upsells / promotions', 'disable-extras'),
       'menu_integrations' => __('Menu: Integrations', 'disable-extras'),
@@ -774,8 +774,9 @@ TXT,
 Highlighted SEO / readability markers inside post content
 TXT,
       'rss_footer' => <<<'TXT'
-The feed for this site by Yoast SEO
-<!-- credit line appended to RSS items -->
+The post <a href="…">Title</a> appeared first on <a href="…">Blog</a>.
+Сообщение … появились сначала на …
+(rssbefore / rssafter in feed items)
 TXT,
       'adjacent_rel' => <<<'TXT'
 <link rel="prev" href="https://example.com/post-1/">
