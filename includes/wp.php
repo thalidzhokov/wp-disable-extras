@@ -529,13 +529,44 @@ function disable_extras_wp_remove_feed_links(): void {
     add_filter('feed_links_show_posts_feed', '__return_false');
   }
 
-  if (
-    disable_extras_is_enabled('wp', 'feed_global_comments')
-    || disable_extras_is_enabled('wp', 'feed_post_comments')
-  ) {
+  if (disable_extras_is_enabled('wp', 'feed_global_comments')) {
     add_filter('feed_links_show_comments_feed', '__return_false');
+
+    // Core defaults post-comments head link to the global filter; keep it when only global is off.
+    if (!disable_extras_is_enabled('wp', 'feed_post_comments')) {
+      add_filter('feed_links_extra_show_post_comments_feed', '__return_true');
+    }
   }
 
+  if (disable_extras_is_enabled('wp', 'feed_post_comments')) {
+    add_filter('feed_links_extra_show_post_comments_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_authors')) {
+    add_filter('feed_links_extra_show_author_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_post_types')) {
+    add_filter('feed_links_extra_show_post_type_archive_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_categories')) {
+    add_filter('feed_links_extra_show_category_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_tags')) {
+    add_filter('feed_links_extra_show_tag_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_custom_taxonomies')) {
+    add_filter('feed_links_extra_show_tax_feed', '__return_false');
+  }
+
+  if (disable_extras_is_enabled('wp', 'feed_search')) {
+    add_filter('feed_links_extra_show_search_feed', '__return_false');
+  }
+
+  // WP < 6.1: granular extra-feed filters above are no-ops; drop the whole action.
   if (
     disable_extras_is_enabled('wp', 'feed_authors')
     || disable_extras_is_enabled('wp', 'feed_post_types')
@@ -549,10 +580,7 @@ function disable_extras_wp_remove_feed_links(): void {
 
   if (
     disable_extras_is_enabled('wp', 'feed_global')
-    && (
-      disable_extras_is_enabled('wp', 'feed_global_comments')
-      || disable_extras_is_enabled('wp', 'feed_post_comments')
-    )
+    && disable_extras_is_enabled('wp', 'feed_global_comments')
   ) {
     remove_action('wp_head', 'feed_links', 2);
   }

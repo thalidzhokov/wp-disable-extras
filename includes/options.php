@@ -171,7 +171,7 @@ function disable_extras_option_labels(): array {
     'wp' => [
       'emoji' => __('Emoji (scripts, styles, mail, RSS)', 'disable-extras'),
       'generator' => __('Generator meta tag and RSS version', 'disable-extras'),
-      'script_versions' => __('Core ver= query arg on CSS/JS', 'disable-extras'),
+      'script_versions' => __('Core ver= query arg on CSS/JS (WordPress version only)', 'disable-extras'),
       'dns_prefetch' => __('DNS prefetch', 'disable-extras'),
       'resource_hints' => __('Resource hints (preconnect, prefetch, prerender)', 'disable-extras'),
       'dashicons_guests' => __('Dashicons for logged-out users', 'disable-extras'),
@@ -184,7 +184,7 @@ function disable_extras_option_labels(): array {
       'self_pingbacks' => __('Self-pingbacks', 'disable-extras'),
       'pingbacks_outgoing' => __('Outgoing pingbacks', 'disable-extras'),
       'pingbacks_incoming' => __('Incoming pingbacks', 'disable-extras'),
-      'oembed_discovery' => __('oEmbed discovery links', 'disable-extras'),
+      'oembed_discovery' => __('oEmbed discovery links and host JS', 'disable-extras'),
       'oembed_endpoint' => __('oEmbed REST endpoint', 'disable-extras'),
       'embeds' => __('WordPress embeds (oEmbed host JS, embed endpoints)', 'disable-extras'),
       'rest_users' => __('REST users endpoint for guests', 'disable-extras'),
@@ -304,6 +304,11 @@ function disable_extras_option_sections(): array {
           'jquery_front',
           'thickbox_front',
           'embeds',
+        ],
+      ],
+      [
+        'title' => __('Heartbeat', 'disable-extras'),
+        'keys' => [
           'heartbeat_front',
           'heartbeat_admin',
           'heartbeat_slow',
@@ -473,7 +478,7 @@ function disable_extras_option_hints(): array {
       'script_versions' => [
         'label_note' => 'Optional',
         'label_note_tone' => 'muted',
-        'summary' => 'Removes the <code>?ver=</code> query arg from core CSS/JS URLs on the front end and in wp-admin, e.g. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>',
+        'summary' => 'Removes the <code>?ver=</code> query arg only when it equals the WordPress version (e.g. <code>/wp-includes/css/dashicons.min.css?ver=6.7.1</code>). Assets with their own versions (jQuery, etc.) are left unchanged',
       ],
       'dns_prefetch' => [
         'label_note' => 'Recommended',
@@ -533,12 +538,12 @@ function disable_extras_option_hints(): array {
       'pingbacks_incoming' => [
         'label_note' => 'Recommended',
         'label_note_tone' => 'ok',
-        'summary' => 'Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and clears discussion pingback settings on posts',
+        'summary' => 'Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and closes pings via the <code>pings_open</code> filter',
       ],
       'oembed_discovery' => [
         'label_note' => 'Optional',
         'label_note_tone' => 'muted',
-        'summary' => 'Removes oEmbed <code>&lt;link rel="alternate" type="application/json+oembed" …&gt;</code> / xml+oembed and <code>&lt;script src="…/wp-embed.min.js"&gt;&lt;/script&gt;</code> from the front <code>&lt;head&gt;</code> on singular content',
+        'summary' => 'Removes oEmbed <code>&lt;link rel="alternate" type="application/json+oembed" …&gt;</code> / xml+oembed and <code>&lt;script src="…/wp-embed.min.js"&gt;&lt;/script&gt;</code> (host JS) from the front <code>&lt;head&gt;</code> on singular content',
       ],
       'oembed_endpoint' => [
         'label_note' => 'Optional',
@@ -663,7 +668,7 @@ function disable_extras_option_hints(): array {
       'feed_post_comments' => [
         'label_note' => 'Recommended',
         'label_note_tone' => 'ok',
-        'summary' => 'Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)',
+        'summary' => 'Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>) and their alternate links in <code>&lt;head&gt;</code>',
       ],
       'feed_authors' => [
         'label_note' => 'Recommended',
@@ -783,7 +788,7 @@ function disable_extras_option_hints(): array {
       'post_revisions' => [
         'label_note' => 'Not recommended',
         'label_note_tone' => 'warn',
-        'summary' => 'Disables the revisions UI in the block/classic editor sidebar and deletes posts with <code>post_type = revision</code> from the <code>wp_posts</code> table',
+        'summary' => 'Disables creating new revisions (<code>WP_POST_REVISIONS</code>); the revisions UI in the editor stops growing. Existing <code>post_type = revision</code> rows in <code>wp_posts</code> are not deleted',
         'constant' => "define('WP_POST_REVISIONS', false);",
       ],
       'empty_trash' => [

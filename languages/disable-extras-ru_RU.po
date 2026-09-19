@@ -126,8 +126,14 @@ msgstr "Хранение контента"
 msgid "Core sitemaps"
 msgstr "Встроенные sitemaps ядра"
 
-msgid "Core ver= query arg on CSS/JS"
-msgstr "Параметр ver= ядра у CSS/JS"
+msgid "Core ver= query arg on CSS/JS (WordPress version only)"
+msgstr "Параметр ver= ядра у CSS/JS (только версия WordPress)"
+
+msgid "oEmbed discovery links and host JS"
+msgstr "oEmbed discovery-ссылки и host JS"
+
+msgid "Heartbeat"
+msgstr "Heartbeat"
 
 msgid "Custom taxonomy feeds"
 msgstr "Ленты произвольных таксономий"
@@ -226,7 +232,7 @@ msgid "Optional — useful on production with controlled deploys"
 msgstr "Опционально, полезно на проде при контролируемых деплоях"
 
 msgid "Optional — useful if you set up a system cron"
-msgstr "Опционально, полезно если настроите системный cron"
+msgstr "Опционально, полезно, если настроите системный cron"
 
 msgid "Removes the <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds"
 msgstr "Убирает тег <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> из HTML кода и тег <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> из лент RSS/Atom"
@@ -316,7 +322,7 @@ msgid "RSD link"
 msgstr "Ссылка RSD"
 
 msgid "RSS footer («appeared first on…»)"
-msgstr "RSS-футер («Сообщение … появились сначала на …»)"
+msgstr "RSS-футер («Сообщение … появилось сначала на …»)"
 
 msgid "Redirect disabled feeds to the homepage"
 msgstr "Редирект отключённых лент на главную"
@@ -419,6 +425,9 @@ msgstr "Можно отключить константой в wp-config.php"
 
 msgid "Not recommended"
 msgstr "Не рекомендуется"
+
+msgid "Disables creating new revisions (<code>WP_POST_REVISIONS</code>); the revisions UI in the editor stops growing. Existing <code>post_type = revision</code> rows in <code>wp_posts</code> are not deleted"
+msgstr "Отключает создание новых ревизий (<code>WP_POST_REVISIONS</code>); UI ревизий в редакторе перестаёт расти. Существующие строки <code>post_type = revision</code> в <code>wp_posts</code> не удаляются"
 
 msgid "Disables the revisions UI in the block/classic editor sidebar and deletes posts with <code>post_type = revision</code> from the <code>wp_posts</code> table"
 msgstr "Отключает UI ревизий в сайдбаре блочного/классического редактора и удаляет в таблице <code>wp_posts</code> посты <code>post_type = revision</code>"
@@ -793,6 +802,9 @@ msgstr "pingback.ping через XML-RPC"
 msgid "Removes <code>&lt;script src=\"…/wp-emoji-release.min.js\"&gt;&lt;/script&gt;</code> and <code>&lt;link rel=\"stylesheet\" href=\"…/emoji.css\"&gt;</code> from the front <code>&lt;head&gt;</code>, and emoji images instead of native characters in RSS/Atom feeds and outgoing mail (<code>wp_mail</code>)"
 msgstr "Убирает <code>&lt;script src=\"…/wp-emoji-release.min.js\"&gt;&lt;/script&gt;</code> и <code>&lt;link rel=\"stylesheet\" href=\"…/emoji.css\"&gt;</code> из фронтового <code>&lt;head&gt;</code>, а также подмену emoji картинками вместо нативных символов в лентах RSS/Atom и исходящей почте (<code>wp_mail</code>)"
 
+msgid "Removes the <code>?ver=</code> query arg only when it equals the WordPress version (e.g. <code>/wp-includes/css/dashicons.min.css?ver=6.7.1</code>). Assets with their own versions (jQuery, etc.) are left unchanged"
+msgstr "Убирает query-аргумент <code>?ver=</code> только если он равен версии WordPress (напр. <code>/wp-includes/css/dashicons.min.css?ver=6.7.1</code>). У ассетов со своей версией (jQuery и т.п.) <code>ver=</code> не трогается"
+
 msgid "Removes the <code>?ver=</code> query arg from core CSS/JS URLs on the front end and in wp-admin, e.g. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>"
 msgstr "Убирает query-аргумент <code>?ver=</code> из URL CSS/JS ядра на фронте и в wp-admin, напр. <code>/wp-includes/js/jquery/jquery.min.js?ver=3.7.1</code>"
 
@@ -829,8 +841,14 @@ msgstr "Отключает <code>pingback.ping</code> на свой сайт, к
 msgid "Disables outgoing <code>pingback.ping</code> / trackback to other sites on publish/update"
 msgstr "Отключает исходящие <code>pingback.ping</code> / trackback на другие сайты при публикации/обновлении"
 
+msgid "Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and closes pings via the <code>pings_open</code> filter"
+msgstr "Отключает входящие <code>pingback.ping</code> через XML-RPC, убирает заголовок <code>X-Pingback</code> и закрывает ping через фильтр <code>pings_open</code>"
+
 msgid "Disables incoming <code>pingback.ping</code> via XML-RPC, removes the <code>X-Pingback</code> header, and clears discussion pingback settings on posts"
 msgstr "Отключает входящие <code>pingback.ping</code> через XML-RPC, убирает заголовок <code>X-Pingback</code> и сбрасывает настройки pingback в обсуждении записей"
+
+msgid "Removes oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed and <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> (host JS) from the front <code>&lt;head&gt;</code> on singular content"
+msgstr "Убирает oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed и <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> (host JS) из фронтового <code>&lt;head&gt;</code> на одиночных записях/страницах"
 
 msgid "Removes oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed and <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> from the front <code>&lt;head&gt;</code> on singular content"
 msgstr "Убирает oEmbed <code>&lt;link rel=\"alternate\" type=\"application/json+oembed\" …&gt;</code> / xml+oembed и <code>&lt;script src=\"…/wp-embed.min.js\"&gt;&lt;/script&gt;</code> из фронтового <code>&lt;head&gt;</code> на одиночных записях/страницах"
@@ -897,6 +915,9 @@ msgstr "Отключает общие ленты записей (<code>/feed/</c
 
 msgid "Disables <code>/comments/feed/</code> and removes comments feed alternate links from the front <code>&lt;head&gt;</code>"
 msgstr "Отключает <code>/comments/feed/</code> и убирает alternate-ссылки ленты комментариев из фронтового <code>&lt;head&gt;</code>"
+
+msgid "Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>) and their alternate links in <code>&lt;head&gt;</code>"
+msgstr "Отключает ленты комментариев записи (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>) и их alternate-ссылки в <code>&lt;head&gt;</code>"
 
 msgid "Disables per-post comment feeds (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)"
 msgstr "Отключает ленты комментариев записи (<code>/post-slug/feed/</code>, <code>/post-slug/comments/feed/</code>)"
