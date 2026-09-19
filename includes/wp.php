@@ -129,6 +129,7 @@ function disable_extras_wp_apply(): void {
 
   if (
     disable_extras_is_enabled('wp', 'dashboard_right_now')
+    || disable_extras_is_enabled('wp', 'dashboard_network_right_now')
     || disable_extras_is_enabled('wp', 'dashboard_activity')
     || disable_extras_is_enabled('wp', 'dashboard_quick_press')
     || disable_extras_is_enabled('wp', 'dashboard_primary')
@@ -309,6 +310,9 @@ function disable_extras_wp_disable_autosave(): void {
 function disable_extras_wp_remove_dashboard_widgets(): void {
   if (disable_extras_is_enabled('wp', 'dashboard_right_now')) {
     remove_meta_box('dashboard_right_now', 'dashboard', 'normal');
+  }
+
+  if (disable_extras_is_enabled('wp', 'dashboard_network_right_now')) {
     remove_meta_box('network_dashboard_right_now', 'dashboard-network', 'normal');
     remove_meta_box('dashboard_right_now', 'dashboard-network', 'normal');
   }

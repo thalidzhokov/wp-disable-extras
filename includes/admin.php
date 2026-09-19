@@ -29,33 +29,55 @@ function disable_extras_admin_assets(string $hook): void {
       border-bottom: 1px solid #c3c4c7;
       font-size: 1.1em;
     }
-    .disable-extras-code {
-      margin: 8px 0 0;
-      padding: 10px 12px;
+    .disable-extras-hints {
+      margin-top: 10px;
       max-width: 640px;
+    }
+    .disable-extras-hint {
+      margin-top: 10px;
+    }
+    .disable-extras-hint:first-child {
+      margin-top: 0;
+    }
+    .disable-extras-hint-title {
+      display: block;
+      margin: 0 0 4px;
+      color: #646970;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .disable-extras-code {
+      margin: 0;
+      padding: 10px 12px;
       overflow: auto;
       background: #1d2327;
       color: #f0f0f1;
       border-radius: 4px;
       font: 12px/1.5 Consolas, Monaco, monospace;
-      white-space: pre;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
-    .disable-extras-code code {
-      padding: 0;
-    }
-    .disable-extras-example-label {
+    .disable-extras-code-part {
       display: block;
-      margin-top: 8px;
-      color: #646970;
-      font-size: 12px;
     }
-    .disable-extras-constant {
-      display: block;
-      margin-top: 6px;
-      padding: 0;
+    .disable-extras-code-part + .disable-extras-code-part {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #3c434a;
+    }
+    .disable-extras-sep {
+      margin: 6px 0;
       color: #646970;
-      font: 12px/1.45 Consolas, Monaco, monospace;
-      word-break: break-all;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .disable-extras-where-line {
+      margin: 0;
+      color: #1d2327;
+      font-size: 13px;
+      line-height: 1.45;
     }
   ';
 
@@ -132,12 +154,154 @@ function disable_extras_admin_tabs(): array {
 }
 
 /**
+ * @param string|list<string> $parts
+ *
+ * @return list<string>
+ */
+function disable_extras_admin_hint_parts($parts): array {
+  if (is_string($parts)) {
+    $trimmed = trim($parts);
+
+    return $trimmed === '' ? [] : [__($trimmed, 'disable-extras')];
+  }
+
+  if (!is_array($parts)) {
+    return [];
+  }
+
+  $out = [];
+
+  foreach ($parts as $part) {
+    if (!is_string($part)) {
+      continue;
+    }
+
+    if ($part === 'or' || $part === 'and_also') {
+      $out[] = $part;
+      continue;
+    }
+
+    $trimmed = trim($part);
+
+    if ($trimmed !== '') {
+      $out[] = __($trimmed, 'disable-extras');
+    }
+  }
+
+  return $out;
+}
+
+/**
+ * @param string $sep
+ *
+ * @return string
+ */
+function disable_extras_admin_hint_sep_label(string $sep): string {
+  if ($sep === 'or') {
+    return __('OR', 'disable-extras');
+  }
+
+  return $sep;
+}
+
+/**
+ * @param string|list<string> $parts
+ * @param string $mode what|where
+ *
+ * @return void
+ */
+function disable_extras_admin_render_hint_parts($parts, string $mode): void {
+  $items = disable_extras_admin_hint_parts($parts);
+
+  if ($items === []) {
+    return;
+  }
+
+  if ($mode === 'where') {
+    $groups = [];
+    $current = [];
+
+    foreach ($items as $item) {
+      if ($item === 'or') {
+        if ($current !== []) {
+          $groups[] = implode(', ', $current);
+          $current = [];
+        }
+
+        $groups[] = null;
+        continue;
+      }
+
+      if ($item === 'and_also') {
+        continue;
+      }
+
+      $current[] = $item;
+    }
+
+    if ($current !== []) {
+      $groups[] = implode(', ', $current);
+    }
+
+    foreach ($groups as $group) {
+      if ($group === null) {
+        echo '<div class="disable-extras-sep">' . esc_html(disable_extras_admin_hint_sep_label('or')) . '</div>';
+        continue;
+      }
+
+      echo '<p class="disable-extras-where-line">' . esc_html($group) . '</p>';
+    }
+
+    return;
+  }
+
+  $groups = [];
+  $current = [];
+
+  foreach ($items as $item) {
+    if ($item === 'or') {
+      if ($current !== []) {
+        $groups[] = $current;
+        $current = [];
+      }
+
+      $groups[] = null;
+      continue;
+    }
+
+    if ($item === 'and_also') {
+      continue;
+    }
+
+    $current[] = $item;
+  }
+
+  if ($current !== []) {
+    $groups[] = $current;
+  }
+
+  foreach ($groups as $group) {
+    if ($group === null) {
+      echo '<div class="disable-extras-sep">' . esc_html(disable_extras_admin_hint_sep_label('or')) . '</div>';
+      continue;
+    }
+
+    echo '<pre class="disable-extras-code">';
+
+    foreach ($group as $part) {
+      echo '<span class="disable-extras-code-part">' . esc_html($part) . '</span>';
+    }
+
+    echo '</pre>';
+  }
+}
+
+/**
  * @param string $tab
  * @param string $key
  * @param string $label
  * @param array<string, bool> $options
- * @param array<string, array<string, string>> $examples
- * @param array<string, array<string, list<string>>> $constants
+ * @param array<string, array<string, array<string, mixed>>> $hints
  *
  * @return void
  */
@@ -146,19 +310,18 @@ function disable_extras_admin_render_option_row(
   string $key,
   string $label,
   array $options,
-  array $examples,
-  array $constants
+  array $hints
 ): void {
-  $code = isset($examples[$tab][$key]) ? trim($examples[$tab][$key]) : '';
-  $optionConstants = $constants[$tab][$key] ?? [];
+  $hint = $hints[$tab][$key] ?? [];
+  $what = $hint['what'] ?? null;
+  $where = $hint['where'] ?? null;
+  $constant = isset($hint['constant']) ? trim((string) $hint['constant']) : '';
+  $hasWhat = $what !== null && disable_extras_admin_hint_parts($what) !== [];
+  $hasWhere = $where !== null && disable_extras_admin_hint_parts($where) !== [];
+  $hasConstant = $constant !== '';
   ?>
   <tr>
-    <th scope="row">
-      <?php echo esc_html($label); ?>
-      <?php foreach ($optionConstants as $constantLine) : ?>
-        <code class="disable-extras-constant"><?php echo esc_html($constantLine); ?></code>
-      <?php endforeach; ?>
-    </th>
+    <th scope="row"><?php echo esc_html($label); ?></th>
     <td>
       <label>
         <input
@@ -169,9 +332,27 @@ function disable_extras_admin_render_option_row(
         >
         <?php echo esc_html__('Disable', 'disable-extras'); ?>
       </label>
-      <?php if ($code !== '') : ?>
-        <span class="disable-extras-example-label"><?php echo esc_html__('What gets removed:', 'disable-extras'); ?></span>
-        <pre class="disable-extras-code"><code><?php echo esc_html($code); ?></code></pre>
+      <?php if ($hasWhat || $hasWhere || $hasConstant) : ?>
+        <div class="disable-extras-hints">
+          <?php if ($hasWhat) : ?>
+            <div class="disable-extras-hint">
+              <span class="disable-extras-hint-title"><?php echo esc_html__('What is removed', 'disable-extras'); ?></span>
+              <?php disable_extras_admin_render_hint_parts($what, 'what'); ?>
+            </div>
+          <?php endif; ?>
+          <?php if ($hasWhere) : ?>
+            <div class="disable-extras-hint">
+              <span class="disable-extras-hint-title"><?php echo esc_html__('Where it is removed', 'disable-extras'); ?></span>
+              <?php disable_extras_admin_render_hint_parts($where, 'where'); ?>
+            </div>
+          <?php endif; ?>
+          <?php if ($hasConstant) : ?>
+            <div class="disable-extras-hint">
+              <span class="disable-extras-hint-title"><?php echo esc_html__('Can be removed with a constant, e.g. in wp-config', 'disable-extras'); ?></span>
+              <pre class="disable-extras-code"><?php echo esc_html($constant); ?></pre>
+            </div>
+          <?php endif; ?>
+        </div>
       <?php endif; ?>
     </td>
   </tr>
@@ -188,8 +369,7 @@ function disable_extras_admin_render_page(): void {
 
   $options = disable_extras_get_options();
   $labels = disable_extras_option_labels();
-  $examples = disable_extras_option_code_examples();
-  $constants = disable_extras_option_constants();
+  $hints = disable_extras_option_hints();
   $sections = disable_extras_option_sections();
   $tabs = disable_extras_admin_tabs();
   $tab = isset($_GET['tab']) ? sanitize_key((string) $_GET['tab']) : 'wp';
@@ -239,8 +419,7 @@ function disable_extras_admin_render_page(): void {
               $key,
               $labels[$tab][$key],
               $options,
-              $examples,
-              $constants
+              $hints
             );
             ?>
           <?php endforeach; ?>

@@ -40,6 +40,7 @@ function disable_extras_default_options(): array {
       'texturization' => false,
       'autosave' => false,
       'dashboard_right_now' => false,
+      'dashboard_network_right_now' => false,
       'dashboard_activity' => false,
       'dashboard_quick_press' => false,
       'dashboard_primary' => false,
@@ -194,11 +195,12 @@ function disable_extras_option_labels(): array {
       'heartbeat_slow' => __('Heartbeat interval: slow (60s)', 'disable-extras'),
       'texturization' => __('Texturization (smart quotes, dashes, ellipsis)', 'disable-extras'),
       'autosave' => __('Editor autosave', 'disable-extras'),
-      'dashboard_right_now' => __('Dashboard: At a Glance', 'disable-extras'),
-      'dashboard_activity' => __('Dashboard: Activity', 'disable-extras'),
-      'dashboard_quick_press' => __('Dashboard: Quick Draft', 'disable-extras'),
-      'dashboard_primary' => __('Dashboard: WordPress Events and News', 'disable-extras'),
-      'dashboard_site_health' => __('Dashboard: Site Health Status', 'disable-extras'),
+      'dashboard_right_now' => __('Dashboard widget: “At a Glance”', 'disable-extras'),
+      'dashboard_network_right_now' => __('Network Dashboard widget: “Right Now”', 'disable-extras'),
+      'dashboard_activity' => __('Dashboard widget: “Activity”', 'disable-extras'),
+      'dashboard_quick_press' => __('Dashboard widget: “Quick Draft”', 'disable-extras'),
+      'dashboard_primary' => __('Dashboard widget: “WordPress Events and News”', 'disable-extras'),
+      'dashboard_site_health' => __('Dashboard widget: “Site Health Status”', 'disable-extras'),
       'welcome_panel' => __('Dashboard: Welcome panel', 'disable-extras'),
       'admin_bar' => __('Admin bar on the front end (all users)', 'disable-extras'),
       'admin_bar_non_admins' => __('Admin bar on the front end (non-admins)', 'disable-extras'),
@@ -314,6 +316,7 @@ function disable_extras_option_sections(): array {
           'admin_bar_non_admins',
           'admin_bar_wp_logo',
           'dashboard_right_now',
+          'dashboard_network_right_now',
           'dashboard_activity',
           'dashboard_quick_press',
           'dashboard_primary',
@@ -444,414 +447,593 @@ function disable_extras_option_sections(): array {
 }
 
 /**
- * Native constants that disable the same thing (when they exist).
+ * Hints for settings UI.
  *
- * @return array<string, array<string, list<string>>>
+ * Keys per option (all optional — omit key and heading is skipped):
+ * - what: string|list — removed markup/behavior; list items "or" / "and_also" are separators
+ * - where: string|list — page / screen / taxonomy / editor; same separators
+ * - constant: string — wp-config-style define() example
+ *
+ * @return array<string, array<string, array{
+ *   what?: string|list<string>,
+ *   where?: string|list<string>,
+ *   constant?: string
+ * }>>
  */
-function disable_extras_option_constants(): array {
+function disable_extras_option_hints(): array {
   return [
     'wp' => [
-      'auto_updates_core' => [
-        "define('WP_AUTO_UPDATE_CORE', false);",
-      ],
-      'auto_updates_all' => [
-        "define('AUTOMATIC_UPDATER_DISABLED', true);",
-      ],
-      'disallow_file_edit' => [
-        "define('DISALLOW_FILE_EDIT', true);",
-      ],
-      'disallow_file_mods' => [
-        "define('DISALLOW_FILE_MODS', true);",
-      ],
-      'disable_wp_cron' => [
-        "define('DISABLE_WP_CRON', true);",
-      ],
-      'disallow_unfiltered_html' => [
-        "define('DISALLOW_UNFILTERED_HTML', true);",
-      ],
-      'post_revisions' => [
-        "define('WP_POST_REVISIONS', false);",
-      ],
-      'empty_trash' => [
-        "define('EMPTY_TRASH_DAYS', 0);",
-      ],
-    ],
-    'yoast' => [],
-    'redis' => [
-      'adminbar' => [
-        "define('WP_REDIS_DISABLE_ADMINBAR', true);",
-      ],
-      'banners' => [
-        "define('WP_REDIS_DISABLE_BANNERS', true);",
-      ],
-      'dropin_banners' => [
-        "define('WP_REDIS_DISABLE_DROPIN_BANNERS', true);",
-      ],
-      'html_comment' => [
-        "define('WP_REDIS_DISABLE_COMMENT', true);",
-      ],
-      'metrics' => [
-        "define('WP_REDIS_DISABLE_METRICS', true);",
-      ],
-    ],
-    'embedpress' => [],
-  ];
-}
-
-/**
- * Examples of output / features removed when the option is enabled.
- *
- * @return array<string, array<string, string>>
- */
-function disable_extras_option_code_examples(): array {
-  return [
-    'wp' => [
-      'emoji' => <<<'TXT'
+      'emoji' => [
+        'what' => [
+          <<<'TXT'
 <script src="…/wp-emoji-release.min.js"></script>
 <link rel="stylesheet" href="…/emoji.css">
-<!-- emoji images instead of native characters in feeds/mail -->
 TXT,
-      'generator' => <<<'TXT'
-<meta name="generator" content="WordPress 6.7.1">
-<!-- also in RSS: <generator>https://wordpress.org/?v=6.7.1</generator> -->
-TXT,
-      'script_versions' => <<<'TXT'
+          'and_also',
+          'emoji images instead of native characters in feeds/mail',
+        ],
+        'where' => [
+          'Front end <head>',
+          'and_also',
+          'RSS/Atom feeds',
+          'and_also',
+          'Outgoing mail (wp_mail)',
+        ],
+      ],
+      'generator' => [
+        'what' => [
+          '<meta name="generator" content="WordPress 6.7.1">',
+          'and_also',
+          '<generator>https://wordpress.org/?v=6.7.1</generator>',
+        ],
+        'where' => [
+          'Front end <head>',
+          'and_also',
+          'RSS/Atom feeds',
+        ],
+      ],
+      'script_versions' => [
+        'what' => <<<'TXT'
 /wp-includes/css/dashicons.min.css?ver=6.7.1
 /wp-includes/js/jquery/jquery.min.js?ver=3.7.1
 TXT,
-      'dns_prefetch' => <<<'TXT'
+        'where' => 'Front end and wp-admin (core CSS/JS URLs)',
+      ],
+      'dns_prefetch' => [
+        'what' => <<<'TXT'
 <link rel="dns-prefetch" href="//s.w.org">
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 TXT,
-      'resource_hints' => <<<'TXT'
+        'where' => 'Front end <head>',
+      ],
+      'resource_hints' => [
+        'what' => <<<'TXT'
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="prefetch" href="https://example.com/next-page/">
 <link rel="prerender" href="https://example.com/next-page/">
 TXT,
-      'dashicons_guests' => <<<'TXT'
-<link rel="stylesheet" href="/wp-includes/css/dashicons.min.css">
-<!-- loaded for logged-out visitors on the front end -->
-TXT,
-      'jquery_front' => <<<'TXT'
+        'where' => 'Front end <head>',
+      ],
+      'dashicons_guests' => [
+        'what' => '<link rel="stylesheet" href="/wp-includes/css/dashicons.min.css">',
+        'where' => 'Front end for logged-out visitors',
+      ],
+      'jquery_front' => [
+        'what' => <<<'TXT'
 <script src="/wp-includes/js/jquery/jquery.min.js"></script>
 <script src="/wp-includes/js/jquery/jquery-migrate.min.js"></script>
 TXT,
-      'thickbox_front' => <<<'TXT'
+        'where' => 'Front end',
+      ],
+      'thickbox_front' => [
+        'what' => <<<'TXT'
 <script src="/wp-includes/js/thickbox/thickbox.js"></script>
 <link rel="stylesheet" href="/wp-includes/js/thickbox/thickbox.css">
 TXT,
-      'rsd' => <<<'TXT'
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://example.com/xmlrpc.php?rsd">
-TXT,
-      'wlwmanifest' => <<<'TXT'
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://example.com/wp-includes/wlwmanifest.xml">
-TXT,
-      'shortlink' => <<<'TXT'
-<link rel="shortlink" href="https://example.com/?p=123">
-<!-- also Link: <https://example.com/?p=123>; rel=shortlink in HTTP headers -->
-TXT,
-      'xmlrpc' => <<<'TXT'
-POST /xmlrpc.php  (remote publishing, app auth, all XML-RPC methods)
-<link rel="EditURI" ... href=".../xmlrpc.php?rsd">
-TXT,
-      'self_pingbacks' => <<<'TXT'
-<!-- outbound pingback to your own posts when you link them -->
-.../xmlrpc.php pingback.ping → https://yoursite.com/...
-TXT,
-      'pingbacks_outgoing' => <<<'TXT'
-Outgoing pingbacks/trackbacks to other sites on publish
-.../xmlrpc.php pingback.ping → https://other-site.com/...
-TXT,
-      'pingbacks_incoming' => <<<'TXT'
-Incoming: pingback.ping via XML-RPC
-X-Pingback: https://example.com/xmlrpc.php
-Discussion → allow pingbacks on posts
-TXT,
-      'oembed_discovery' => <<<'TXT'
-<link rel="alternate" type="application/json+oembed" href="https://example.com/wp-json/oembed/1.0/embed?url=...">
-<link rel="alternate" type="text/xml+oembed" href="...">
+        'where' => 'Front end',
+      ],
+      'rsd' => [
+        'what' => '<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://example.com/xmlrpc.php?rsd">',
+        'where' => 'Front end <head>',
+      ],
+      'wlwmanifest' => [
+        'what' => '<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://example.com/wp-includes/wlwmanifest.xml">',
+        'where' => 'Front end <head>',
+      ],
+      'shortlink' => [
+        'what' => [
+          '<link rel="shortlink" href="https://example.com/?p=123">',
+          'and_also',
+          'Link: <https://example.com/?p=123>; rel=shortlink',
+        ],
+        'where' => [
+          'Front end <head>',
+          'and_also',
+          'HTTP response headers',
+        ],
+      ],
+      'xmlrpc' => [
+        'what' => [
+          'POST /xmlrpc.php',
+          'and_also',
+          '<link rel="EditURI" … href="…/xmlrpc.php?rsd">',
+        ],
+        'where' => [
+          '/xmlrpc.php',
+          'and_also',
+          'Front end <head> (RSD)',
+        ],
+      ],
+      'self_pingbacks' => [
+        'what' => 'pingback.ping → own site URL when a post links to another own post',
+        'where' => 'On publish / update (outbound pingbacks)',
+      ],
+      'pingbacks_outgoing' => [
+        'what' => 'pingback.ping / trackback → other sites',
+        'where' => 'On publish / update',
+      ],
+      'pingbacks_incoming' => [
+        'what' => [
+          'pingback.ping via XML-RPC',
+          'and_also',
+          'X-Pingback: https://example.com/xmlrpc.php',
+        ],
+        'where' => [
+          '/xmlrpc.php',
+          'and_also',
+          'HTTP headers',
+          'and_also',
+          'Discussion settings on posts',
+        ],
+      ],
+      'oembed_discovery' => [
+        'what' => <<<'TXT'
+<link rel="alternate" type="application/json+oembed" href="…">
+<link rel="alternate" type="text/xml+oembed" href="…">
 <script src="/wp-includes/js/wp-embed.min.js"></script>
 TXT,
-      'oembed_endpoint' => <<<'TXT'
-GET /wp-json/oembed/1.0/embed?url=https://example.com/post/
-GET /wp-json/oembed/1.0/proxy?url=...
+        'where' => 'Front end <head> (singular content)',
+      ],
+      'oembed_endpoint' => [
+        'what' => <<<'TXT'
+GET /wp-json/oembed/1.0/embed?url=…
+GET /wp-json/oembed/1.0/proxy?url=…
 TXT,
-      'embeds' => <<<'TXT'
-/embed/ rewrite + is_embed() templates
-<script src="/wp-includes/js/wp-embed.min.js"></script>
-oEmbed discovery links and REST oEmbed routes
-TXT,
-      'rest_users' => <<<'TXT'
+        'where' => 'REST API',
+      ],
+      'embeds' => [
+        'what' => [
+          '/embed/ rewrite + is_embed() templates',
+          'and_also',
+          '<script src="/wp-includes/js/wp-embed.min.js"></script>',
+          'and_also',
+          'oEmbed discovery links and REST oEmbed routes',
+        ],
+        'where' => [
+          'Front end',
+          'and_also',
+          'REST API',
+          'and_also',
+          'Embed templates',
+        ],
+      ],
+      'rest_users' => [
+        'what' => <<<'TXT'
 GET /wp-json/wp/v2/users
 GET /wp-json/wp/v2/users/1
-<!-- user enumeration for guests -->
 TXT,
-      'rest_guests' => <<<'TXT'
-GET /wp-json/… (any REST route) for logged-out visitors → 401
-TXT,
-      'rest_links' => <<<'TXT'
-<link rel="https://api.w.org/" href="https://example.com/wp-json/">
-Link: <https://example.com/wp-json/>; rel="https://api.w.org/"
-<!-- also REST API entry in RSD -->
-TXT,
-      'heartbeat_front' => <<<'TXT'
+        'where' => 'REST API for logged-out visitors',
+      ],
+      'rest_guests' => [
+        'what' => 'GET /wp-json/… → 401 for logged-out visitors',
+        'where' => 'REST API',
+      ],
+      'rest_links' => [
+        'what' => [
+          '<link rel="https://api.w.org/" href="https://example.com/wp-json/">',
+          'and_also',
+          'Link: <https://example.com/wp-json/>; rel="https://api.w.org/"',
+          'and_also',
+          'REST API entry in RSD',
+        ],
+        'where' => [
+          'Front end <head>',
+          'and_also',
+          'HTTP response headers',
+          'and_also',
+          'RSD',
+        ],
+      ],
+      'heartbeat_front' => [
+        'what' => <<<'TXT'
 <script src="/wp-includes/js/heartbeat.min.js"></script>
-<!-- admin-ajax.php?action=heartbeat on the front end -->
+admin-ajax.php?action=heartbeat
 TXT,
-      'heartbeat_admin' => <<<'TXT'
+        'where' => 'Front end',
+      ],
+      'heartbeat_admin' => [
+        'what' => <<<'TXT'
 <script src="/wp-includes/js/heartbeat.min.js"></script>
-<!-- admin-ajax.php?action=heartbeat in wp-admin -->
+admin-ajax.php?action=heartbeat
 TXT,
-      'heartbeat_slow' => <<<'TXT'
-heartbeat_settings.interval = 60
-<!-- instead of the default ~15s -->
+        'where' => 'wp-admin',
+      ],
+      'heartbeat_slow' => [
+        'what' => 'heartbeat_settings.interval = 60 (instead of ~15s)',
+        'where' => 'Front end and wp-admin (where Heartbeat runs)',
+      ],
+      'texturization' => [
+        'what' => [
+          'Conversion of "quotes" into “quotes”',
+          'and_also',
+          '-- → —',
+          'and_also',
+          '... → …',
+        ],
+        'where' => 'Content, titles, excerpts, comments, feeds',
+      ],
+      'autosave' => [
+        'what' => '<script src="/wp-includes/js/autosave.min.js"></script>',
+        'where' => 'Block / classic editor (post screens in wp-admin)',
+      ],
+      'dashboard_right_now' => [
+        'what' => 'Dashboard widget: “At a Glance”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'dashboard_network_right_now' => [
+        'what' => 'Network Dashboard widget: “Right Now”',
+        'where' => 'Network Admin > Dashboard',
+      ],
+      'dashboard_activity' => [
+        'what' => 'Dashboard widget: “Activity”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'dashboard_quick_press' => [
+        'what' => 'Dashboard widget: “Quick Draft”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'dashboard_primary' => [
+        'what' => 'Dashboard widget: “WordPress Events and News”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'dashboard_site_health' => [
+        'what' => 'Dashboard widget: “Site Health Status”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'welcome_panel' => [
+        'what' => 'Welcome panel',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'admin_bar' => [
+        'what' => '#wpadminbar',
+        'where' => 'Front end for every logged-in user',
+      ],
+      'admin_bar_non_admins' => [
+        'what' => '#wpadminbar',
+        'where' => 'Front end for users without manage_options',
+      ],
+      'admin_bar_wp_logo' => [
+        'what' => <<<'TXT'
+#wp-admin-bar-wp-logo
+About WordPress (Documentation, Learn, Support, Feedback)
 TXT,
-      'texturization' => <<<'TXT'
-"smart quotes" → “smart quotes”
--- → —, ... → …
-<!-- wptexturize on content, titles, excerpts, comments, feeds -->
-TXT,
-      'autosave' => <<<'TXT'
-<script src="/wp-includes/js/autosave.min.js"></script>
-<!-- periodic draft autosave in the editor -->
-TXT,
-      'dashboard_right_now' => <<<'TXT'
-Dashboard widget: “At a Glance”
-Network: “Right Now”
-TXT,
-      'dashboard_activity' => <<<'TXT'
-Dashboard widget: “Activity”
-TXT,
-      'dashboard_quick_press' => <<<'TXT'
-Dashboard widget: “Quick Draft”
-TXT,
-      'dashboard_primary' => <<<'TXT'
-Dashboard widget: “WordPress Events and News”
-TXT,
-      'dashboard_site_health' => <<<'TXT'
-Dashboard widget: “Site Health Status”
-TXT,
-      'welcome_panel' => <<<'TXT'
-Welcome panel on the Dashboard
-TXT,
-      'admin_bar' => <<<'TXT'
-#wpadminbar on the front end for every logged-in user
-TXT,
-      'admin_bar_non_admins' => <<<'TXT'
-#wpadminbar on the front end for users without manage_options
-TXT,
-      'admin_bar_wp_logo' => <<<'TXT'
-#wp-admin-bar-wp-logo .ab-item
-About WordPress dropdown (Documentation, Learn, Support, Feedback)
-TXT,
-      'login_logo' => <<<'TXT'
-wp-login.php
+        'where' => 'Admin bar (front end and wp-admin)',
+      ],
+      'login_logo' => [
+        'what' => <<<'TXT'
 <h1 class="wp-login-logo"><a href="https://wordpress.org/">…</a></h1>
-→
-<h1 class="wp-login-logo">Blog Name</h1>
 TXT,
-      'feed_redirect' => <<<'TXT'
-GET /feed/ → 301 Location: https://example.com/
-<!-- when a disabled feed URL is requested -->
-TXT,
-      'feed_global' => <<<'TXT'
-/feed/, /rss/, /rss2/, /atom/, /rdf/
-<link rel="alternate" type="application/rss+xml" …>
-TXT,
-      'feed_global_comments' => <<<'TXT'
-/comments/feed/
-<link rel="alternate" … comments feed>
-TXT,
-      'feed_post_comments' => <<<'TXT'
+        'where' => 'wp-login.php (replaced with blog name text, no link)',
+      ],
+      'feed_redirect' => [
+        'what' => 'GET /feed/ → 301 Location: https://example.com/',
+        'where' => 'Disabled feed URLs (when other feed options are on)',
+      ],
+      'feed_global' => [
+        'what' => [
+          '/feed/, /rss/, /rss2/, /atom/, /rdf/',
+          'and_also',
+          '<link rel="alternate" type="application/rss+xml" …>',
+        ],
+        'where' => [
+          'Global post feeds',
+          'and_also',
+          'Front end <head>',
+        ],
+      ],
+      'feed_global_comments' => [
+        'what' => [
+          '/comments/feed/',
+          'and_also',
+          '<link rel="alternate" … comments feed>',
+        ],
+        'where' => [
+          'Global comments feed',
+          'and_also',
+          'Front end <head>',
+        ],
+      ],
+      'feed_post_comments' => [
+        'what' => <<<'TXT'
 /post-slug/feed/
 /post-slug/comments/feed/
 TXT,
-      'feed_authors' => <<<'TXT'
-/author/name/feed/
-TXT,
-      'feed_post_types' => <<<'TXT'
-/cpt-slug/feed/
-TXT,
-      'feed_categories' => <<<'TXT'
-/category/news/feed/
-TXT,
-      'feed_tags' => <<<'TXT'
-/tag/esports/feed/
-TXT,
-      'feed_custom_taxonomies' => <<<'TXT'
-/taxonomy-slug/term/feed/
-TXT,
-      'feed_search' => <<<'TXT'
-/?s=query&feed=rss2
-TXT,
-      'feed_atom_rdf' => <<<'TXT'
-/feed/atom/, /feed/rdf/, /feed/rss/
-<!-- RSS2 (/feed/, /feed/rss2/) stays unless other feed options apply -->
-TXT,
-      'auto_updates_core' => <<<'TXT'
-Dashboard → Updates → automatic WordPress core updates
-(minor/major background core upgrades)
-TXT,
-      'auto_updates_plugins' => <<<'TXT'
-Plugins → auto-update toggle / background plugin updates
-TXT,
-      'auto_updates_themes' => <<<'TXT'
-Appearance → Themes → automatic theme updates
-TXT,
-      'auto_updates_translations' => <<<'TXT'
-Automatic language pack / translation file updates
-TXT,
-      'auto_updates_all' => <<<'TXT'
-All background automatic updates:
-- WordPress core
-- plugins
-- themes
-- translations
-TXT,
-      'update_nags_admins_only' => <<<'TXT'
-Admin notice: “WordPress X.Y is available! Please update…”
-<!-- hidden for users without update_core -->
-TXT,
-      'update_phone_home' => <<<'TXT'
+        'where' => 'Single post comment feeds',
+      ],
+      'feed_authors' => [
+        'what' => '/author/name/feed/',
+        'where' => 'Author archives',
+      ],
+      'feed_post_types' => [
+        'what' => '/cpt-slug/feed/',
+        'where' => 'Custom post type archives',
+      ],
+      'feed_categories' => [
+        'what' => '/category/news/feed/',
+        'where' => 'Category taxonomy archives',
+      ],
+      'feed_tags' => [
+        'what' => '/tag/esports/feed/',
+        'where' => 'Post tag taxonomy archives',
+      ],
+      'feed_custom_taxonomies' => [
+        'what' => '/taxonomy-slug/term/feed/',
+        'where' => 'Custom taxonomy archives',
+      ],
+      'feed_search' => [
+        'what' => '/?s=query&feed=rss2',
+        'where' => 'Search results',
+      ],
+      'feed_atom_rdf' => [
+        'what' => '/feed/atom/, /feed/rdf/, /feed/rss/',
+        'where' => 'Feed format endpoints (RSS2 stays unless other feed options apply)',
+      ],
+      'auto_updates_core' => [
+        'what' => 'Automatic WordPress core updates (minor/major)',
+        'where' => 'Background updater / Dashboard > Updates',
+        'constant' => "define('WP_AUTO_UPDATE_CORE', false);",
+      ],
+      'auto_updates_plugins' => [
+        'what' => 'Automatic plugin updates',
+        'where' => 'Plugins list / background updater',
+      ],
+      'auto_updates_themes' => [
+        'what' => 'Automatic theme updates',
+        'where' => 'Appearance > Themes / background updater',
+      ],
+      'auto_updates_translations' => [
+        'what' => 'Automatic language pack / translation updates',
+        'where' => 'Background updater',
+      ],
+      'auto_updates_all' => [
+        'what' => "All automatic updates:\n- WordPress core\n- plugins\n- themes\n- translations",
+        'where' => 'Background updater',
+        'constant' => "define('AUTOMATIC_UPDATER_DISABLED', true);",
+      ],
+      'update_nags_admins_only' => [
+        'what' => 'Admin notice: “WordPress X.Y is available! Please update…”',
+        'where' => 'wp-admin (users without update_core)',
+      ],
+      'update_phone_home' => [
+        'what' => <<<'TXT'
 User-Agent: WordPress/6.7; https://example.com/
 Headers: wp_blog / wp_install = site URL
-→ stripped from api.wordpress.org update checks
 TXT,
-      'application_passwords' => <<<'TXT'
-Users → Profile → Application Passwords
-Authorization: Basic ... (REST / XML-RPC app auth)
-TXT,
-      'core_sitemaps' => <<<'TXT'
+        'where' => 'Outbound checks to api.wordpress.org',
+      ],
+      'application_passwords' => [
+        'what' => [
+          'Users > Profile > Application Passwords',
+          'and_also',
+          'Authorization: Basic … (REST / XML-RPC app auth)',
+        ],
+        'where' => [
+          'wp-admin > Users > Profile',
+          'and_also',
+          'REST API / XML-RPC',
+        ],
+      ],
+      'core_sitemaps' => [
+        'what' => <<<'TXT'
 /wp-sitemap.xml
 /wp-sitemap-posts-post-1.xml
 /wp-sitemap-users-1.xml
 TXT,
-      'disallow_file_edit' => <<<'TXT'
-Appearance → Theme File Editor
-Plugins → Plugin File Editor
-TXT,
-      'disallow_file_mods' => <<<'TXT'
-Plugins → Add New / Update
-Appearance → Themes → Add New / Update
-inline plugin/theme installers in admin
-TXT,
-      'disable_wp_cron' => <<<'TXT'
-Built-in pseudo-cron via front/admin requests
-(wp-cron.php spawned on page load)
-TXT,
-      'disallow_unfiltered_html' => <<<'TXT'
-Administrator / Editor capability: unfiltered_html
-(raw script/iframe in post content without kses)
-TXT,
-      'post_revisions' => <<<'TXT'
-Post revisions in the editor sidebar
-wp_posts rows with post_type = revision
-TXT,
-      'empty_trash' => <<<'TXT'
-Posts / media / comments Trash
-(items deleted immediately, no restore period)
-TXT,
+        'where' => 'Front end sitemap endpoints',
+      ],
+      'disallow_file_edit' => [
+        'what' => [
+          'Appearance > Theme File Editor',
+          'and_also',
+          'Plugins > Plugin File Editor',
+        ],
+        'where' => 'wp-admin',
+        'constant' => "define('DISALLOW_FILE_EDIT', true);",
+      ],
+      'disallow_file_mods' => [
+        'what' => [
+          'Plugins > Add New / Update',
+          'and_also',
+          'Appearance > Themes > Add New / Update',
+        ],
+        'where' => 'wp-admin',
+        'constant' => "define('DISALLOW_FILE_MODS', true);",
+      ],
+      'disable_wp_cron' => [
+        'what' => 'Built-in WP-Cron spawned on front/admin page load (wp-cron.php)',
+        'where' => 'Front end and wp-admin requests',
+        'constant' => "define('DISABLE_WP_CRON', true);",
+      ],
+      'disallow_unfiltered_html' => [
+        'what' => 'Capability unfiltered_html (raw script/iframe without kses)',
+        'where' => 'Post / page editor for Administrators and Editors',
+        'constant' => "define('DISALLOW_UNFILTERED_HTML', true);",
+      ],
+      'post_revisions' => [
+        'what' => [
+          'Revisions UI in the editor sidebar',
+          'and_also',
+          'wp_posts rows with post_type = revision',
+        ],
+        'where' => 'Block / classic editor; database',
+        'constant' => "define('WP_POST_REVISIONS', false);",
+      ],
+      'empty_trash' => [
+        'what' => 'Trash for posts / media / comments (immediate permanent delete)',
+        'where' => 'wp-admin content lists',
+        'constant' => "define('EMPTY_TRASH_DAYS', 0);",
+      ],
     ],
     'yoast' => [
-      'premium_redirects' => <<<'TXT'
-Yoast Premium automatic redirect when a post/term slug changes
-(e.g. /old-slug/ → /new-slug/)
-TXT,
-      'premium_notifications' => <<<'TXT'
-Admin notices when:
-- a post is trashed
-- a post/term slug changes
-- a term is deleted
-TXT,
-      'tracking' => <<<'TXT'
-Yoast anonymous usage / telemetry data collection
-TXT,
-      'schema_blocks' => <<<'TXT'
-Yoast schema blocks in the block editor
-(FAQ, How-to, and other structured-data blocks)
-TXT,
-      'assessment_markers' => <<<'TXT'
-Highlighted SEO / readability markers inside post content
-TXT,
-      'rss_footer' => <<<'TXT'
-The post <a href="…">Title</a> appeared first on <a href="…">Blog</a>.
-Сообщение … появились сначала на …
-(rssbefore / rssafter in feed items)
-TXT,
-      'adjacent_rel' => <<<'TXT'
+      'premium_redirects' => [
+        'what' => 'Automatic redirect /old-slug/ → /new-slug/',
+        'where' => 'When a post or term slug changes (Yoast Premium)',
+      ],
+      'premium_notifications' => [
+        'what' => [
+          'Notice when a post is trashed',
+          'or',
+          'Notice when a post/term slug changes',
+          'or',
+          'Notice when a term is deleted',
+        ],
+        'where' => 'wp-admin',
+      ],
+      'tracking' => [
+        'what' => 'Anonymous usage / telemetry data',
+        'where' => 'Outbound to Yoast',
+      ],
+      'schema_blocks' => [
+        'what' => 'FAQ, How-to, and other Yoast schema blocks',
+        'where' => 'Block editor',
+      ],
+      'assessment_markers' => [
+        'what' => 'SEO / readability highlight markers in content',
+        'where' => 'Block / classic editor (post content)',
+      ],
+      'rss_footer' => [
+        'what' => [
+          'The post <a href="…">Title</a> appeared first on <a href="…">Blog</a>.',
+          'or',
+          'Сообщение … появились сначала на …',
+        ],
+        'where' => 'RSS/Atom feed items (rssbefore / rssafter)',
+      ],
+      'adjacent_rel' => [
+        'what' => <<<'TXT'
 <link rel="prev" href="https://example.com/post-1/">
 <link rel="next" href="https://example.com/post-3/">
 TXT,
-      'admin_upsells' => <<<'TXT'
-Admin notices (wpseo_admin_notices)
-Promotional footer (wpseo_admin_footer)
-AI Content Planner banner
+        'where' => 'Front end <head> on singular posts',
+      ],
+      'admin_upsells' => [
+        'what' => [
+          'Admin notices (wpseo_admin_notices)',
+          'and_also',
+          'Promotional footer (wpseo_admin_footer)',
+          'and_also',
+          'AI Content Planner banner',
+          'and_also',
+          <<<'TXT'
 #premium-seo-analysis-upsell-ad-sidebar
 #premium-seo-analysis-upsell-ad-metabox
 #premium-seo-analysis-upsell-ad-elementor
-Yoast > Upgrade
-Yoast > AI Brand Insights
 TXT,
-      'menu_integrations' => <<<'TXT'
-Yoast > Integrations
-TXT,
-      'menu_workouts' => <<<'TXT'
-Yoast > Workouts
-TXT,
-      'menu_courses' => <<<'TXT'
-Yoast > Courses
-TXT,
-      'menu_academy' => <<<'TXT'
-Yoast > Academy
-TXT,
-      'menu_licenses' => <<<'TXT'
-Yoast > Premium licenses screens
-TXT,
-      'menu_redirects' => <<<'TXT'
-Yoast > Redirects
-admin.php?page=wpseo_redirects
-TXT,
-      'dashboard_yoast' => <<<'TXT'
-Dashboard widget: “Yoast SEO”
-TXT,
-      'dashboard_wincher' => <<<'TXT'
-Dashboard widget: “Wincher”
-TXT,
+          'and_also',
+          'Yoast > Upgrade',
+          'and_also',
+          'Yoast > AI Brand Insights',
+        ],
+        'where' => [
+          'wp-admin notices / Yoast screens',
+          'and_also',
+          'Post editor (block / classic / Elementor)',
+          'and_also',
+          'Yoast admin menu',
+        ],
+      ],
+      'menu_integrations' => [
+        'what' => 'Yoast > Integrations',
+        'where' => 'wp-admin menu',
+      ],
+      'menu_workouts' => [
+        'what' => 'Yoast > Workouts',
+        'where' => 'wp-admin menu',
+      ],
+      'menu_courses' => [
+        'what' => 'Yoast > Courses',
+        'where' => 'wp-admin menu',
+      ],
+      'menu_academy' => [
+        'what' => 'Yoast > Academy',
+        'where' => 'wp-admin menu',
+      ],
+      'menu_licenses' => [
+        'what' => 'Yoast > Premium licenses screens',
+        'where' => 'wp-admin menu',
+      ],
+      'menu_redirects' => [
+        'what' => 'Yoast > Redirects (admin.php?page=wpseo_redirects)',
+        'where' => 'wp-admin menu',
+      ],
+      'dashboard_yoast' => [
+        'what' => 'Dashboard widget: “Yoast SEO”',
+        'where' => 'wp-admin > Dashboard',
+      ],
+      'dashboard_wincher' => [
+        'what' => 'Dashboard widget: “Wincher”',
+        'where' => 'wp-admin > Dashboard',
+      ],
     ],
     'redis' => [
-      'adminbar' => <<<'TXT'
-Admin bar item: Redis / cache flush & metrics
-TXT,
-      'banners' => <<<'TXT'
-Object Cache Pro / Redis Cache upsell banners in Settings
-TXT,
-      'dropin_banners' => <<<'TXT'
-Admin notices about object-cache.php drop-in updates
-TXT,
-      'html_comment' => <<<'TXT'
-<!-- Performance optimized by Redis Object Cache. Learn more: … -->
-TXT,
-      'metrics' => <<<'TXT'
-Redis hit/miss metrics charts and recorded timings
-TXT,
-      'dashboard_widget' => <<<'TXT'
-Dashboard widget: “Redis Object Cache”
-TXT,
+      'adminbar' => [
+        'what' => 'Admin bar: Redis / cache flush & metrics',
+        'where' => 'Admin bar (front end and wp-admin)',
+        'constant' => "define('WP_REDIS_DISABLE_ADMINBAR', true);",
+      ],
+      'banners' => [
+        'what' => 'Object Cache Pro / Redis Cache upsell banners',
+        'where' => 'wp-admin > Settings (Redis screens)',
+        'constant' => "define('WP_REDIS_DISABLE_BANNERS', true);",
+      ],
+      'dropin_banners' => [
+        'what' => 'Admin notices about object-cache.php drop-in updates',
+        'where' => 'wp-admin',
+        'constant' => "define('WP_REDIS_DISABLE_DROPIN_BANNERS', true);",
+      ],
+      'html_comment' => [
+        'what' => '<!-- Performance optimized by Redis Object Cache. Learn more: … -->',
+        'where' => 'Front end HTML source',
+        'constant' => "define('WP_REDIS_DISABLE_COMMENT', true);",
+      ],
+      'metrics' => [
+        'what' => 'Hit/miss metrics charts and recorded timings',
+        'where' => 'Redis Object Cache admin screens',
+        'constant' => "define('WP_REDIS_DISABLE_METRICS', true);",
+      ],
+      'dashboard_widget' => [
+        'what' => 'Dashboard widget: “Redis Object Cache”',
+        'where' => 'wp-admin > Dashboard',
+      ],
     ],
     'embedpress' => [
-      'assets_outside_single' => <<<'TXT'
-<!-- on archives, home, pages (not single posts) -->
+      'assets_outside_single' => [
+        'what' => <<<'TXT'
 <link rel="stylesheet" href="…/embedpress.css">
 <link rel="stylesheet" href="…/plyr.css">
 <script src="…/plyr.polyfilled.js"></script>
 <script src="…/pdfobject.js"></script>
 TXT,
-      'gallery_justify' => <<<'TXT'
-<script src="…/embedpress-gallery-justify.js"></script>
-TXT,
+        'where' => 'Archives, home, pages (not single posts)',
+      ],
+      'gallery_justify' => [
+        'what' => '<script src="…/embedpress-gallery-justify.js"></script>',
+        'where' => 'Front end where EmbedPress gallery is used',
+      ],
     ],
   ];
 }
+
 
 /**
  * @param mixed $input
