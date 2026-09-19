@@ -291,8 +291,8 @@ msgstr "Premium: редиректы и уведомления"
 msgid "Premium: auto-redirects on slug change"
 msgstr "Premium: авто-редиректы при смене slug"
 
-msgid "Premium: trash / slug / term notifications"
-msgstr "Premium: уведомления trash / slug / term"
+msgid "Premium: trash/slug/term notifications"
+msgstr "Premium: уведомления trash/slug/term"
 
 msgid "Pro / upsell banners"
 msgstr "Pro / upsell баннеры"
@@ -945,3 +945,75 @@ msgstr "Отключает пароли приложений в <code>Польз
 
 msgid "Disables core sitemap endpoints (<code>/wp-sitemap.xml</code>, <code>/wp-sitemap-posts-post-1.xml</code>, <code>/wp-sitemap-users-1.xml</code>)"
 msgstr "Отключает эндпоинты core sitemap (<code>/wp-sitemap.xml</code>, <code>/wp-sitemap-posts-post-1.xml</code>, <code>/wp-sitemap-users-1.xml</code>)"
+
+msgid "Disables Yoast Premium automatic redirects <code>/old-slug/</code> > <code>/new-slug/</code> when a post or term slug changes"
+msgstr "Отключает авторедиректы Yoast Premium <code>/old-slug/</code> > <code>/new-slug/</code> при смене slug записи или термина"
+
+msgid "Disables Yoast Premium admin notices when a post is trashed, a post/term slug changes, or a term is deleted"
+msgstr "Отключает уведомления Yoast Premium при перемещении записи в корзину, смене slug записи/термина или удалении термина"
+
+msgid "Disables anonymous Yoast usage / telemetry data sent outbound to Yoast"
+msgstr "Отключает анонимную статистику / телеметрию Yoast, уходящую наружу к Yoast"
+
+msgid "Disables Yoast FAQ, How-to, and other schema blocks in the block editor"
+msgstr "Отключает schema-блоки Yoast FAQ, How-to и другие в блочном редакторе"
+
+msgid "Disables SEO / readability highlight markers in post content in the block/classic editor"
+msgstr "Отключает подсветку SEO / readability в контенте записи в блочном/классическом редакторе"
+
+msgid "Removes the RSS footer line like “The post Title appeared first on Blog” (or the Russian variant) from RSS/Atom feed items"
+msgstr "Убирает футер ленты вроде «The post Title appeared first on Blog» (или русский вариант) из элементов RSS/Atom"
+
+msgid "Removes <code>&lt;link rel=\"prev\"&gt;</code> and <code>&lt;link rel=\"next\"&gt;</code> from the front <code>&lt;head&gt;</code> on singular posts"
+msgstr "Убирает <code>&lt;link rel=\"prev\"&gt;</code> и <code>&lt;link rel=\"next\"&gt;</code> из фронтового <code>&lt;head&gt;</code> на одиночных записях"
+
+msgid "Removes Yoast upsells: admin notices, promotional footer, AI Content Planner banner, premium analysis ads in the editor, and menu items <code>Yoast > Upgrade</code> / <code>Yoast > AI Brand Insights</code>"
+msgstr "Убирает upsell Yoast: уведомления в админке, промо-футер, баннер AI Content Planner, рекламу premium-анализа в редакторе и пункты меню <code>Yoast > Upgrade</code> / <code>Yoast > AI Brand Insights</code>"
+
+msgid "Removes the <code>Yoast > Integrations</code> item from the wp-admin menu"
+msgstr "Убирает пункт <code>Yoast > Integrations</code> из меню wp-admin"
+
+msgid "Removes the <code>Yoast > Workouts</code> item from the wp-admin menu"
+msgstr "Убирает пункт <code>Yoast > Workouts</code> из меню wp-admin"
+
+msgid "Removes the <code>Yoast > Courses</code> item from the wp-admin menu"
+msgstr "Убирает пункт <code>Yoast > Courses</code> из меню wp-admin"
+
+msgid "Removes the <code>Yoast > Academy</code> item from the wp-admin menu"
+msgstr "Убирает пункт <code>Yoast > Academy</code> из меню wp-admin"
+
+msgid "Removes Yoast Premium licenses screens from the wp-admin menu"
+msgstr "Убирает экраны Premium licenses Yoast из меню wp-admin"
+
+msgid "Removes <code>Yoast > Redirects</code> (<code>admin.php?page=wpseo_redirects</code>) from the wp-admin menu"
+msgstr "Убирает <code>Yoast > Redirects</code> (<code>admin.php?page=wpseo_redirects</code>) из меню wp-admin"
+
+msgid "Removes the Dashboard widget “Yoast SEO” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Yoast SEO» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes the Dashboard widget “Wincher” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Wincher» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes Redis / cache flush & metrics from the Admin bar (front end and wp-admin)"
+msgstr "Убирает Redis / сброс кеша и metrics из Admin bar (фронт и wp-admin)"
+
+msgid "Removes Object Cache Pro / Redis Cache upsell banners from <code>wp-admin > Settings</code> (Redis screens)"
+msgstr "Убирает upsell-баннеры Object Cache Pro / Redis Cache из <code>wp-admin > Настройки</code> (экраны Redis)"
+
+msgid "Removes admin notices about <code>object-cache.php</code> drop-in updates in wp-admin"
+msgstr "Убирает уведомления об обновлениях drop-in <code>object-cache.php</code> в wp-admin"
+
+msgid "Removes the HTML comment <code>&lt;!-- Performance optimized by Redis Object Cache. Learn more: … --&gt;</code> from the front-end HTML source"
+msgstr "Убирает HTML-комментарий <code>&lt;!-- Performance optimized by Redis Object Cache. Learn more: … --&gt;</code> из HTML-исходника на фронте"
+
+msgid "Disables hit/miss metrics charts and recorded timings on Redis Object Cache admin screens"
+msgstr "Отключает графики hit/miss и записанные timings на экранах Redis Object Cache в админке"
+
+msgid "Removes the Dashboard widget “Redis Object Cache” from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «Redis Object Cache» из <code>wp-admin > Консоль</code>"
+
+msgid "Removes EmbedPress / Plyr CSS/JS (<code>embedpress.css</code>, <code>plyr.css</code>, <code>plyr.polyfilled.js</code>, <code>pdfobject.js</code>) on archives, home, and pages (not single posts)"
+msgstr "Убирает CSS/JS EmbedPress / Plyr (<code>embedpress.css</code>, <code>plyr.css</code>, <code>plyr.polyfilled.js</code>, <code>pdfobject.js</code>) на архивах, главной и страницах (не на одиночных записях)"
+
+msgid "Removes <code>&lt;script src=\"…/embedpress-gallery-justify.js\"&gt;&lt;/script&gt;</code> on the front end where an EmbedPress gallery is used"
+msgstr "Убирает <code>&lt;script src=\"…/embedpress-gallery-justify.js\"&gt;&lt;/script&gt;</code> на фронте, где используется галерея EmbedPress"

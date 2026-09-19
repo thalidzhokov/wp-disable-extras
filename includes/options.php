@@ -235,7 +235,7 @@ function disable_extras_option_labels(): array {
     ],
     'yoast' => [
       'premium_redirects' => __('Premium: auto-redirects on slug change', 'disable-extras'),
-      'premium_notifications' => __('Premium: trash / slug / term notifications', 'disable-extras'),
+      'premium_notifications' => __('Premium: trash/slug/term notifications', 'disable-extras'),
       'tracking' => __('Tracking', 'disable-extras'),
       'schema_blocks' => __('Schema blocks in the editor', 'disable-extras'),
       'assessment_markers' => __('Assessment markers in content', 'disable-extras'),
@@ -795,149 +795,133 @@ function disable_extras_option_hints(): array {
     ],
     'yoast' => [
       'premium_redirects' => [
-        'what' => 'Automatic redirect /old-slug/ → /new-slug/',
-        'where' => 'When a post or term slug changes (Yoast Premium)',
+        'label_note' => 'Not recommended',
+        'label_note_tone' => 'warn',
+        'summary' => 'Disables Yoast Premium automatic redirects <code>/old-slug/</code> > <code>/new-slug/</code> when a post or term slug changes',
       ],
       'premium_notifications' => [
-        'what' => [
-          'Notice when a post is trashed',
-          'or',
-          'Notice when a post/term slug changes',
-          'or',
-          'Notice when a term is deleted',
-        ],
-        'where' => 'wp-admin',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables Yoast Premium admin notices when a post is trashed, a post/term slug changes, or a term is deleted',
       ],
       'tracking' => [
-        'what' => 'Anonymous usage / telemetry data',
-        'where' => 'Outbound to Yoast',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables anonymous Yoast usage / telemetry data sent outbound to Yoast',
       ],
       'schema_blocks' => [
-        'what' => 'FAQ, How-to, and other Yoast schema blocks',
-        'where' => 'Block editor',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables Yoast FAQ, How-to, and other schema blocks in the block editor',
       ],
       'assessment_markers' => [
-        'what' => 'SEO / readability highlight markers in content',
-        'where' => 'Block / classic editor (post content)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables SEO / readability highlight markers in post content in the block/classic editor',
       ],
       'rss_footer' => [
-        'what' => [
-          'The post <a href="…">Title</a> appeared first on <a href="…">Blog</a>.',
-          'or',
-          'Сообщение … появились сначала на …',
-        ],
-        'where' => 'RSS/Atom feed items (rssbefore / rssafter)',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the RSS footer line like “The post Title appeared first on Blog” (or the Russian variant) from RSS/Atom feed items',
       ],
       'adjacent_rel' => [
-        'what' => <<<'TXT'
-<link rel="prev" href="https://example.com/post-1/">
-<link rel="next" href="https://example.com/post-3/">
-TXT,
-        'where' => 'Front end <head> on singular posts',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes <code>&lt;link rel="prev"&gt;</code> and <code>&lt;link rel="next"&gt;</code> from the front <code>&lt;head&gt;</code> on singular posts',
       ],
       'admin_upsells' => [
-        'what' => [
-          'Admin notices (wpseo_admin_notices)',
-          'and_also',
-          'Promotional footer (wpseo_admin_footer)',
-          'and_also',
-          'AI Content Planner banner',
-          'and_also',
-          <<<'TXT'
-#premium-seo-analysis-upsell-ad-sidebar
-#premium-seo-analysis-upsell-ad-metabox
-#premium-seo-analysis-upsell-ad-elementor
-TXT,
-          'and_also',
-          'Yoast > Upgrade',
-          'and_also',
-          'Yoast > AI Brand Insights',
-        ],
-        'where' => [
-          'wp-admin notices / Yoast screens',
-          'and_also',
-          'Post editor (block / classic / Elementor)',
-          'and_also',
-          'Yoast admin menu',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes Yoast upsells: admin notices, promotional footer, AI Content Planner banner, premium analysis ads in the editor, and menu items <code>Yoast > Upgrade</code> / <code>Yoast > AI Brand Insights</code>',
       ],
       'menu_integrations' => [
-        'what' => 'Yoast > Integrations',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the <code>Yoast > Integrations</code> item from the wp-admin menu',
       ],
       'menu_workouts' => [
-        'what' => 'Yoast > Workouts',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the <code>Yoast > Workouts</code> item from the wp-admin menu',
       ],
       'menu_courses' => [
-        'what' => 'Yoast > Courses',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the <code>Yoast > Courses</code> item from the wp-admin menu',
       ],
       'menu_academy' => [
-        'what' => 'Yoast > Academy',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the <code>Yoast > Academy</code> item from the wp-admin menu',
       ],
       'menu_licenses' => [
-        'what' => 'Yoast > Premium licenses screens',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes Yoast Premium licenses screens from the wp-admin menu',
       ],
       'menu_redirects' => [
-        'what' => 'Yoast > Redirects (admin.php?page=wpseo_redirects)',
-        'where' => 'wp-admin menu',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes <code>Yoast > Redirects</code> (<code>admin.php?page=wpseo_redirects</code>) from the wp-admin menu',
       ],
       'dashboard_yoast' => [
-        'what' => 'Dashboard widget: “Yoast SEO”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “Yoast SEO” from <code>wp-admin > Dashboard</code>',
       ],
       'dashboard_wincher' => [
-        'what' => 'Dashboard widget: “Wincher”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “Wincher” from <code>wp-admin > Dashboard</code>',
       ],
     ],
     'redis' => [
       'adminbar' => [
-        'what' => 'Admin bar: Redis / cache flush & metrics',
-        'where' => 'Admin bar (front end and wp-admin)',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes Redis / cache flush & metrics from the Admin bar (front end and wp-admin)',
         'constant' => "define('WP_REDIS_DISABLE_ADMINBAR', true);",
       ],
       'banners' => [
-        'what' => 'Object Cache Pro / Redis Cache upsell banners',
-        'where' => 'wp-admin > Settings (Redis screens)',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes Object Cache Pro / Redis Cache upsell banners from <code>wp-admin > Settings</code> (Redis screens)',
         'constant' => "define('WP_REDIS_DISABLE_BANNERS', true);",
       ],
       'dropin_banners' => [
-        'what' => 'Admin notices about object-cache.php drop-in updates',
-        'where' => 'wp-admin',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes admin notices about <code>object-cache.php</code> drop-in updates in wp-admin',
         'constant' => "define('WP_REDIS_DISABLE_DROPIN_BANNERS', true);",
       ],
       'html_comment' => [
-        'what' => '<!-- Performance optimized by Redis Object Cache. Learn more: … -->',
-        'where' => 'Front end HTML source',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the HTML comment <code>&lt;!-- Performance optimized by Redis Object Cache. Learn more: … --&gt;</code> from the front-end HTML source',
         'constant' => "define('WP_REDIS_DISABLE_COMMENT', true);",
       ],
       'metrics' => [
-        'what' => 'Hit/miss metrics charts and recorded timings',
-        'where' => 'Redis Object Cache admin screens',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Disables hit/miss metrics charts and recorded timings on Redis Object Cache admin screens',
         'constant' => "define('WP_REDIS_DISABLE_METRICS', true);",
       ],
       'dashboard_widget' => [
-        'what' => 'Dashboard widget: “Redis Object Cache”',
-        'where' => 'wp-admin > Dashboard',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “Redis Object Cache” from <code>wp-admin > Dashboard</code>',
       ],
     ],
     'embedpress' => [
       'assets_outside_single' => [
-        'what' => <<<'TXT'
-<link rel="stylesheet" href="…/embedpress.css">
-<link rel="stylesheet" href="…/plyr.css">
-<script src="…/plyr.polyfilled.js"></script>
-<script src="…/pdfobject.js"></script>
-TXT,
-        'where' => 'Archives, home, pages (not single posts)',
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes EmbedPress / Plyr CSS/JS (<code>embedpress.css</code>, <code>plyr.css</code>, <code>plyr.polyfilled.js</code>, <code>pdfobject.js</code>) on archives, home, and pages (not single posts)',
       ],
       'gallery_justify' => [
-        'what' => '<script src="…/embedpress-gallery-justify.js"></script>',
-        'where' => 'Front end where EmbedPress gallery is used',
+        'label_note' => 'Optional',
+        'label_note_tone' => 'muted',
+        'summary' => 'Removes <code>&lt;script src="…/embedpress-gallery-justify.js"&gt;&lt;/script&gt;</code> on the front end where an EmbedPress gallery is used',
       ],
     ],
   ];
