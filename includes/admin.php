@@ -177,6 +177,14 @@ function disable_extras_admin_tabs(): array {
       'label' => __('EmbedPress', 'disable-extras'),
       'active' => disable_extras_is_embedpress_active(),
     ],
+    'wpforms' => [
+      'label' => __('WPForms', 'disable-extras'),
+      'active' => disable_extras_is_wpforms_active(),
+    ],
+    'wp_mail_smtp' => [
+      'label' => __('WP Mail SMTP', 'disable-extras'),
+      'active' => disable_extras_is_wp_mail_smtp_active(),
+    ],
   ];
 }
 

@@ -1,7 +1,7 @@
 # Copyright (C) 2026 Albert Thalidzhokov
 msgid ""
 msgstr ""
-"Project-Id-Version: Disable Extras 1.2.0\n"
+"Project-Id-Version: Disable Extras 1.4.0\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1110,3 +1110,81 @@ msgstr "Старые комментарии из базы не удаляет"
 
 msgid "Blocks <code>?author=1</code> style probes and author archive URLs (<code>/author/name/</code>), and removes the users provider from core sitemaps"
 msgstr "Блокирует зонды вида <code>?author=1</code> и URL архивов авторов (<code>/author/name/</code>), убирает users-провайдер из core sitemaps"
+
+msgid "WPForms"
+msgstr "WPForms"
+
+msgid "Load Assets Globally (WPForms setting)"
+msgstr "Load Assets Globally (настройка WPForms)"
+
+msgid "WPForms CSS/JS on pages without a form shortcode/block"
+msgstr "CSS/JS WPForms на страницах без shortcode/блока формы"
+
+msgid "Admin bar menu"
+msgstr "Меню Admin bar"
+
+msgid "Announcements / notification feed"
+msgstr "Announcements / лента уведомлений"
+
+msgid "Menu: Analytics, SMTP, About, Community, Addons…"
+msgstr "Меню: Analytics, SMTP, About, Community, Addons…"
+
+msgid "Front-end assets"
+msgstr "Ассеты на фронте"
+
+msgid "Forces <code>wpforms_global_assets</code> to false so CSS/JS load only when WPForms renders a form (overrides WPForms → Settings → “Load Assets Globally”)"
+msgstr "Принудительно ставит <code>wpforms_global_assets</code> в false: CSS/JS грузятся только когда WPForms рендерит форму (перебивает WPForms → Настройки → «Load Assets Globally»)"
+
+msgid "Optional — not if the form is only in a widget/template"
+msgstr "Опционально — не стоит, если форма только в виджете/шаблоне"
+
+msgid "Dequeues handles starting with <code>wpforms</code> on singular pages without <code>[wpforms]</code> / block <code>wpforms/form-selector</code> in post content"
+msgstr "Снимает с очереди handles с префиксом <code>wpforms</code> на singular-страницах без <code>[wpforms]</code> / блока <code>wpforms/form-selector</code> в контенте"
+
+msgid "Hides the WPForms menu in the Admin bar (front end and wp-admin)"
+msgstr "Скрывает меню WPForms в Admin bar (фронт и wp-admin)"
+
+msgid "Removes the Dashboard widget “WPForms” (<code>wpforms_reports_widget_lite</code> / Pro) from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «WPForms» (<code>wpforms_reports_widget_lite</code> / Pro) из <code>wp-admin > Консоль</code>"
+
+msgid "Disables the WPForms announcements / notification feed (<code>wpforms_admin_notifications_has_access</code>)"
+msgstr "Отключает announcements / ленту уведомлений WPForms (<code>wpforms_admin_notifications_has_access</code>)"
+
+msgid "Removes upsell submenu items under WPForms: Analytics, SMTP, About, Community, WPConsent, Addons"
+msgstr "Убирает upsell-пункты подменю WPForms: Analytics, SMTP, About, Community, WPConsent, Addons"
+
+msgid "WP Mail SMTP"
+msgstr "WP Mail SMTP"
+
+msgid "Flyout quick links menu"
+msgstr "Flyout-меню быстрых ссылок"
+
+msgid "Menu: About Us, recommended plugins, Upgrade to Pro"
+msgstr "Меню: About Us, recommended plugins, Upgrade to Pro"
+
+msgid "Email delivery error admin notices"
+msgstr "Уведомления об ошибках доставки почты"
+
+msgid "Notices"
+msgstr "Уведомления"
+
+msgid "Removes the Dashboard widget “WP Mail SMTP” (<code>wp_mail_smtp_reports_widget_lite</code>) from <code>wp-admin > Dashboard</code>"
+msgstr "Убирает виджет Dashboard «WP Mail SMTP» (<code>wp_mail_smtp_reports_widget_lite</code>) из <code>wp-admin > Консоль</code>"
+
+msgid "Hides the WP Mail SMTP menu in the Admin bar (front end and wp-admin)"
+msgstr "Скрывает меню WP Mail SMTP в Admin bar (фронт и wp-admin)"
+
+msgid "Disables the WP Mail SMTP announcements / notification feed (<code>wp_mail_smtp_admin_notifications_has_access</code>)"
+msgstr "Отключает announcements / ленту уведомлений WP Mail SMTP (<code>wp_mail_smtp_admin_notifications_has_access</code>)"
+
+msgid "Hides the floating flyout quick-links menu on WP Mail SMTP admin screens"
+msgstr "Скрывает плавающее flyout-меню быстрых ссылок на экранах WP Mail SMTP"
+
+msgid "Removes About Us, recommended-plugin landing pages, and “Upgrade to Pro” from the WP Mail SMTP admin menu"
+msgstr "Убирает About Us, лендинги recommended plugins и «Upgrade to Pro» из меню WP Mail SMTP"
+
+msgid "Not recommended — hides real delivery failures"
+msgstr "Не рекомендуется — скрывает реальные сбои доставки"
+
+msgid "Disables admin notices about failed email delivery (<code>wp_mail_smtp_admin_is_error_delivery_notice_enabled</code>)"
+msgstr "Отключает уведомления в админке о сбоях доставки почты (<code>wp_mail_smtp_admin_is_error_delivery_notice_enabled</code>)"

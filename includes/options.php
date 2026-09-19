@@ -7,7 +7,9 @@ defined('ABSPATH') || exit;
  *   wp: array<string, bool>,
  *   yoast: array<string, bool>,
  *   redis: array<string, bool>,
- *   embedpress: array<string, bool>
+ *   embedpress: array<string, bool>,
+ *   wpforms: array<string, bool>,
+ *   wp_mail_smtp: array<string, bool>
  * }
  */
 function disable_extras_default_options(): array {
@@ -116,6 +118,22 @@ function disable_extras_default_options(): array {
       'assets_outside_single' => true,
       'gallery_justify' => true,
     ],
+    'wpforms' => [
+      'global_assets' => true,
+      'assets_without_form' => false,
+      'admin_bar' => true,
+      'dashboard_widget' => true,
+      'announcements' => true,
+      'menu_upsells' => true,
+    ],
+    'wp_mail_smtp' => [
+      'dashboard_widget' => true,
+      'admin_bar' => true,
+      'announcements' => true,
+      'flyout' => true,
+      'menu_upsells' => true,
+      'delivery_error_notices' => false,
+    ],
   ];
 }
 
@@ -124,7 +142,9 @@ function disable_extras_default_options(): array {
  *   wp: array<string, bool>,
  *   yoast: array<string, bool>,
  *   redis: array<string, bool>,
- *   embedpress: array<string, bool>
+ *   embedpress: array<string, bool>,
+ *   wpforms: array<string, bool>,
+ *   wp_mail_smtp: array<string, bool>
  * }
  */
 function disable_extras_get_options(): array {
@@ -280,6 +300,22 @@ function disable_extras_option_labels(): array {
     'embedpress' => [
       'assets_outside_single' => __('EmbedPress and Plyr CSS/JS outside single', 'disable-extras'),
       'gallery_justify' => __('embedpress-gallery-justify script', 'disable-extras'),
+    ],
+    'wpforms' => [
+      'global_assets' => __('Load Assets Globally (WPForms setting)', 'disable-extras'),
+      'assets_without_form' => __('WPForms CSS/JS on pages without a form shortcode/block', 'disable-extras'),
+      'admin_bar' => __('Admin bar menu', 'disable-extras'),
+      'dashboard_widget' => __('Dashboard widget', 'disable-extras'),
+      'announcements' => __('Announcements / notification feed', 'disable-extras'),
+      'menu_upsells' => __('Menu: Analytics, SMTP, About, Community, Addons…', 'disable-extras'),
+    ],
+    'wp_mail_smtp' => [
+      'dashboard_widget' => __('Dashboard widget', 'disable-extras'),
+      'admin_bar' => __('Admin bar menu', 'disable-extras'),
+      'announcements' => __('Announcements / notification feed', 'disable-extras'),
+      'flyout' => __('Flyout quick links menu', 'disable-extras'),
+      'menu_upsells' => __('Menu: About Us, recommended plugins, Upgrade to Pro', 'disable-extras'),
+      'delivery_error_notices' => __('Email delivery error admin notices', 'disable-extras'),
     ],
   ];
 }
@@ -477,6 +513,42 @@ function disable_extras_option_sections(): array {
         'keys' => [
           'assets_outside_single',
           'gallery_justify',
+        ],
+      ],
+    ],
+    'wpforms' => [
+      [
+        'title' => __('Front-end assets', 'disable-extras'),
+        'keys' => [
+          'global_assets',
+          'assets_without_form',
+        ],
+      ],
+      [
+        'title' => __('Admin UI', 'disable-extras'),
+        'keys' => [
+          'admin_bar',
+          'dashboard_widget',
+          'announcements',
+          'menu_upsells',
+        ],
+      ],
+    ],
+    'wp_mail_smtp' => [
+      [
+        'title' => __('Admin UI', 'disable-extras'),
+        'keys' => [
+          'dashboard_widget',
+          'admin_bar',
+          'announcements',
+          'flyout',
+          'menu_upsells',
+        ],
+      ],
+      [
+        'title' => __('Notices', 'disable-extras'),
+        'keys' => [
+          'delivery_error_notices',
         ],
       ],
     ],
@@ -1009,6 +1081,70 @@ function disable_extras_option_hints(): array {
         'summary' => 'Removes <code>&lt;script src="…/embedpress-gallery-justify.js"&gt;&lt;/script&gt;</code> on the front end where an EmbedPress gallery is used',
       ],
     ],
+    'wpforms' => [
+      'global_assets' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Forces <code>wpforms_global_assets</code> to false so CSS/JS load only when WPForms renders a form (overrides WPForms → Settings → “Load Assets Globally”)',
+      ],
+      'assets_without_form' => [
+        'label_note' => 'Optional — not if the form is only in a widget/template',
+        'label_note_tone' => 'muted',
+        'summary' => 'Dequeues handles starting with <code>wpforms</code> on singular pages without <code>[wpforms]</code> / block <code>wpforms/form-selector</code> in post content',
+      ],
+      'admin_bar' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Hides the WPForms menu in the Admin bar (front end and wp-admin)',
+      ],
+      'dashboard_widget' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “WPForms” (<code>wpforms_reports_widget_lite</code> / Pro) from <code>wp-admin > Dashboard</code>',
+      ],
+      'announcements' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables the WPForms announcements / notification feed (<code>wpforms_admin_notifications_has_access</code>)',
+      ],
+      'menu_upsells' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes upsell submenu items under WPForms: Analytics, SMTP, About, Community, WPConsent, Addons',
+      ],
+    ],
+    'wp_mail_smtp' => [
+      'dashboard_widget' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the Dashboard widget “WP Mail SMTP” (<code>wp_mail_smtp_reports_widget_lite</code>) from <code>wp-admin > Dashboard</code>',
+      ],
+      'admin_bar' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Hides the WP Mail SMTP menu in the Admin bar (front end and wp-admin)',
+      ],
+      'announcements' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Disables the WP Mail SMTP announcements / notification feed (<code>wp_mail_smtp_admin_notifications_has_access</code>)',
+      ],
+      'flyout' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Hides the floating flyout quick-links menu on WP Mail SMTP admin screens',
+      ],
+      'menu_upsells' => [
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes About Us, recommended-plugin landing pages, and “Upgrade to Pro” from the WP Mail SMTP admin menu',
+      ],
+      'delivery_error_notices' => [
+        'label_note' => 'Not recommended — hides real delivery failures',
+        'label_note_tone' => 'warn',
+        'summary' => 'Disables admin notices about failed email delivery (<code>wp_mail_smtp_admin_is_error_delivery_notice_enabled</code>)',
+      ],
+    ],
   ];
 }
 
@@ -1020,7 +1156,9 @@ function disable_extras_option_hints(): array {
  *   wp: array<string, bool>,
  *   yoast: array<string, bool>,
  *   redis: array<string, bool>,
- *   embedpress: array<string, bool>
+ *   embedpress: array<string, bool>,
+ *   wpforms: array<string, bool>,
+ *   wp_mail_smtp: array<string, bool>
  * }
  */
 function disable_extras_sanitize_options($input): array {
@@ -1089,4 +1227,36 @@ function disable_extras_is_embedpress_active(): bool {
   }
 
   return is_plugin_active('embedpress/embedpress.php');
+}
+
+/**
+ * @return bool
+ */
+function disable_extras_is_wpforms_active(): bool {
+  if (defined('WPFORMS_VERSION')) {
+    return true;
+  }
+
+  if (!function_exists('is_plugin_active')) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+  }
+
+  return is_plugin_active('wpforms-lite/wpforms.php')
+    || is_plugin_active('wpforms/wpforms.php');
+}
+
+/**
+ * @return bool
+ */
+function disable_extras_is_wp_mail_smtp_active(): bool {
+  if (defined('WPMS_PLUGIN_VER') || defined('WPMS_PLUGIN_FILE')) {
+    return true;
+  }
+
+  if (!function_exists('is_plugin_active')) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+  }
+
+  return is_plugin_active('wp-mail-smtp/wp_mail_smtp.php')
+    || is_plugin_active('wp-mail-smtp-pro/wp_mail_smtp.php');
 }
