@@ -62,6 +62,8 @@ return [
     'Feeds are disabled.' => 'Ленты отключены.',
     'Front-end scripts' => 'Скрипты на фронте',
     'Generator meta tag and RSS version' => 'Мета generator и версия в RSS',
+    'Recommended' => 'Рекомендуется',
+    'Removes the <code>&lt;meta name="generator" content="WordPress 6.7.1"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds' => 'Убирает тег <code>&lt;meta name="generator" content="WordPress 6.7.1"&gt;</code> из HTML кода и тег <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> из лент RSS/Atom',
     'Global comments feed' => 'Общая лента комментариев',
     'Global posts feed' => 'Общая лента записей',
     'HTML comment in footer' => 'HTML-комментарий в footer',

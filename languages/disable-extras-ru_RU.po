@@ -210,6 +210,12 @@ msgstr "Скрипты на фронте"
 msgid "Generator meta tag and RSS version"
 msgstr "Мета generator и версия в RSS"
 
+msgid "Recommended"
+msgstr "Рекомендуется"
+
+msgid "Removes the <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds"
+msgstr "Убирает тег <code>&lt;meta name=\"generator\" content=\"WordPress 6.7.1\"&gt;</code> из HTML кода и тег <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> из лент RSS/Atom"
+
 msgid "Global comments feed"
 msgstr "Общая лента комментариев"
 

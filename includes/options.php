@@ -481,16 +481,9 @@ TXT,
         ],
       ],
       'generator' => [
-        'what' => [
-          '<meta name="generator" content="WordPress 6.7.1">',
-          'and_also',
-          '<generator>https://wordpress.org/?v=6.7.1</generator>',
-        ],
-        'where' => [
-          'Front end <head>',
-          'and_also',
-          'RSS/Atom feeds',
-        ],
+        'label_note' => 'Recommended',
+        'label_note_tone' => 'ok',
+        'summary' => 'Removes the <code>&lt;meta name="generator" content="WordPress 6.7.1"&gt;</code> tag from HTML and the <code>&lt;generator&gt;https://wordpress.org/?v=6.7.1&lt;/generator&gt;</code> tag from RSS/Atom feeds',
       ],
       'script_versions' => [
         'what' => <<<'TXT'
