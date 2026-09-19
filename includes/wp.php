@@ -86,6 +86,10 @@ function disable_extras_wp_apply(): void {
     remove_action('template_redirect', 'wp_shortlink_header', 11);
   }
 
+  if (disable_extras_is_enabled('wp', 'adjacent_posts')) {
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+  }
+
   if (disable_extras_is_enabled('wp', 'xmlrpc')) {
     add_filter('xmlrpc_enabled', '__return_false');
     remove_action('wp_head', 'rsd_link');
