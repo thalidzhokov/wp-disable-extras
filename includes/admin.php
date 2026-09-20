@@ -380,6 +380,14 @@ function disable_extras_admin_render_option_row(
   $hasWhat = !$hasSummary && $what !== null && disable_extras_admin_hint_parts($what) !== [];
   $hasWhere = !$hasSummary && $where !== null && disable_extras_admin_hint_parts($where) !== [];
   $hasConstant = $constant !== '';
+  $lockedByConstant = disable_extras_is_locked_by_constant($tab, $key);
+  $constantPair = disable_extras_option_constant($tab, $key);
+  $checked = !empty($options[$tab][$key]);
+
+  if ($lockedByConstant && $constantPair !== null) {
+    $checked = disable_extras_constant_matches_disable($constantPair[0], $constantPair[1]);
+  }
+
   $labelNoteClass = 'disable-extras-label-note';
 
   if ($labelNoteTone === 'ok') {
@@ -397,11 +405,21 @@ function disable_extras_admin_render_option_row(
     </th>
     <td>
       <label>
+        <?php if ($lockedByConstant && $checked) : ?>
+          <input
+            type="hidden"
+            name="<?php echo esc_attr(DISABLE_EXTRAS_OPTION . '[' . $tab . '][' . $key . ']'); ?>"
+            value="1"
+          >
+        <?php endif; ?>
         <input
           type="checkbox"
-          name="<?php echo esc_attr(DISABLE_EXTRAS_OPTION . '[' . $tab . '][' . $key . ']'); ?>"
+          <?php if (!$lockedByConstant) : ?>
+            name="<?php echo esc_attr(DISABLE_EXTRAS_OPTION . '[' . $tab . '][' . $key . ']'); ?>"
+          <?php endif; ?>
           value="1"
-          <?php checked(!empty($options[$tab][$key])); ?>
+          <?php checked($checked); ?>
+          <?php disabled($lockedByConstant); ?>
         >
         <?php echo esc_html__('Disable', 'disable-extras'); ?>
       </label>
@@ -424,7 +442,14 @@ function disable_extras_admin_render_option_row(
           <?php endif; ?>
           <?php if ($hasConstant) : ?>
             <p>
-              <?php echo esc_html__('Can be disabled with a constant in wp-config.php', 'disable-extras'); ?><br>
+              <?php
+              echo esc_html__(
+                $lockedByConstant
+                  ? 'Already set by a constant in wp-config.php'
+                  : 'Can be disabled with a constant in wp-config.php',
+                'disable-extras'
+              );
+              ?><br>
               <code><?php echo esc_html($constant); ?></code>
             </p>
           <?php endif; ?>

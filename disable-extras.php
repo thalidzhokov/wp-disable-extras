@@ -47,6 +47,7 @@ register_activation_hook(__FILE__, static function (): void {
   }
 });
 
+disable_extras_capture_external_constant_locks();
 disable_extras_redis_define_constants();
 disable_extras_wp_boot();
 disable_extras_yoast_boot();

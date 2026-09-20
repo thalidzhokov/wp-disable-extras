@@ -432,6 +432,9 @@ msgstr "Задачи <code>wp_schedule_event()</code>, <code>wp_schedule_single_
 msgid "To run manually, call <code>wp-cron.php</code>, e.g. <code>php /path/to/wordpress/wp-cron.php</code>"
 msgstr "Для ручного запуска вызовите <code>wp-cron.php</code>, напр. <code>php /path/to/wordpress/wp-cron.php</code>"
 
+msgid "Already set by a constant in wp-config.php"
+msgstr "Уже задано константой в wp-config.php"
+
 msgid "Can be disabled with a constant in wp-config.php"
 msgstr "Можно отключить константой в wp-config.php"
 

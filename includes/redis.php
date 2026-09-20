@@ -8,21 +8,15 @@ defined('ABSPATH') || exit;
  * @return void
  */
 function disable_extras_redis_define_constants(): void {
-  $map = [
-    'adminbar' => 'WP_REDIS_DISABLE_ADMINBAR',
-    'banners' => 'WP_REDIS_DISABLE_BANNERS',
-    'dropin_banners' => 'WP_REDIS_DISABLE_DROPIN_BANNERS',
-    'html_comment' => 'WP_REDIS_DISABLE_COMMENT',
-    'metrics' => 'WP_REDIS_DISABLE_METRICS',
-  ];
+  $map = disable_extras_option_constants()['redis'] ?? [];
 
-  foreach ($map as $key => $constant) {
+  foreach ($map as $key => [$constant, $value]) {
     if (!disable_extras_is_enabled('redis', $key)) {
       continue;
     }
 
     if (!defined($constant)) {
-      define($constant, true);
+      define($constant, $value);
     }
   }
 }

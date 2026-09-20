@@ -14,16 +14,7 @@ function disable_extras_wp_boot(): void {
  * @return void
  */
 function disable_extras_wp_define_constants(): void {
-  $map = [
-    'auto_updates_all' => ['AUTOMATIC_UPDATER_DISABLED', true],
-    'auto_updates_core' => ['WP_AUTO_UPDATE_CORE', false],
-    'disallow_file_edit' => ['DISALLOW_FILE_EDIT', true],
-    'disallow_file_mods' => ['DISALLOW_FILE_MODS', true],
-    'disable_wp_cron' => ['DISABLE_WP_CRON', true],
-    'disallow_unfiltered_html' => ['DISALLOW_UNFILTERED_HTML', true],
-    'post_revisions' => ['WP_POST_REVISIONS', false],
-    'empty_trash' => ['EMPTY_TRASH_DAYS', 0],
-  ];
+  $map = disable_extras_option_constants()['wp'] ?? [];
 
   foreach ($map as $optionKey => [$constant, $value]) {
     if (!disable_extras_is_enabled('wp', $optionKey)) {

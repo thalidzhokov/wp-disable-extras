@@ -187,9 +187,115 @@ function disable_extras_get_options(): array {
  * @return bool
  */
 function disable_extras_is_enabled(string $group, string $key): bool {
+  // Constant from wp-config owns this option — plugin must not apply it.
+  if (disable_extras_is_locked_by_constant($group, $key)) {
+    return false;
+  }
+
   $options = disable_extras_get_options();
 
   return !empty($options[$group][$key]);
+}
+
+/**
+ * Option keys that map to wp-config constants (disable value).
+ *
+ * @return array<string, array<string, array{0: string, 1: mixed}>>
+ */
+function disable_extras_option_constants(): array {
+  return [
+    'wp' => [
+      'auto_updates_all' => ['AUTOMATIC_UPDATER_DISABLED', true],
+      'auto_updates_core' => ['WP_AUTO_UPDATE_CORE', false],
+      'disallow_file_edit' => ['DISALLOW_FILE_EDIT', true],
+      'disallow_file_mods' => ['DISALLOW_FILE_MODS', true],
+      'disable_wp_cron' => ['DISABLE_WP_CRON', true],
+      'disallow_unfiltered_html' => ['DISALLOW_UNFILTERED_HTML', true],
+      'post_revisions' => ['WP_POST_REVISIONS', false],
+      'empty_trash' => ['EMPTY_TRASH_DAYS', 0],
+    ],
+    'redis' => [
+      'adminbar' => ['WP_REDIS_DISABLE_ADMINBAR', true],
+      'banners' => ['WP_REDIS_DISABLE_BANNERS', true],
+      'dropin_banners' => ['WP_REDIS_DISABLE_DROPIN_BANNERS', true],
+      'html_comment' => ['WP_REDIS_DISABLE_COMMENT', true],
+      'metrics' => ['WP_REDIS_DISABLE_METRICS', true],
+    ],
+  ];
+}
+
+/**
+ * @param string $group
+ * @param string $key
+ *
+ * @return array{0: string, 1: mixed}|null
+ */
+function disable_extras_option_constant(string $group, string $key): ?array {
+  return disable_extras_option_constants()[$group][$key] ?? null;
+}
+
+/**
+ * Whether a defined constant already disables the feature.
+ *
+ * @param string $constant
+ * @param mixed $expected
+ *
+ * @return bool
+ */
+function disable_extras_constant_matches_disable(string $constant, $expected): bool {
+  if (!defined($constant)) {
+    return false;
+  }
+
+  $actual = constant($constant);
+
+  if ($constant === 'WP_POST_REVISIONS') {
+    return $actual === false || $actual === 0;
+  }
+
+  if ($constant === 'EMPTY_TRASH_DAYS') {
+    return (int) $actual === 0;
+  }
+
+  return $actual === $expected;
+}
+
+/**
+ * Snapshot constants defined before this plugin defines any (e.g. wp-config.php).
+ *
+ * @return void
+ */
+function disable_extras_capture_external_constant_locks(): void {
+  static $done = false;
+
+  if ($done) {
+    return;
+  }
+
+  $done = true;
+  $locks = [];
+
+  foreach (disable_extras_option_constants() as $group => $items) {
+    foreach ($items as $key => [$constant]) {
+      if (defined($constant)) {
+        $locks[$group . '.' . $key] = true;
+      }
+    }
+  }
+
+  $GLOBALS['disable_extras_external_constant_locks'] = $locks;
+}
+
+/**
+ * @param string $group
+ * @param string $key
+ *
+ * @return bool
+ */
+function disable_extras_is_locked_by_constant(string $group, string $key): bool {
+  $locks = $GLOBALS['disable_extras_external_constant_locks'] ?? [];
+
+  return !empty($locks[$group . '.' . $key]);
 }
 
 /**
@@ -1177,6 +1283,13 @@ function disable_extras_sanitize_options($input): array {
     }
 
     foreach ($items as $key => $default) {
+      if (disable_extras_is_locked_by_constant($group, $key)) {
+        $pair = disable_extras_option_constant($group, $key);
+        $output[$group][$key] = $pair !== null
+          && disable_extras_constant_matches_disable($pair[0], $pair[1]);
+        continue;
+      }
+
       $output[$group][$key] = !empty($input[$group][$key]);
     }
   }

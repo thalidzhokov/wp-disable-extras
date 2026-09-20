@@ -258,6 +258,7 @@ return [
     'Disables built-in WP-Cron on page load' => 'Отключает встроенный WP-Cron при загрузке страниц',
     'Tasks from <code>wp_schedule_event()</code> and <code>wp_schedule_single_event()</code> stay queued and wait; there is no auto-run on page load' => 'Задачи <code>wp_schedule_event()</code>, <code>wp_schedule_single_event()</code> остаются в очереди и ждут выполнения — автозапуск при загрузке страницы не идёт',
     'To run manually, call <code>wp-cron.php</code>, e.g. <code>php /path/to/wordpress/wp-cron.php</code>' => 'Для ручного запуска вызовите <code>wp-cron.php</code>, напр. <code>php /path/to/wordpress/wp-cron.php</code>',
+    'Already set by a constant in wp-config.php' => 'Уже задано константой в wp-config.php',
     'Can be disabled with a constant in wp-config.php' => 'Можно отключить константой в wp-config.php',
     'Not recommended' => 'Не рекомендуется',
     'Disables creating new revisions (<code>WP_POST_REVISIONS</code>); the revisions UI in the editor stops growing. Existing <code>post_type = revision</code> rows in <code>wp_posts</code> are not deleted' => 'Отключает создание новых ревизий (<code>WP_POST_REVISIONS</code>); UI ревизий в редакторе перестаёт расти. Существующие строки <code>post_type = revision</code> в <code>wp_posts</code> не удаляются',
